@@ -1,6 +1,7 @@
 ﻿using Microsoft.AspNetCore.Identity;
 
 using TruckingIndustryAPI.Entities.Models.Identity;
+using TruckingIndustryAPI.Repository.Positions;
 
 namespace TruckingIndustryAPI.Configuration.UoW
 {
@@ -8,7 +9,7 @@ namespace TruckingIndustryAPI.Configuration.UoW
     {
         UserManager<ApplicationUser> UserManager { get; }
         RoleManager<IdentityRole> RoleManager { get; }
-
+        IPositionRepository Position { get; }
         Task CompleteAsync();
     }
 }

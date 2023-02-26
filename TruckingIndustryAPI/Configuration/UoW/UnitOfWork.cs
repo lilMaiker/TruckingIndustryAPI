@@ -1,6 +1,7 @@
 ﻿using Microsoft.AspNetCore.Identity;
 using TruckingIndustryAPI.Data;
 using TruckingIndustryAPI.Entities.Models.Identity;
+using TruckingIndustryAPI.Repository.Positions;
 
 namespace TruckingIndustryAPI.Configuration.UoW
 {
@@ -10,14 +11,19 @@ namespace TruckingIndustryAPI.Configuration.UoW
         private readonly ILogger _logger;
         private readonly UserManager<ApplicationUser> _userManager;
         private readonly RoleManager<IdentityRole> _roleManager;
+        public IPositionRepository Position { get; private set; }
 
-        public UnitOfWork(ApplicationDbContext context, ILoggerFactory loggerFactory, UserManager<ApplicationUser> userManager, RoleManager<IdentityRole> roleManager)
+        public UnitOfWork(ApplicationDbContext context, 
+            LoggerFactory loggerFactory, UserManager<ApplicationUser> userManager, 
+            RoleManager<IdentityRole> roleManager)
         {
             _context = context;
             _logger = loggerFactory.CreateLogger("logs");
-            _userManager = userManager;
 
+            _userManager = userManager;
             _roleManager = roleManager;
+
+            Position = new PositionRepository(context, _logger);
         }
 
         public UserManager<ApplicationUser> UserManager

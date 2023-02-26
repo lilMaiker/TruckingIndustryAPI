@@ -3,6 +3,7 @@ using Microsoft.EntityFrameworkCore;
 using NuGet.Packaging.Signing;
 
 using TruckingIndustryAPI.Configuration;
+using TruckingIndustryAPI.Entities.Models;
 using TruckingIndustryAPI.Entities.Models.Identity;
 
 namespace TruckingIndustryAPI.Data
@@ -10,7 +11,7 @@ namespace TruckingIndustryAPI.Data
     public class ApplicationDbContext : IdentityDbContext<ApplicationUser>
     {
         // The DbSet property will tell EF Core tha we have a table that needs to be created
-
+        public virtual DbSet<Position> Positions { get; set; }
         public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options)
             : base(options)
         {

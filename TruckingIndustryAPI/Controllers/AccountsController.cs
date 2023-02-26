@@ -86,7 +86,7 @@ namespace TruckingIndustryAPI.Controllers
                 string callback = QueryHelpers.AddQueryString(uri: userForRegistration.ClientURI, parameters);
 
                 // Create a message object with the email, subject, and message body
-                var message = new Message(new string[] { user.Email }, "Email Confirmation token", callback, null);
+                var message = new Message(new string[] { user.Email }, "Email Confirmation token", $"Доброго времени суток, Вот ваша ссылка для подтверждения: {callback}", null);
 
                 // Send the email
                 await _emailSender.SendEmailAsync(message);
@@ -117,6 +117,188 @@ namespace TruckingIndustryAPI.Controllers
                 return BadRequest("Invalid Email Confirmation Request");
 
             return Ok("Электронная почта успешно подтверждена.");
+        }
+
+        /// <summary>
+        /// Handles external authentication process.
+        /// </summary>
+        /// <param name="externalAuth">External authentication information.</param>
+        /// <returns>Auth response containing token and success status.</returns>
+        [HttpPost("ExternalLogin")]
+        public async Task<IActionResult> ExternalLogin([FromBody] ExternalAuthDto externalAuth)
+        {
+            // Verify authentication token from external source
+            var payload = await _jwtHandler.VerifyGoogleToken(externalAuth);
+            if (payload == null) return BadRequest("Invalid external authentication token.");
+
+            // Create user login information
+            var info = new UserLoginInfo(externalAuth.Provider, payload.Subject, externalAuth.Provider);
+
+            // Try to find user by login
+            var user = await _unitOfWork.UserManager.FindByLoginAsync(info.LoginProvider, info.ProviderKey);
+            if (user == null)
+            {
+                // If user is not found by login, try to find by email
+                user = await _unitOfWork.UserManager.FindByEmailAsync(payload.Email);
+                if (user == null)
+                {
+                    // If user is not found by email, create a new user
+                    user = new ApplicationUser { Email = payload.Email, UserName = payload.Email };
+                    var createResult = await _unitOfWork.UserManager.CreateAsync(user);
+                    if (!createResult.Succeeded) return BadRequest("Failed to create a new user.");
+
+                    // Add the "Viewer" role to the user
+                    await _unitOfWork.UserManager.AddToRoleAsync(user, "Viewer");
+
+                    // Add external login information to the user
+                    var addLoginResult = await _unitOfWork.UserManager.AddLoginAsync(user, info);
+                    if (!addLoginResult.Succeeded) return BadRequest("Failed to add external login information to the user.");
+
+                    // TODO: Prepare and send an email for email confirmation
+                }
+                else
+                {
+                    // If user is found by email, add external login information to the user
+                    var addLoginResult = await _unitOfWork.UserManager.AddLoginAsync(user, info);
+                    if (!addLoginResult.Succeeded) return BadRequest("Failed to add external login information to the user.");
+                }
+            }
+
+            // Check if the user account is locked out
+            if (_unitOfWork.UserManager.SupportsUserLockout && await _unitOfWork.UserManager.IsLockedOutAsync(user)) return BadRequest("User account is locked out.");
+
+            // Generate a JWT token
+            var token = await _jwtHandler.GenerateToken(user);
+
+            var rolesUser = await _unitOfWork.UserManager.GetRolesAsync(user);
+
+            //Send response for front-end
+            return Ok(new AuthResponseDto { Token = token, IsAuthSuccessful = true, Role = rolesUser });
+        }
+
+        [HttpPost("Login")]
+        public async Task<IActionResult> Login([FromBody] UserForAuthenticationDto userForAuthentication)
+        {
+            var user = await _unitOfWork.UserManager.FindByNameAsync(userForAuthentication.Email);
+            if (user == null)
+                return BadRequest("Invalid Request");
+
+            if (!await _unitOfWork.UserManager.IsEmailConfirmedAsync(user))
+                return Unauthorized(new AuthResponseDto { ErrorMessage = "Email is not confirmed" });
+
+            if (!await _unitOfWork.UserManager.CheckPasswordAsync(user, userForAuthentication.Password))
+            {
+                await _unitOfWork.UserManager.AccessFailedAsync(user);
+
+                if (await _unitOfWork.UserManager.IsLockedOutAsync(user))
+                {
+                    var content = $@"Your account is locked out. To reset the password click this link.";
+                    var message = new Message(new string[] { userForAuthentication.Email },
+                        "Locked out account information", content, null);
+
+                    await _emailSender.SendEmailAsync(message);
+
+                    return Unauthorized(new AuthResponseDto { ErrorMessage = "The account is locked out" });
+                }
+
+                return Unauthorized(new AuthResponseDto { ErrorMessage = "Invalid Authentication" });
+            }
+
+            var rolesUser = await _unitOfWork.UserManager.GetRolesAsync(user);
+
+            /*if (await _unitOfWork.UserManager.GetTwoFactorEnabledAsync(user))
+                return await GenerateOTPFor2StepVerification(user);*/
+
+            var token = await _jwtHandler.GenerateToken(user);
+
+            await _unitOfWork.UserManager.ResetAccessFailedCountAsync(user);
+
+            return Ok(new AuthResponseDto { IsAuthSuccessful = true, Token = token, Role = rolesUser });
+        }
+
+        [HttpPost("TwoStepVerification")]
+        public async Task<IActionResult> TwoStepVerification([FromBody] TwoFactorDto twoFactorDto)
+        {
+            if (!ModelState.IsValid)
+                return BadRequest();
+
+            var user = await _unitOfWork.UserManager.FindByEmailAsync(twoFactorDto.Email);
+            if (user is null)
+                return BadRequest("Invalid Request");
+
+            var validVerification = await _unitOfWork.UserManager.VerifyTwoFactorTokenAsync(user, twoFactorDto.Provider, twoFactorDto.Token);
+            if (!validVerification)
+                return BadRequest("Invalid Token Verification");
+
+            var token = await _jwtHandler.GenerateToken(user);
+
+            return Ok(new AuthResponseDto { IsAuthSuccessful = true, Token = token });
+        }
+
+        [HttpPost("ForgotPassword")]
+        public async Task<IActionResult> ForgotPassword([FromBody] ForgotPasswordDto forgotPasswordDto)
+        {
+            if (!ModelState.IsValid)
+                return BadRequest();
+
+            var user = await _unitOfWork.UserManager.FindByEmailAsync(forgotPasswordDto.Email);
+            if (user == null)
+                return BadRequest("Invalid Request");
+
+            var token = await _unitOfWork.UserManager.GeneratePasswordResetTokenAsync(user);
+            var param = new Dictionary<string, string?>
+            {
+                {"token", token },
+                {"email", forgotPasswordDto.Email }
+            };
+
+            var callback = QueryHelpers.AddQueryString(forgotPasswordDto.ClientURI, param);
+            var message = new Message(new string[] { user.Email }, "Reset password token", callback, null);
+
+            await _emailSender.SendEmailAsync(message);
+
+            return Ok();
+        }
+
+        [HttpPost("DeleteAccount")]
+        public async Task<IActionResult> DeleteUser(string UserName)
+        {
+            var user = await _unitOfWork.UserManager.FindByNameAsync(userName: UserName);
+            if (user == null)
+                return BadRequest("Invalid Request");
+
+            var isDeleteUser = await _unitOfWork.UserManager.DeleteAsync(user);
+            if (!isDeleteUser.Succeeded)
+            {
+                List<IdentityError> errorList = isDeleteUser.Errors.ToList();
+                var errors = string.Join(", ", errorList.Select(e => e.Description));
+                return BadRequest("Invalid Request");
+            }
+
+            return Ok(new { Status = "Success", Message = "Удаление пользователя прошло успешно!" });
+        }
+
+        [HttpPost("ResetPassword")]
+        public async Task<IActionResult> ResetPassword([FromBody] ResetPasswordDto resetPasswordDto)
+        {
+            if (!ModelState.IsValid)
+                return BadRequest();
+
+            var user = await _unitOfWork.UserManager.FindByEmailAsync(resetPasswordDto.Email);
+            if (user == null)
+                return BadRequest("Invalid Request");
+
+            var resetPassResult = await _unitOfWork.UserManager.ResetPasswordAsync(user, resetPasswordDto.Token, resetPasswordDto.Password);
+            if (!resetPassResult.Succeeded)
+            {
+                var errors = resetPassResult.Errors.Select(e => e.Description);
+
+                return BadRequest(new { Errors = errors });
+            }
+
+            await _unitOfWork.UserManager.SetLockoutEndDateAsync(user, new DateTime(2000, 1, 1));
+
+            return Ok();
         }
     }
 }
