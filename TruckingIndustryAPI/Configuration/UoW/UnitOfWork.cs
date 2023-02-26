@@ -13,8 +13,8 @@ namespace TruckingIndustryAPI.Configuration.UoW
         private readonly RoleManager<IdentityRole> _roleManager;
         public IPositionRepository Position { get; private set; }
 
-        public UnitOfWork(ApplicationDbContext context, 
-            LoggerFactory loggerFactory, UserManager<ApplicationUser> userManager, 
+        public UnitOfWork(ApplicationDbContext context,
+            ILoggerFactory loggerFactory, UserManager<ApplicationUser> userManager, 
             RoleManager<IdentityRole> roleManager)
         {
             _context = context;

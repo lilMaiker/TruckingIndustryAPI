@@ -21,16 +21,15 @@ namespace TruckingIndustryAPI.Controllers
         private readonly IMapper _mapper;
         private readonly IUnitOfWork _unitOfWork;
         private readonly JwtHandler _jwtHandler;
-        private readonly ILogger<AccountsController> _logger;
         private readonly IEmailSender _emailSender;
 
         public AccountsController(IMapper mapper, JwtHandler jwtHandler, 
-            IUnitOfWork unitOfWork, ILogger<AccountsController> logger, IEmailSender emailSender)
+            IUnitOfWork unitOfWork, IEmailSender emailSender)
         {
             _mapper = mapper;
             _jwtHandler = jwtHandler;
             _unitOfWork = unitOfWork;
-            _logger = logger;
+            //_logger = logger;
             _emailSender = emailSender;
         }
 
@@ -48,13 +47,13 @@ namespace TruckingIndustryAPI.Controllers
                 // If either of these conditions are met, return a bad request.
                 if (userForRegistration == null)
                 {
-                     _logger.LogError("UserForRegistrationDto is null.");
+                     //_logger.LogError("UserForRegistrationDto is null.");
                     return BadRequest("UserForRegistrationDto is null.");
                 }
 
                 if (!ModelState.IsValid)
                 {
-                    _logger.LogError("Invalid model state.");
+                    //_logger.LogError("Invalid model state.");
                     return BadRequest("Invalid model state.");
                 }
 
@@ -68,7 +67,7 @@ namespace TruckingIndustryAPI.Controllers
                 if (!result.Succeeded)
                 {
                     var errors = result.Errors.Select(e => e.Description);
-                    _logger.LogError($"ApplicationUser creation failed with errors: {string.Join(", ", errors)}");
+                    //_logger.LogError($"ApplicationUser creation failed with errors: {string.Join(", ", errors)}");
                     return BadRequest(new RegistrationResponseDto { Errors = errors });
                 }
 
@@ -95,12 +94,12 @@ namespace TruckingIndustryAPI.Controllers
                 await _unitOfWork.UserManager.AddToRoleAsync(user, "Viewer");
 
                 // Return a 201 status code to indicate a successful creation
-                _logger.LogInformation($"ApplicationUser {user.UserName} successfully registered.");
+                //_logger.LogInformation($"ApplicationUser {user.UserName} successfully registered.");
                 return StatusCode(201);
             }
             catch (Exception ex)
             {
-                 _logger.LogError($"An error occurred while registering user: {ex}");
+                 //_logger.LogError($"An error occurred while registering user: {ex}");
                 return StatusCode(500, "An error occurred while registering user.");
             }
         }

@@ -1,6 +1,8 @@
-﻿namespace TruckingIndustryAPI.Repository.Positions
+﻿using TruckingIndustryAPI.Entities.Models;
+
+namespace TruckingIndustryAPI.Repository.Positions
 {
-    public interface IPositionRepository : IGenericRepository<Entities.Models.Position>
+    public interface IPositionRepository : IGenericRepository<Position>
     {
 
     }

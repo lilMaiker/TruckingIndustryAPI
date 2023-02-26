@@ -36,9 +36,15 @@ namespace TruckingIndustryAPI
             // Конфигурирование репозитория и всех доступных ему репозиториев.
             services.ConfigureRepositoryManager();
 
+
+            services.ConfigureCors();
+
+            services.AddMediatR(cfg => {
+                cfg.RegisterServicesFromAssembly(typeof(Program).Assembly);
+            });
+
             // Добавление AutoMapper в контейнер DI.
             services.AddAutoMapper(typeof(Startup));
-
 
             // Регистрация контроллеров как служб в контейнере DI.
             services.AddControllers();
