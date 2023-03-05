@@ -6,10 +6,14 @@ namespace TruckingIndustryAPI.Entities.Models
     {
         public string NameCargo { get;set;}
 
+        public double WeightCargo { get;set;}
+
         [ForeignKey("TypeCargo")]
         public long TypeCargoId { get; set; }
         public TypeCargo TypeCargo { get; set; }
 
-        //Заявки
+        [ForeignKey("Bids")]
+        public long BidsId { get; set; }
+        public Bids Bids { get; set; }
     }
 }

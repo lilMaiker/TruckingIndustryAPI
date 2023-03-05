@@ -16,6 +16,12 @@ namespace TruckingIndustryAPI.Data
         public virtual DbSet<Status> Status { get; set; }
         public virtual DbSet<Currency> Currencies { get; set; }
         public virtual DbSet<Cars> Cars { get; set; }
+        public virtual DbSet<Client> Client { get; set; }
+        public virtual DbSet<Foundation> Foundation { get; set; }
+        public virtual DbSet<Bids> Bids { get; set; }
+        public virtual DbSet<Cargo> Cargo { get; set; }
+        public virtual DbSet<Expenses> Expenses { get; set; }
+        public virtual DbSet<Entities.Models.Route> Routes { get; set; }
         public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options)
             : base(options)
         {

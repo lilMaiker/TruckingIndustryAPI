@@ -2,10 +2,16 @@
 using TruckingIndustryAPI.Entities.DTO.Request;
 using TruckingIndustryAPI.Entities.Models;
 using TruckingIndustryAPI.Entities.Models.Identity;
+using TruckingIndustryAPI.Features.BidsFeatures.Commands;
+using TruckingIndustryAPI.Features.CargoFeatures.Commands;
 using TruckingIndustryAPI.Features.CarsFeatures.Commands;
+using TruckingIndustryAPI.Features.ClientFeatures.Commands;
 using TruckingIndustryAPI.Features.CurrencyFeatures.Commands;
 using TruckingIndustryAPI.Features.EmployeeFeatures.Commands;
+using TruckingIndustryAPI.Features.ExpensesFeatures.Commands;
+using TruckingIndustryAPI.Features.FoundationFeatures.Commands;
 using TruckingIndustryAPI.Features.PositionFeatures.Commands;
+using TruckingIndustryAPI.Features.Routes.Commands;
 using TruckingIndustryAPI.Features.StatusFeatures.Commands;
 using TruckingIndustryAPI.Features.TypeCargoFeatures.Commands;
 
@@ -41,6 +47,31 @@ namespace TruckingIndustryAPI.Helpers
             CreateMap<CreateCarsCommand, Cars>();
             CreateMap<UpdateCarsCommand, Cars>();
             CreateMap<DeleteCarsCommand, Cars>();
+
+            CreateMap<CreateClientCommand, Client>();
+            CreateMap<UpdateClientCommand, Client>();
+            CreateMap<DeleteClientCommand, Client>();
+
+            CreateMap<CreateFoundationCommand, Foundation>();
+            CreateMap<UpdateFoundationCommand, Foundation>();
+            CreateMap<DeleteFoundationCommand, Foundation>();
+
+            CreateMap<CreateBidsCommand, Bids>();
+            CreateMap<UpdateBidsCommand, Bids>();
+            CreateMap<DeleteBidsCommand, Bids>();
+
+            CreateMap<CreateCargoCommand, Cargo>();
+            CreateMap<UpdateCargoCommand, Cargo>();
+            CreateMap<DeleteCargoCommand, Cargo>();
+
+            CreateMap<CreateExpensesCommand, Expenses>();
+            CreateMap<UpdateExpensesCommand, Expenses>();
+            CreateMap<DeleteExpensesCommand, Expenses>();
+
+            CreateMap<CreateRouteCommand, Entities.Models.Route>();
+            CreateMap<UpdateRouteCommand, Entities.Models.Route>();
+            CreateMap<DeleteRouteCommand, Entities.Models.Route>();
+
         }
     }
 }

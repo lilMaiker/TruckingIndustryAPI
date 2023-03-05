@@ -1,29 +1,27 @@
 ﻿using Microsoft.EntityFrameworkCore;
-
 using TruckingIndustryAPI.Data;
 using TruckingIndustryAPI.Entities.Models;
-using TruckingIndustryAPI.Repository.Positions;
 
-namespace TruckingIndustryAPI.Repository.Employees
+namespace TruckingIndustryAPI.Repository.Clients
 {
-    public class EmployeeRepository : GenericRepository<Employee>, IEmployeeRepository
+    public class ClientRepository : GenericRepository<Client>, IClientRepository
     {
-        public EmployeeRepository(ApplicationDbContext context, ILogger logger) : base(context, logger) { }
+        public ClientRepository(ApplicationDbContext context, ILogger logger) : base(context, logger) { }
 
-        public override async Task<IEnumerable<Employee>> GetAllAsync()
+        public override async Task<IEnumerable<Client>> GetAllAsync()
         {
             try
             {
-                return await dbSet.Include(e => e.Position).Include(e => e.ApplicationUser).ToListAsync();
+                return await dbSet.ToListAsync();
             }
             catch (Exception ex)
             {
-                _logger.LogError(ex, "{Repo} All function error", typeof(EmployeeRepository));
-                return new List<Employee>();
+                _logger.LogError(ex, "{Repo} All function error", typeof(ClientRepository));
+                return new List<Client>();
             }
         }
 
-        public override async Task<bool> UpdateAsync(Employee entity)
+        public override async Task<bool> UpdateAsync(Client entity)
         {
             try
             {
@@ -33,20 +31,24 @@ namespace TruckingIndustryAPI.Repository.Employees
                     return await AddAsync(entity);
 
                 existingentity.Surname = entity.Surname;
+
                 existingentity.Name = entity.Name;
+
                 existingentity.Patronymic = entity.Patronymic;
-                existingentity.Email = entity.Email;
-                existingentity.PositionId = entity.PositionId;
-                existingentity.ApplicationUserId = entity.ApplicationUserId;
-                existingentity.PassportNumber = entity.PassportNumber;
-                existingentity.PhoneNumber = entity.PhoneNumber;
+
                 existingentity.SerialNumber = entity.SerialNumber;
+
+                existingentity.PassportNumber = entity.PassportNumber;
+
+                existingentity.PhoneNumber = entity.PhoneNumber;
+
+                existingentity.Email = entity.Email;
 
                 return true;
             }
             catch (Exception ex)
             {
-                _logger.LogError(ex, "{Repo} Update function error", typeof(EmployeeRepository));
+                _logger.LogError(ex, "{Repo} Update function error", typeof(ClientRepository));
                 return false;
             }
         }
@@ -65,9 +67,10 @@ namespace TruckingIndustryAPI.Repository.Employees
             }
             catch (Exception ex)
             {
-                _logger.LogError(ex, "{Repo} Delete function error", typeof(EmployeeRepository));
+                _logger.LogError(ex, "{Repo} Delete function error", typeof(ClientRepository));
                 return false;
             }
         }
+
     }
 }

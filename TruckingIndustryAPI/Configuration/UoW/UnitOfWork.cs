@@ -2,17 +2,24 @@
 using TruckingIndustryAPI.Data;
 using TruckingIndustryAPI.Entities.Models.Identity;
 using TruckingIndustryAPI.Extensions.Attributes;
+using TruckingIndustryAPI.Features.ClientFeatures;
+using TruckingIndustryAPI.Repository.Bids;
+using TruckingIndustryAPI.Repository.Cargos;
 using TruckingIndustryAPI.Repository.Cars;
+using TruckingIndustryAPI.Repository.Clients;
 using TruckingIndustryAPI.Repository.Currencies;
 using TruckingIndustryAPI.Repository.Currency;
 using TruckingIndustryAPI.Repository.Employees;
+using TruckingIndustryAPI.Repository.Expenses;
+using TruckingIndustryAPI.Repository.Foundations;
 using TruckingIndustryAPI.Repository.Positions;
+using TruckingIndustryAPI.Repository.Routes;
 using TruckingIndustryAPI.Repository.Status;
 using TruckingIndustryAPI.Repository.TypeCargos;
 
 namespace TruckingIndustryAPI.Configuration.UoW
 {
-    
+
     public class UnitOfWork : IUnitOfWork, IDisposable
     {
         private readonly ApplicationDbContext _context;
@@ -25,6 +32,12 @@ namespace TruckingIndustryAPI.Configuration.UoW
         public ICurrencyRepository Currency { get; private set; }
         public ITypeCargoRepository TypeCargo { get; private set; }
         public ICarsRepository Cars { get; private set; }
+        public IClientRepository Client { get; private set; }
+        public IFoundationRepository Foundation { get; private set; }
+        public IBidsRepository Bids { get; private set; }
+        public ICargoRepository Cargo { get; private set; }
+        public IExpensesRepository Expenses { get; private set; }
+        public IRouteRepository Route { get; private set; }
 
         public UnitOfWork(ApplicationDbContext context,
             ILoggerFactory loggerFactory, UserManager<ApplicationUser> userManager, 
@@ -42,6 +55,12 @@ namespace TruckingIndustryAPI.Configuration.UoW
             Status = new StatusRepository(context, _logger);
             TypeCargo = new TypeCargoRepository(context, _logger);
             Cars = new CarsRepository(context, _logger);
+            Client = new ClientRepository(context, _logger);
+            Foundation = new FoundationRepository(context, _logger);
+            Bids = new BidsRepository(context, _logger);
+            Cargo = new CargoRepository(context, _logger);
+            Expenses = new ExpensesRepository(context, _logger);
+            Route = new RouteRepository(context, _logger);
         }
 
         public UserManager<ApplicationUser> UserManager

@@ -1,10 +1,16 @@
 ﻿using Microsoft.AspNetCore.Identity;
 
 using TruckingIndustryAPI.Entities.Models.Identity;
+using TruckingIndustryAPI.Repository.Bids;
+using TruckingIndustryAPI.Repository.Cargos;
 using TruckingIndustryAPI.Repository.Cars;
+using TruckingIndustryAPI.Repository.Clients;
 using TruckingIndustryAPI.Repository.Currency;
 using TruckingIndustryAPI.Repository.Employees;
+using TruckingIndustryAPI.Repository.Expenses;
+using TruckingIndustryAPI.Repository.Foundations;
 using TruckingIndustryAPI.Repository.Positions;
+using TruckingIndustryAPI.Repository.Routes;
 using TruckingIndustryAPI.Repository.Status;
 using TruckingIndustryAPI.Repository.TypeCargos;
 
@@ -20,6 +26,12 @@ namespace TruckingIndustryAPI.Configuration.UoW
         ICurrencyRepository Currency { get; }
         ITypeCargoRepository TypeCargo { get; }
         IEmployeeRepository Employees { get; }
+        IClientRepository Client { get; }
+        IFoundationRepository Foundation { get; }
+        IBidsRepository Bids { get; }
+        ICargoRepository Cargo { get; }
+        IExpensesRepository Expenses { get; }
+        IRouteRepository Route { get; }
         Task CompleteAsync();
     }
 }
