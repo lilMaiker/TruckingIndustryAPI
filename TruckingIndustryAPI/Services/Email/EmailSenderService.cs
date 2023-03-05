@@ -2,13 +2,16 @@
 
 using MimeKit;
 
+using TruckingIndustryAPI.Extensions.Attributes;
+
 namespace TruckingIndustryAPI.Services.Email
 {
-    public class EmailSender : IEmailSender
+    [ServiceLifetime(ServiceLifetime.Scoped)]
+    public class EmailSenderService : IEmailSenderService
     {
         private readonly EmailConfiguration _emailConfig;
 
-        public EmailSender(EmailConfiguration emailConfig)
+        public EmailSenderService(EmailConfiguration emailConfig)
         {
             _emailConfig = emailConfig;
         }

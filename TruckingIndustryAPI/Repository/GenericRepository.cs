@@ -19,33 +19,30 @@ namespace TruckingIndustryAPI.Repository
             _logger = logger;
         }
 
-        public virtual async Task<T> GetById(long id)
-        {
-            return await dbSet.FindAsync(id);
-        }
+        public virtual async Task<T> GetByIdAsync(long id) => await dbSet.FindAsync(id);
 
-        public virtual async Task<bool> Add(T entity)
+        public virtual async Task<bool> AddAsync(T entity)
         {
             await dbSet.AddAsync(entity);
             return true;
         }
 
-        public virtual Task<bool> Delete(long id)
+        public virtual Task<bool> DeleteAsync(long id)
         {
             throw new NotImplementedException();
         }
 
-        public virtual Task<IEnumerable<T>> All()
+        public virtual Task<IEnumerable<T>> GetAllAsync()
         {
             throw new NotImplementedException();
         }
 
-        public async Task<IEnumerable<T>> Find(Expression<Func<T, bool>> predicate)
+        public async Task<IEnumerable<T>> FindAsync(Expression<Func<T, bool>> predicate)
         {
             return await dbSet.Where(predicate).ToListAsync();
         }
 
-        public virtual Task<bool> Upsert(T entity)
+        public virtual Task<bool> UpdateAsync(T entity)
         {
             throw new NotImplementedException();
         }

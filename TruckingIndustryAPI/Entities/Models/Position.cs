@@ -6,7 +6,7 @@ namespace TruckingIndustryAPI.Entities.Models
     /// <summary>
     /// Должность
     /// </summary>
-    public class Position : Base.BaseModelInt
+    public class Position : Base.BaseModelLong
     {
         [Display(Name = "Должность")]
         [MaxLength(70, ErrorMessage = "Длина дложности больше 70 символов")]

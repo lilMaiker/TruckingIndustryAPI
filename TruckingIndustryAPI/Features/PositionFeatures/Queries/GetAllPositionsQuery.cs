@@ -17,7 +17,7 @@ namespace TruckingIndustryAPI.Features.PositionFeatures.Queries
 
             public async Task<IEnumerable<Position>> Handle(GetAllPositionsQuery request, CancellationToken cancellationToken)
             {
-                return await _unitOfWork.Position.All();
+                return await _unitOfWork.Positions.GetAllAsync();
             }
         }
     }

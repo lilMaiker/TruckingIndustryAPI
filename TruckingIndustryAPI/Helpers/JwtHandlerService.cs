@@ -6,21 +6,23 @@ using System.Security.Claims;
 using System.Text;
 using TruckingIndustryAPI.Entities.DTO.Request;
 using TruckingIndustryAPI.Entities.Models.Identity;
-
+using TruckingIndustryAPI.Extensions.Attributes;
 
 namespace TruckingIndustryAPI.Helpers
 {
     /// <summary>
     /// Class to handle JWT generation and verification
     /// </summary>
-    public class JwtHandler
+    /// 
+    [ServiceLifetime(ServiceLifetime.Scoped)]
+    public class JwtHandlerService
     {
         private readonly IConfiguration _configuration;
         private readonly IConfigurationSection _jwtSettings;
         private readonly IConfigurationSection _goolgeSettings;
         private readonly UserManager<ApplicationUser> _userManager;
 
-        public JwtHandler(IConfiguration configuration, UserManager<ApplicationUser> userManager)
+        public JwtHandlerService(IConfiguration configuration, UserManager<ApplicationUser> userManager)
         {
             _configuration = configuration;
             _jwtSettings = _configuration.GetSection("JwtSettings");

@@ -12,8 +12,8 @@ using TruckingIndustryAPI.Data;
 namespace TruckingIndustryAPI.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20230226103243_init")]
-    partial class init
+    [Migration("20230305070940_add status table")]
+    partial class addstatustable
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -53,15 +53,15 @@ namespace TruckingIndustryAPI.Migrations
                     b.HasData(
                         new
                         {
-                            Id = "d7bacc63-bc9d-4de3-a302-75901128bf6b",
-                            ConcurrencyStamp = "88adaa3d-1b68-4ca5-9543-2141d7c002f4",
+                            Id = "a84d278d-95c9-4a2d-9273-19fdf1994513",
+                            ConcurrencyStamp = "4a7a086c-df5e-4569-876c-d327f43355ac",
                             Name = "Viewer",
                             NormalizedName = "VIEWER"
                         },
                         new
                         {
-                            Id = "328f7018-505a-4ae2-9953-e0a6469a3cb2",
-                            ConcurrencyStamp = "ff3bd048-95b6-420b-aaf2-25b9d62804d4",
+                            Id = "e78bf8db-51e9-425e-b82a-e38ef701d7c4",
+                            ConcurrencyStamp = "4063774e-5150-4c56-8838-9ad00f399d3c",
                             Name = "Administrator",
                             NormalizedName = "ADMINISTRATOR"
                         });
@@ -173,6 +173,57 @@ namespace TruckingIndustryAPI.Migrations
                     b.ToTable("AspNetUserTokens", (string)null);
                 });
 
+            modelBuilder.Entity("TruckingIndustryAPI.Entities.Models.Employee", b =>
+                {
+                    b.Property<long>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("bigint");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<long>("Id"), 1L, 1);
+
+                    b.Property<string>("ApplicationUserId")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(450)");
+
+                    b.Property<string>("Email")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("NameEmployee")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int>("PassportNumber")
+                        .HasColumnType("int");
+
+                    b.Property<string>("Patronymic")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("PhoneNumber")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<long>("PositionId")
+                        .HasColumnType("bigint");
+
+                    b.Property<string>("SerialNumber")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Surname")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("ApplicationUserId");
+
+                    b.HasIndex("PositionId");
+
+                    b.ToTable("Employees");
+                });
+
             modelBuilder.Entity("TruckingIndustryAPI.Entities.Models.Identity.ApplicationUser", b =>
                 {
                     b.Property<string>("Id")
@@ -238,6 +289,41 @@ namespace TruckingIndustryAPI.Migrations
                     b.ToTable("AspNetUsers", (string)null);
                 });
 
+            modelBuilder.Entity("TruckingIndustryAPI.Entities.Models.Position", b =>
+                {
+                    b.Property<long>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("bigint");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<long>("Id"), 1L, 1);
+
+                    b.Property<string>("NamePosition")
+                        .IsRequired()
+                        .HasMaxLength(70)
+                        .HasColumnType("nvarchar(70)");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Positions");
+                });
+
+            modelBuilder.Entity("TruckingIndustryAPI.Entities.Models.Status", b =>
+                {
+                    b.Property<long>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("bigint");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<long>("Id"), 1L, 1);
+
+                    b.Property<string>("NameStatus")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Status");
+                });
+
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>
                 {
                     b.HasOne("Microsoft.AspNetCore.Identity.IdentityRole", null)
@@ -287,6 +373,25 @@ namespace TruckingIndustryAPI.Migrations
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
+                });
+
+            modelBuilder.Entity("TruckingIndustryAPI.Entities.Models.Employee", b =>
+                {
+                    b.HasOne("TruckingIndustryAPI.Entities.Models.Identity.ApplicationUser", "ApplicationUser")
+                        .WithMany()
+                        .HasForeignKey("ApplicationUserId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("TruckingIndustryAPI.Entities.Models.Position", "Position")
+                        .WithMany()
+                        .HasForeignKey("PositionId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("ApplicationUser");
+
+                    b.Navigation("Position");
                 });
 #pragma warning restore 612, 618
         }

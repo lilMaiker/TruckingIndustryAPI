@@ -3,10 +3,10 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace TruckingIndustryAPI.Entities.Base
 {
-    public class BaseModelInt
+    public class BaseModelLong
     {
         [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
-        public int Id { get; set; }
+        public long Id { get; set; }
     }
 }

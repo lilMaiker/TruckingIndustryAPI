@@ -2,14 +2,16 @@
 
 using TruckingIndustryAPI.Data;
 using TruckingIndustryAPI.Entities.Models;
+using TruckingIndustryAPI.Extensions.Attributes;
 
 namespace TruckingIndustryAPI.Repository.Positions
 {
+    
     public class PositionRepository : GenericRepository<Position>, IPositionRepository
     {
         public PositionRepository(ApplicationDbContext context, ILogger logger) : base(context, logger) { }
 
-        public override async Task<IEnumerable<Position>> All()
+        public override async Task<IEnumerable<Position>> GetAllAsync()
         {
             try
             {
@@ -22,33 +24,31 @@ namespace TruckingIndustryAPI.Repository.Positions
             }
         }
 
-        public override async Task<bool> Upsert(Position entity)
+        public override async Task<bool> UpdateAsync(Position entity)
         {
             try
             {
-                var existingUser = await dbSet.Where(x => x.Id == entity.Id)
-                                                    .FirstOrDefaultAsync();
+                var existingentity = await dbSet.Where(x => x.Id == entity.Id).FirstOrDefaultAsync();
 
-                if (existingUser == null)
-                    return await Add(entity);
+                if (existingentity == null)
+                    return await AddAsync(entity);
 
-                existingUser.NamePosition = entity.NamePosition;
+                existingentity.NamePosition = entity.NamePosition;
 
                 return true;
             }
             catch (Exception ex)
             {
-                _logger.LogError(ex, "{Repo} Upsert function error", typeof(PositionRepository));
+                _logger.LogError(ex, "{Repo} Update function error", typeof(PositionRepository));
                 return false;
             }
         }
 
-        public override async Task<bool> Delete(long id)
+        public override async Task<bool> DeleteAsync(long id)
         {
             try
             {
-                var exist = await dbSet.Where(x => x.Id == id)
-                                        .FirstOrDefaultAsync();
+                var exist = await dbSet.Where(x => x.Id == id).FirstOrDefaultAsync();
 
                 if (exist == null) return false;
 
@@ -62,6 +62,5 @@ namespace TruckingIndustryAPI.Repository.Positions
                 return false;
             }
         }
-
     }
 }

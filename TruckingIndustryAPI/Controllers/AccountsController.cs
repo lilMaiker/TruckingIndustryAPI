@@ -3,6 +3,7 @@
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.Routing;
 using Microsoft.AspNetCore.WebUtilities;
 
 using TruckingIndustryAPI.Configuration.UoW;
@@ -20,11 +21,11 @@ namespace TruckingIndustryAPI.Controllers
     {
         private readonly IMapper _mapper;
         private readonly IUnitOfWork _unitOfWork;
-        private readonly JwtHandler _jwtHandler;
-        private readonly IEmailSender _emailSender;
+        private readonly JwtHandlerService _jwtHandler;
+        private readonly IEmailSenderService _emailSender;
 
-        public AccountsController(IMapper mapper, JwtHandler jwtHandler, 
-            IUnitOfWork unitOfWork, IEmailSender emailSender)
+        public AccountsController(IMapper mapper, JwtHandlerService jwtHandler, 
+            IUnitOfWork unitOfWork, IEmailSenderService emailSender)
         {
             _mapper = mapper;
             _jwtHandler = jwtHandler;
@@ -81,8 +82,10 @@ namespace TruckingIndustryAPI.Controllers
                     {"token", token }
                 };
 
+                var url = Url.Action("EmailConfirmation", "Accounts", null, Request.Scheme, Request.Host.ToString());
+
                 // Add the parameters to the client URI
-                string callback = QueryHelpers.AddQueryString(uri: userForRegistration.ClientURI, parameters);
+                string callback = QueryHelpers.AddQueryString(uri: url, queryString: parameters);
 
                 // Create a message object with the email, subject, and message body
                 var message = new Message(new string[] { user.Email }, "Email Confirmation token", $"Доброго времени суток, Вот ваша ссылка для подтверждения: {callback}", null);

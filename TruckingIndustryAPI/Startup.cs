@@ -1,8 +1,12 @@
 ﻿using Google;
+using MediatR;
+
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.IdentityModel.Tokens;
 using Microsoft.OpenApi.Models;
+
+using System.Reflection;
 using System.Text;
 
 using TruckingIndustryAPI.Data;
@@ -10,6 +14,8 @@ using TruckingIndustryAPI.Entities.Models.Identity;
 using TruckingIndustryAPI.Extensions;
 using TruckingIndustryAPI.Helpers;
 using TruckingIndustryAPI.Services.Email;
+
+using static TruckingIndustryAPI.Features.PositionFeatures.Commands.CreatePositionCommand;
 
 namespace TruckingIndustryAPI
 {
@@ -36,6 +42,13 @@ namespace TruckingIndustryAPI
             // Конфигурирование репозитория и всех доступных ему репозиториев.
             services.ConfigureRepositoryManager();
 
+            // Получение настроек электронной почты из конфигурационного файла и регистрация их как singleton-службы в контейнере DI.
+            var emailConfig = Configuration
+                .GetSection("EmailConfiguration")
+                .Get<EmailConfiguration>();
+            services.AddSingleton(emailConfig);
+
+            //services.RegisterServices(Assembly.GetExecutingAssembly());
 
             services.ConfigureCors();
 
@@ -71,6 +84,11 @@ namespace TruckingIndustryAPI
             })
             .AddEntityFrameworkStores<ApplicationDbContext>()
             .AddDefaultTokenProviders();
+
+            services.AddControllersWithViews()
+    .AddNewtonsoftJson(options =>
+    options.SerializerSettings.ReferenceLoopHandling = Newtonsoft.Json.ReferenceLoopHandling.Ignore
+);
 
             services.Configure<DataProtectionTokenProviderOptions>(opt =>
                 opt.TokenLifespan = TimeSpan.FromHours(2));
@@ -128,16 +146,10 @@ namespace TruckingIndustryAPI
             });
 
             // Регистрация службы JwtHandler с ограниченным временем жизни (scoped lifetime).
-            services.AddScoped<JwtHandler>();
-
-            // Получение настроек электронной почты из конфигурационного файла и регистрация их как singleton-службы в контейнере DI.
-            var emailConfig = Configuration
-                .GetSection("EmailConfiguration")
-                .Get<EmailConfiguration>();
-            services.AddSingleton(emailConfig);
+            services.AddScoped<JwtHandlerService>();
 
             // Регистрация службы EmailSender с ограниченным временем жизни (scoped lifetime) и интерфейсом IEmailSender.
-            services.AddScoped<IEmailSender, EmailSender>();
+            services.AddScoped<IEmailSenderService, EmailSenderService>();
 
             // Добавление службы, которая генерирует OpenAPI-спецификацию для конечных точек приложения, зарегистрированных в контейнере DI.
             services.AddEndpointsApiExplorer();
