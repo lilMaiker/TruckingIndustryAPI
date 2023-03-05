@@ -18,7 +18,7 @@ namespace TruckingIndustryAPI.Entities.Models
         public long CurrencyId { get; set; }
         public Currency? Currency { get; set; }
 
-        public DateTime? DateToLoad { get;set; }
+        public DateTime? DateToLoad { get; set; }
         public DateTime? DateToUnload { get; set; }
 
         public string ActAccNumber { get; set; }

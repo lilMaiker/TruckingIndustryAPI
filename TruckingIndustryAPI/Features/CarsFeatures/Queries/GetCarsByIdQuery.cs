@@ -1,4 +1,5 @@
 ﻿using MediatR;
+
 using TruckingIndustryAPI.Configuration.UoW;
 using TruckingIndustryAPI.Entities.Models;
 using TruckingIndustryAPI.Exceptions;

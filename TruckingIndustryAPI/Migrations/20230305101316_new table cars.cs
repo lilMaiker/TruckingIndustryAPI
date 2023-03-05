@@ -22,14 +22,14 @@ namespace TruckingIndustryAPI.Migrations
                     table.PrimaryKey("PK_Currencies", x => x.Id);
                 });
 
-          
+
         }
 
         protected override void Down(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.DropTable(
                 name: "Currencies");
-           
+
         }
     }
 }

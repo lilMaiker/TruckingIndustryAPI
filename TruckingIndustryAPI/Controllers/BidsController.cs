@@ -1,11 +1,10 @@
 ﻿using MediatR;
 
-using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+
 using TruckingIndustryAPI.Features.BidsFeatures.Commands;
 
 using TruckingIndustryAPI.Features.BidsFeatures.Queries;
-using TruckingIndustryAPI.Features.CarsFeatures.Queries;
 
 namespace TruckingIndustryAPI.Controllers
 {

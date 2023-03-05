@@ -1,9 +1,12 @@
 ﻿using Google.Apis.Auth;
+
 using Microsoft.AspNetCore.Identity;
 using Microsoft.IdentityModel.Tokens;
+
 using System.IdentityModel.Tokens.Jwt;
 using System.Security.Claims;
 using System.Text;
+
 using TruckingIndustryAPI.Entities.DTO.Request;
 using TruckingIndustryAPI.Entities.Models.Identity;
 using TruckingIndustryAPI.Extensions.Attributes;

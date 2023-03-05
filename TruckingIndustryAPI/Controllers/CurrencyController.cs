@@ -1,11 +1,10 @@
 ﻿using MediatR;
 
-using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+
 using TruckingIndustryAPI.Features.CurrencyFeatures.Commands;
 
 using TruckingIndustryAPI.Features.CurrencyFeatures.Queries;
-using TruckingIndustryAPI.Features.EmployeeFeatures.Queries;
 
 namespace TruckingIndustryAPI.Controllers
 {
@@ -50,6 +49,6 @@ namespace TruckingIndustryAPI.Controllers
             return Ok(await _mediator.Send(deleteCurrencyCommand));
         }
 
-       
+
     }
 }

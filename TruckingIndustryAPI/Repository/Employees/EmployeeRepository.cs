@@ -2,7 +2,6 @@
 
 using TruckingIndustryAPI.Data;
 using TruckingIndustryAPI.Entities.Models;
-using TruckingIndustryAPI.Repository.Positions;
 
 namespace TruckingIndustryAPI.Repository.Employees
 {

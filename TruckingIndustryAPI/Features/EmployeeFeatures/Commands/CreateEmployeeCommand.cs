@@ -1,13 +1,9 @@
 ﻿using AutoMapper;
+
 using MediatR;
-using System.ComponentModel.DataAnnotations.Schema;
-using System.ComponentModel.DataAnnotations;
 
 using TruckingIndustryAPI.Configuration.UoW;
 using TruckingIndustryAPI.Entities.Models;
-
-using TruckingIndustryAPI.Features.PositionFeatures.Commands;
-using System.Diagnostics;
 
 namespace TruckingIndustryAPI.Features.EmployeeFeatures.Commands
 {

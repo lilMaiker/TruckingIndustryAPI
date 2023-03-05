@@ -1,9 +1,7 @@
 ﻿using MediatR;
 
-using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
-using TruckingIndustryAPI.Features.CurrencyFeatures.Queries;
 using TruckingIndustryAPI.Features.TypeCargoFeatures.Commands;
 
 using TruckingIndustryAPI.Features.TypeCargoFeatures.Queries;

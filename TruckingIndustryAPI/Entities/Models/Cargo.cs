@@ -4,9 +4,9 @@ namespace TruckingIndustryAPI.Entities.Models
 {
     public class Cargo : Base.BaseModelLong
     {
-        public string NameCargo { get;set;}
+        public string NameCargo { get; set; }
 
-        public double WeightCargo { get;set;}
+        public double WeightCargo { get; set; }
 
         [ForeignKey("TypeCargo")]
         public long TypeCargoId { get; set; }

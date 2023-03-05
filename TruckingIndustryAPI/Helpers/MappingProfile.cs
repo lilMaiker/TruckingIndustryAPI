@@ -1,4 +1,5 @@
 ﻿using AutoMapper;
+
 using TruckingIndustryAPI.Entities.DTO.Request;
 using TruckingIndustryAPI.Entities.Models;
 using TruckingIndustryAPI.Entities.Models.Identity;

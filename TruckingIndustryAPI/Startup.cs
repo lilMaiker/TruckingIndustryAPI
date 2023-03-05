@@ -1,12 +1,10 @@
-﻿using Google;
-using MediatR;
+﻿using MediatR;
 
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.IdentityModel.Tokens;
 using Microsoft.OpenApi.Models;
 
-using System.Reflection;
 using System.Text;
 
 using TruckingIndustryAPI.Data;
@@ -14,8 +12,6 @@ using TruckingIndustryAPI.Entities.Models.Identity;
 using TruckingIndustryAPI.Extensions;
 using TruckingIndustryAPI.Helpers;
 using TruckingIndustryAPI.Services.Email;
-
-using static TruckingIndustryAPI.Features.PositionFeatures.Commands.CreatePositionCommand;
 
 namespace TruckingIndustryAPI
 {
@@ -52,7 +48,8 @@ namespace TruckingIndustryAPI
 
             services.ConfigureCors();
 
-            services.AddMediatR(cfg => {
+            services.AddMediatR(cfg =>
+            {
                 cfg.RegisterServicesFromAssembly(typeof(Program).Assembly);
             });
 

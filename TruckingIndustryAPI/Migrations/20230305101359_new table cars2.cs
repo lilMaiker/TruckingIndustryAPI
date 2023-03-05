@@ -1,5 +1,4 @@
-﻿using System;
-using Microsoft.EntityFrameworkCore.Migrations;
+﻿using Microsoft.EntityFrameworkCore.Migrations;
 
 #nullable disable
 
@@ -29,7 +28,7 @@ namespace TruckingIndustryAPI.Migrations
                     table.PrimaryKey("PK_Cars", x => x.Id);
                 });
 
-         
+
         }
 
         protected override void Down(MigrationBuilder migrationBuilder)
@@ -37,7 +36,7 @@ namespace TruckingIndustryAPI.Migrations
             migrationBuilder.DropTable(
                 name: "Cars");
 
-           
+
         }
     }
 }

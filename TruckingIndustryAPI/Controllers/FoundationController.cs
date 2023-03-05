@@ -1,9 +1,7 @@
 ﻿using MediatR;
 
-using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
-using TruckingIndustryAPI.Features.CarsFeatures.Queries;
 using TruckingIndustryAPI.Features.FoundationFeatures.Commands;
 
 using TruckingIndustryAPI.Features.FoundationFeatures.Queries;
@@ -51,6 +49,6 @@ namespace TruckingIndustryAPI.Controllers
             return Ok(await _mediator.Send(deleteFoundationCommand));
         }
 
-       
+
     }
 }

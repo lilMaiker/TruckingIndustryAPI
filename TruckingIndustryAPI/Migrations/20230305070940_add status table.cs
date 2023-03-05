@@ -27,7 +27,7 @@ namespace TruckingIndustryAPI.Migrations
             migrationBuilder.DropTable(
                 name: "Status");
 
-         
+
         }
     }
 }

@@ -1,6 +1,6 @@
 ﻿using AutoMapper;
+
 using MediatR;
-using Org.BouncyCastle.Asn1.Ocsp;
 
 using TruckingIndustryAPI.Configuration.UoW;
 using TruckingIndustryAPI.Entities.Models;

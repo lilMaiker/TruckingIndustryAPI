@@ -1,5 +1,7 @@
 ﻿using Microsoft.EntityFrameworkCore;
+
 using System.Linq.Expressions;
+
 using TruckingIndustryAPI.Data;
 
 namespace TruckingIndustryAPI.Repository

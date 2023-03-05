@@ -2,11 +2,10 @@
 
 using TruckingIndustryAPI.Data;
 using TruckingIndustryAPI.Entities.Models;
-using TruckingIndustryAPI.Extensions.Attributes;
 
 namespace TruckingIndustryAPI.Repository.Positions
 {
-    
+
     public class PositionRepository : GenericRepository<Position>, IPositionRepository
     {
         public PositionRepository(ApplicationDbContext context, ILogger logger) : base(context, logger) { }

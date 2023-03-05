@@ -1,13 +1,9 @@
 ﻿using MediatR;
 
-using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
 using TruckingIndustryAPI.Features.EmployeeFeatures.Commands;
 using TruckingIndustryAPI.Features.EmployeeFeatures.Queries;
-using TruckingIndustryAPI.Features.PositionFeatures.Commands;
-
-using TruckingIndustryAPI.Features.PositionFeatures.Queries;
 
 namespace TruckingIndustryAPI.Controllers
 {
@@ -52,6 +48,6 @@ namespace TruckingIndustryAPI.Controllers
             return Ok(await _mediator.Send(deleteEmployeeCommand));
         }
 
-      
+
     }
 }

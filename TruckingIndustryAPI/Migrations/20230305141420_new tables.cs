@@ -69,13 +69,13 @@ namespace TruckingIndustryAPI.Migrations
             migrationBuilder.DropTable(
                 name: "Client");
 
-         
+
             migrationBuilder.RenameColumn(
                 name: "Name",
                 table: "Employees",
                 newName: "NameEmployee");
 
-           
+
         }
     }
 }

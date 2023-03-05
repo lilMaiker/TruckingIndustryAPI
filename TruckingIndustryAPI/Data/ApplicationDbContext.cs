@@ -1,6 +1,5 @@
 ﻿using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
-using NuGet.Packaging.Signing;
 
 using TruckingIndustryAPI.Configuration;
 using TruckingIndustryAPI.Entities.Models;

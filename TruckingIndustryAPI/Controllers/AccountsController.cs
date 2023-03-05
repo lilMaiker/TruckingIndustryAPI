@@ -1,9 +1,7 @@
 ﻿using AutoMapper;
 
-using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.AspNetCore.Mvc.Routing;
 using Microsoft.AspNetCore.WebUtilities;
 
 using TruckingIndustryAPI.Configuration.UoW;
@@ -24,7 +22,7 @@ namespace TruckingIndustryAPI.Controllers
         private readonly JwtHandlerService _jwtHandler;
         private readonly IEmailSenderService _emailSender;
 
-        public AccountsController(IMapper mapper, JwtHandlerService jwtHandler, 
+        public AccountsController(IMapper mapper, JwtHandlerService jwtHandler,
             IUnitOfWork unitOfWork, IEmailSenderService emailSender)
         {
             _mapper = mapper;
@@ -48,7 +46,7 @@ namespace TruckingIndustryAPI.Controllers
                 // If either of these conditions are met, return a bad request.
                 if (userForRegistration == null)
                 {
-                     //_logger.LogError("UserForRegistrationDto is null.");
+                    //_logger.LogError("UserForRegistrationDto is null.");
                     return BadRequest("UserForRegistrationDto is null.");
                 }
 
@@ -102,7 +100,7 @@ namespace TruckingIndustryAPI.Controllers
             }
             catch (Exception ex)
             {
-                 //_logger.LogError($"An error occurred while registering user: {ex}");
+                //_logger.LogError($"An error occurred while registering user: {ex}");
                 return StatusCode(500, "An error occurred while registering user.");
             }
         }

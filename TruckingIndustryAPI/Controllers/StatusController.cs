@@ -1,9 +1,7 @@
 ﻿using MediatR;
 
-using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
-using TruckingIndustryAPI.Features.EmployeeFeatures.Queries;
 using TruckingIndustryAPI.Features.StatusFeatures.Commands;
 
 using TruckingIndustryAPI.Features.StatusFeatures.Queries;
@@ -51,6 +49,6 @@ namespace TruckingIndustryAPI.Controllers
             return Ok(await _mediator.Send(deleteStatusCommand));
         }
 
-       
+
     }
 }

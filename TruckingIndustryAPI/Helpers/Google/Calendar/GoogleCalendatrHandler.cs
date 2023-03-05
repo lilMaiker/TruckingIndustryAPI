@@ -1,7 +1,7 @@
 ﻿using Google.Apis.Auth.OAuth2;
 using Google.Apis.Calendar.v3;
-using Google.Apis.Drive.v3;
 using Google.Apis.Calendar.v3.Data;
+using Google.Apis.Drive.v3;
 using Google.Apis.Services;
 using Google.Apis.Util.Store;
 
@@ -11,7 +11,7 @@ namespace TruckingIndustryAPI.Helpers.Google.Calendar
 {
     public static class GoogleCalendatrHandler
     {
-        static string[] Scopes = { CalendarService.Scope.Calendar, DriveService.Scope.Drive};
+        static string[] Scopes = { CalendarService.Scope.Calendar, DriveService.Scope.Drive };
         static string ApplicationName = "Google Calendar API .NET Quickstart";
 
         public static void AddEvent(DateTime pStart, DateTime pEnd, string[] pEmails)
@@ -96,5 +96,6 @@ namespace TruckingIndustryAPI.Helpers.Google.Calendar
             Event recurringEvent = service.Events.Insert(ev, calendarId).Execute();
             Debug.WriteLine($"Event created {ev.HtmlLink}");
         }
-    }}
+    }
+}
 

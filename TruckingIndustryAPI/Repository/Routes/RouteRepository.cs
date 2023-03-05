@@ -1,4 +1,5 @@
 ﻿using Microsoft.EntityFrameworkCore;
+
 using TruckingIndustryAPI.Data;
 
 namespace TruckingIndustryAPI.Repository.Routes
