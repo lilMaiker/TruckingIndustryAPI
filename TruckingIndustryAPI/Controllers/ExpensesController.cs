@@ -29,26 +29,34 @@ namespace TruckingIndustryAPI.Controllers
         }
 
         [HttpGet("{id}")]
-        public async Task<IActionResult> GetById(long id)
+        public async Task<IActionResult> GetById([FromQuery] long id)
         {
+            if (!ModelState.IsValid) return BadRequest(ModelState);
+
             return Ok(await _mediator.Send(new GetExpensesByIdQuery { Id = id }));
         }
 
         [HttpPost]
-        public async Task<IActionResult> Create(CreateExpensesCommand createExpensesCommand)
+        public async Task<IActionResult> Create([FromBody] CreateExpensesCommand createExpensesCommand)
         {
+            if (!ModelState.IsValid) return BadRequest(ModelState);
+
             return Ok(await _mediator.Send(createExpensesCommand));
         }
 
         [HttpPut]
-        public async Task<IActionResult> Update(UpdateExpensesCommand updateExpensesCommand)
+        public async Task<IActionResult> Update([FromBody] UpdateExpensesCommand updateExpensesCommand)
         {
+            if (!ModelState.IsValid) return BadRequest(ModelState);
+
             return Ok(await _mediator.Send(updateExpensesCommand));
         }
 
         [HttpDelete]
-        public async Task<IActionResult> Delete(DeleteExpensesCommand deleteExpensesCommand)
+        public async Task<IActionResult> Delete([FromBody] DeleteExpensesCommand deleteExpensesCommand)
         {
+            if (!ModelState.IsValid) return BadRequest(ModelState);
+
             return Ok(await _mediator.Send(deleteExpensesCommand));
         }
 
