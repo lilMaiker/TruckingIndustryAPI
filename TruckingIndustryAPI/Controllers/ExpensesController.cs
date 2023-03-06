@@ -2,6 +2,7 @@
 
 using Microsoft.AspNetCore.Mvc;
 
+using TruckingIndustryAPI.Features.CargoFeatures.Queries;
 using TruckingIndustryAPI.Features.ExpensesFeatures.Commands;
 
 using TruckingIndustryAPI.Features.ExpensesFeatures.Queries;
@@ -17,6 +18,14 @@ namespace TruckingIndustryAPI.Controllers
         public ExpensesController(IMediator mediator)
         {
             _mediator = mediator;
+        }
+
+        [HttpGet("{id}")]
+        public async Task<IActionResult> GetByIdBid([FromQuery] long idBid)
+        {
+            if (!ModelState.IsValid) return BadRequest(ModelState);
+
+            return Ok(await _mediator.Send(new GetExpensesByIdBidQuery { Id = idBid }));
         }
 
         [HttpGet("{id}")]

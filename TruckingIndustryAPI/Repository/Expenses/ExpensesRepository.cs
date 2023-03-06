@@ -1,6 +1,8 @@
 ﻿using Microsoft.EntityFrameworkCore;
 
 using TruckingIndustryAPI.Data;
+using TruckingIndustryAPI.Entities.Models;
+using TruckingIndustryAPI.Repository.Cargos;
 
 namespace TruckingIndustryAPI.Repository.Expenses
 {
@@ -67,6 +69,20 @@ namespace TruckingIndustryAPI.Repository.Expenses
             {
                 _logger.LogError(ex, "{Repo} Delete function error", typeof(ExpensesRepository));
                 return false;
+            }
+        }
+
+        public async Task<IEnumerable<Entities.Models.Expenses>> GetByIdBidAsync(long idBid)
+        {
+            try
+            {
+                var expenses = await dbSet.Where(x => x.BidsId == idBid).ToListAsync();
+                return expenses;
+            }
+            catch (Exception ex)
+            {
+                _logger.LogError(ex, "{Repo} All function error", typeof(ExpensesRepository));
+                return new List<Entities.Models.Expenses>();
             }
         }
 

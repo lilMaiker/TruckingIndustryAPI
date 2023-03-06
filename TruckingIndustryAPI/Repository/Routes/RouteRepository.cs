@@ -75,7 +75,7 @@ namespace TruckingIndustryAPI.Repository.Routes
             }
             catch (Exception ex)
             {
-                _logger.LogError(ex, "{Repo} All function error", typeof(CargoRepository));
+                _logger.LogError(ex, "{Repo} All function error", typeof(RouteRepository));
                 return new List<Entities.Models.Route>();
             }
         }
