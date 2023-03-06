@@ -20,7 +20,7 @@ namespace TruckingIndustryAPI.Controllers
         }
 
         [HttpGet("{id}")]
-        public async Task<IActionResult> GetById(long id)
+        public async Task<IActionResult> GetById([FromQuery]long id)
         {
             if (!ModelState.IsValid) return BadRequest(ModelState);
 
@@ -28,7 +28,7 @@ namespace TruckingIndustryAPI.Controllers
         }
 
         [HttpGet("{id}")]
-        public async Task<IActionResult> GetByIdBid(long idBid)
+        public async Task<IActionResult> GetByIdBid([FromQuery] long idBid)
         {
             if (!ModelState.IsValid) return BadRequest(ModelState);
 
@@ -38,13 +38,11 @@ namespace TruckingIndustryAPI.Controllers
         [HttpGet]
         public async Task<IActionResult> GetAll()
         {
-            if (!ModelState.IsValid) return BadRequest(ModelState);
-
             return Ok(await _mediator.Send(new GetAllCargoQuery()));
         }
 
         [HttpPost]
-        public async Task<IActionResult> Create(CreateCargoCommand createCargoCommand)
+        public async Task<IActionResult> Create([FromBody] CreateCargoCommand createCargoCommand)
         {
             if (!ModelState.IsValid) return BadRequest(ModelState);
 
@@ -52,7 +50,7 @@ namespace TruckingIndustryAPI.Controllers
         }
 
         [HttpPut]
-        public async Task<IActionResult> Update(UpdateCargoCommand updateCargoCommand)
+        public async Task<IActionResult> Update([FromBody] UpdateCargoCommand updateCargoCommand)
         {
             if (!ModelState.IsValid) return BadRequest(ModelState);
 
@@ -60,7 +58,7 @@ namespace TruckingIndustryAPI.Controllers
         }
 
         [HttpDelete]
-        public async Task<IActionResult> Delete(DeleteCargoCommand deleteCargoCommand)
+        public async Task<IActionResult> Delete([FromBody] DeleteCargoCommand deleteCargoCommand)
         {
             if (!ModelState.IsValid) return BadRequest(ModelState);
 

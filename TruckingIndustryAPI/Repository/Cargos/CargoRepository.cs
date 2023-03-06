@@ -68,7 +68,7 @@ namespace TruckingIndustryAPI.Repository.Cargos
         {
             try
             {
-                var cargo = await dbSet.Where(x => x.Id == idBid).ToListAsync();
+                var cargo = await dbSet.Where(x => x.BidsId == idBid).ToListAsync();
                 return cargo;
             }
             catch (Exception ex)

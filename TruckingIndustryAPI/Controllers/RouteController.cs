@@ -2,6 +2,7 @@
 
 using Microsoft.AspNetCore.Mvc;
 
+using TruckingIndustryAPI.Features.CargoFeatures.Queries;
 using TruckingIndustryAPI.Features.Routes.Commands;
 
 using TruckingIndustryAPI.Features.Routes.Queries;
@@ -25,9 +26,19 @@ namespace TruckingIndustryAPI.Controllers
         /// <param name="id">Идентификатор маршрута</param>
         /// <returns>Маршрут</returns>
         [HttpGet("{id}")]
-        public async Task<IActionResult> GetById(long id)
+        public async Task<IActionResult> GetById([FromQuery] long id)
         {
+            if (!ModelState.IsValid) return BadRequest(ModelState);
+
             return Ok(await _mediator.Send(new GetRouteByIdQuery { Id = id }));
+        }
+
+        [HttpGet("{id}")]
+        public async Task<IActionResult> GetByIdBid([FromQuery] long idBid)
+        {
+            if (!ModelState.IsValid) return BadRequest(ModelState);
+
+            return Ok(await _mediator.Send(new GetRoutesByIdBidQuery { Id = idBid }));
         }
 
         /// <summary>
@@ -51,6 +62,8 @@ namespace TruckingIndustryAPI.Controllers
         [HttpPut]
         public async Task<IActionResult> Update([FromBody] UpdateRouteCommand updateRouteCommand)
         {
+            if (!ModelState.IsValid) return BadRequest(ModelState);
+
             return Ok(await _mediator.Send(updateRouteCommand));
         }
 
@@ -62,6 +75,8 @@ namespace TruckingIndustryAPI.Controllers
         [HttpDelete]
         public async Task<IActionResult> Delete([FromBody] DeleteRouteCommand deleteRouteCommand)
         {
+            if (!ModelState.IsValid) return BadRequest(ModelState);
+
             return Ok(await _mediator.Send(deleteRouteCommand));
         }
 

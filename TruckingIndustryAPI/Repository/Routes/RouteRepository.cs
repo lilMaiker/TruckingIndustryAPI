@@ -1,6 +1,8 @@
 ﻿using Microsoft.EntityFrameworkCore;
 
 using TruckingIndustryAPI.Data;
+using TruckingIndustryAPI.Entities.Models;
+using TruckingIndustryAPI.Repository.Cargos;
 
 namespace TruckingIndustryAPI.Repository.Routes
 {
@@ -64,5 +66,18 @@ namespace TruckingIndustryAPI.Repository.Routes
             }
         }
 
+        public async Task<IEnumerable<Entities.Models.Route>> GetByIdBidAsync(long IdBid)
+        {
+            try
+            {
+                var routes = await dbSet.Where(x => x.BidsId == IdBid).ToListAsync();
+                return routes;
+            }
+            catch (Exception ex)
+            {
+                _logger.LogError(ex, "{Repo} All function error", typeof(CargoRepository));
+                return new List<Entities.Models.Route>();
+            }
+        }
     }
 }
