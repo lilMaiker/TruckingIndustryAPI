@@ -32,11 +32,8 @@ namespace TruckingIndustryAPI.Repository.Cargos
                     return await AddAsync(entity);
 
                 existingentity.NameCargo = entity.NameCargo;
-
                 existingentity.WeightCargo = entity.WeightCargo;
-
                 existingentity.TypeCargoId = entity.TypeCargoId;
-
                 existingentity.BidsId = entity.BidsId;
 
                 return true;
@@ -67,5 +64,18 @@ namespace TruckingIndustryAPI.Repository.Cargos
             }
         }
 
+        public async Task<IEnumerable<Cargo>> GetByIdBidAsync(long idBid)
+        {
+            try
+            {
+                var cargo = await dbSet.Where(x => x.Id == idBid).ToListAsync();
+                return cargo;
+            }
+            catch (Exception ex)
+            {
+                _logger.LogError(ex, "{Repo} All function error", typeof(CargoRepository));
+                return new List<Cargo>();
+            }
+        }
     }
 }

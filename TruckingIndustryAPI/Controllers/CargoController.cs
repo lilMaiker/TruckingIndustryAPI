@@ -22,30 +22,48 @@ namespace TruckingIndustryAPI.Controllers
         [HttpGet("{id}")]
         public async Task<IActionResult> GetById(long id)
         {
+            if (!ModelState.IsValid) return BadRequest(ModelState);
+
             return Ok(await _mediator.Send(new GetCargoByIdQuery { Id = id }));
+        }
+
+        [HttpGet("{id}")]
+        public async Task<IActionResult> GetByIdBid(long idBid)
+        {
+            if (!ModelState.IsValid) return BadRequest(ModelState);
+
+            return Ok(await _mediator.Send(new GetCargoByIdQuery { Id = idBid }));
         }
 
         [HttpGet]
         public async Task<IActionResult> GetAll()
         {
+            if (!ModelState.IsValid) return BadRequest(ModelState);
+
             return Ok(await _mediator.Send(new GetAllCargoQuery()));
         }
 
         [HttpPost]
         public async Task<IActionResult> Create(CreateCargoCommand createCargoCommand)
         {
+            if (!ModelState.IsValid) return BadRequest(ModelState);
+
             return Ok(await _mediator.Send(createCargoCommand));
         }
 
         [HttpPut]
         public async Task<IActionResult> Update(UpdateCargoCommand updateCargoCommand)
         {
+            if (!ModelState.IsValid) return BadRequest(ModelState);
+
             return Ok(await _mediator.Send(updateCargoCommand));
         }
 
         [HttpDelete]
         public async Task<IActionResult> Delete(DeleteCargoCommand deleteCargoCommand)
         {
+            if (!ModelState.IsValid) return BadRequest(ModelState);
+
             return Ok(await _mediator.Send(deleteCargoCommand));
         }
     }
