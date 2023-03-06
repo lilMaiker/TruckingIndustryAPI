@@ -5,29 +5,24 @@ using Google.Apis.Drive.v3;
 using Google.Apis.Services;
 using Google.Apis.Util.Store;
 
+using Microsoft.CodeAnalysis;
+
 using System.Diagnostics;
 
 namespace TruckingIndustryAPI.Helpers.Google.Calendar
 {
     public static class GoogleCalendatrHandler
     {
-        static string[] Scopes = { CalendarService.Scope.Calendar, DriveService.Scope.Drive };
-        static string ApplicationName = "Google Calendar API .NET Quickstart";
+        static readonly string[] Scopes = { CalendarService.Scope.Calendar, DriveService.Scope.Drive };
+        static readonly string ApplicationName = "Google Calendar TruckingIndustryAPI";
 
-        public static void AddEvent(DateTime pStart, DateTime pEnd, string[] pEmails)
-        {
-
-        }
-
-        public static void QucikAdd()
+        public static void AddEvent(DateTime pStart, DateTime pEnd, string[] pEmails, string? pDescription = null, string? pLocation = null)
         {
             UserCredential credential;
 
             using (var stream =
                 new FileStream("credentials.json", FileMode.Open, FileAccess.Read))
             {
-                // The file token.json stores the user's access and refresh tokens, and is created
-                // automatically when the authorization flow completes for the first time.
                 string credPath = "token.json";
                 credential = GoogleWebAuthorizationBroker.AuthorizeAsync(
                     GoogleClientSecrets.Load(stream).Secrets,
@@ -53,7 +48,33 @@ namespace TruckingIndustryAPI.Helpers.Google.Calendar
             request.MaxResults = 10;
             request.OrderBy = EventsResource.ListRequest.OrderByEnum.StartTime;
 
-            // List events.
+            var ev = new Event();
+            EventDateTime start = new EventDateTime();
+            start.DateTime = pStart;
+
+            EventDateTime end = new EventDateTime();
+            end.DateTime = pEnd;
+
+            ev.Start = start;
+            ev.End = end;
+            ev.Summary = "Рейс";
+            ev.Description = pDescription;
+            ev.Location = pLocation;
+            ev.Attendees = new List<EventAttendee>()
+            {
+                new EventAttendee{Email = "fuhega45@gmail.com"},
+                new EventAttendee{Email = "ulianadolidovich@gmail.com"}
+            };
+
+            var calendarId = "primary";
+            Event recurringEvent = service.Events.Insert(ev, calendarId).Execute();
+        }
+
+        public static void QucikAdd()
+        {
+            
+
+           /* // List events.
             Events events = request.Execute();
             Debug.WriteLine("Upcoming events:");
             if (events.Items != null && events.Items.Count > 0)
@@ -71,30 +92,11 @@ namespace TruckingIndustryAPI.Helpers.Google.Calendar
             else
             {
                 Debug.WriteLine("No upcoming events found.");
-            }
+            }*/
 
 
-            var ev = new Event();
-            EventDateTime start = new EventDateTime();
-            start.DateTime = new DateTime(2023, 2, 26, 10, 0, 0);
-
-            EventDateTime end = new EventDateTime();
-            end.DateTime = new DateTime(2023, 2, 26, 10, 30, 0);
-
-
-            ev.Start = start;
-            ev.End = end;
-            ev.Summary = "New Event";
-            ev.Description = "Description...";
-            ev.Attendees = new List<EventAttendee>()
-            {
-                new EventAttendee{Email = "fuhega45@gmail.com"},
-                new EventAttendee{Email = "ulianadolidovich@gmail.com"}
-            };
-
-            var calendarId = "primary";
-            Event recurringEvent = service.Events.Insert(ev, calendarId).Execute();
-            Debug.WriteLine($"Event created {ev.HtmlLink}");
+            
+           /* Debug.WriteLine($"Event created {ev.HtmlLink}");*/
         }
     }
 }
