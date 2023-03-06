@@ -2,13 +2,17 @@
 
 using MediatR;
 
+using System.ComponentModel.DataAnnotations;
+
 using TruckingIndustryAPI.Configuration.UoW;
 
 namespace TruckingIndustryAPI.Features.Routes.Commands
 {
     public class CreateRouteCommand : IRequest<Entities.Models.Route>
     {
+        [MaxLength(200)]
         public string PointA { get; set; }
+        [MaxLength(200)]
         public string PointB { get; set; }
         public long BidsId { get; set; }
         public class CreateRouteCommandHandler : IRequestHandler<CreateRouteCommand, Entities.Models.Route>
