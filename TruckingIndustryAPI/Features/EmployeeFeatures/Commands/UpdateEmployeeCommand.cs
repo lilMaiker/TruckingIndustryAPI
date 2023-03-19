@@ -12,9 +12,9 @@ namespace TruckingIndustryAPI.Features.EmployeeFeatures.Commands
     {
         public long Id { get; set; }
         public string Surname { get; set; }
-        public string NameEmployee { get; set; }
+        public string Name { get; set; }
         public string Patronymic { get; set; }
-        public long PositiontId { get; set; }
+        public long PositionId { get; set; }
         public string SerialNumber { get; set; }
         public int PassportNumber { get; set; }
         public string PhoneNumber { get; set; }

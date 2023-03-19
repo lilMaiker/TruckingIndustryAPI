@@ -44,7 +44,7 @@ namespace TruckingIndustryAPI.Controllers
         }
 
         [HttpDelete]
-        public async Task<IActionResult> Delete(DeleteCurrencyCommand deleteCurrencyCommand)
+        public async Task<IActionResult> Delete([FromQuery] DeleteCurrencyCommand deleteCurrencyCommand)
         {
             return Ok(await _mediator.Send(deleteCurrencyCommand));
         }

@@ -22,6 +22,8 @@ namespace TruckingIndustryAPI.Controllers
         [HttpGet("{id}")]
         public async Task<IActionResult> GetById(long id)
         {
+            if (!ModelState.IsValid) return BadRequest();
+
             return Ok(await _mediator.Send(new GetCarsByIdQuery { Id = id }));
         }
 
@@ -32,20 +34,26 @@ namespace TruckingIndustryAPI.Controllers
         }
 
         [HttpPost]
-        public async Task<IActionResult> Create(CreateCarsCommand createCarsCommand)
+        public async Task<IActionResult> Create([FromBody] CreateCarsCommand createCarsCommand)
         {
+            if (!ModelState.IsValid) return BadRequest();
+
             return Ok(await _mediator.Send(createCarsCommand));
         }
 
         [HttpPut]
-        public async Task<IActionResult> Update(UpdateCarsCommand updateCarsCommand)
+        public async Task<IActionResult> Update([FromBody] UpdateCarsCommand updateCarsCommand)
         {
+            if (!ModelState.IsValid) return BadRequest();
+
             return Ok(await _mediator.Send(updateCarsCommand));
         }
 
         [HttpDelete]
-        public async Task<IActionResult> Delete(DeleteCarsCommand deleteCarsCommand)
+        public async Task<IActionResult> Delete([FromQuery] DeleteCarsCommand deleteCarsCommand)
         {
+            if (!ModelState.IsValid) return BadRequest();
+
             return Ok(await _mediator.Send(deleteCarsCommand));
         }
     }

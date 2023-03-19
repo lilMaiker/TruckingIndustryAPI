@@ -12,8 +12,8 @@ using TruckingIndustryAPI.Data;
 namespace TruckingIndustryAPI.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20230305101316_new table cars")]
-    partial class newtablecars
+    [Migration("20230311160851_init")]
+    partial class init
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -53,15 +53,15 @@ namespace TruckingIndustryAPI.Migrations
                     b.HasData(
                         new
                         {
-                            Id = "ef6a245d-bde3-4462-8a7d-a7eca413b1bb",
-                            ConcurrencyStamp = "0e5683c2-422e-48b7-a8f4-403c6029a9e2",
+                            Id = "22c49695-878a-4a9d-b9c5-8114dfd6530b",
+                            ConcurrencyStamp = "bd3eb28a-ec9f-4c8c-a5e5-d13a8435a211",
                             Name = "Viewer",
                             NormalizedName = "VIEWER"
                         },
                         new
                         {
-                            Id = "b5eef493-6643-4dd5-94da-99d8b75cdf0a",
-                            ConcurrencyStamp = "bf5d050f-b938-48c1-98d5-34ee4d0c0a6f",
+                            Id = "bb8534a9-ae6c-4114-97d2-a9d00891b18e",
+                            ConcurrencyStamp = "ad3cbc2c-67e2-4304-9c1a-a938c505fd2b",
                             Name = "Administrator",
                             NormalizedName = "ADMINISTRATOR"
                         });
@@ -173,6 +173,169 @@ namespace TruckingIndustryAPI.Migrations
                     b.ToTable("AspNetUserTokens", (string)null);
                 });
 
+            modelBuilder.Entity("TruckingIndustryAPI.Entities.Models.Bids", b =>
+                {
+                    b.Property<long>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("bigint");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<long>("Id"), 1L, 1);
+
+                    b.Property<string>("ActAccNumber")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<long>("CarsId")
+                        .HasColumnType("bigint");
+
+                    b.Property<long>("CurrencyId")
+                        .HasColumnType("bigint");
+
+                    b.Property<DateTime?>("DateToLoad")
+                        .HasColumnType("datetime2");
+
+                    b.Property<DateTime?>("DateToUnload")
+                        .HasColumnType("datetime2");
+
+                    b.Property<long>("EmployeeId")
+                        .HasColumnType("bigint");
+
+                    b.Property<long>("FoundationId")
+                        .HasColumnType("bigint");
+
+                    b.Property<double>("FreightAMount")
+                        .HasColumnType("float");
+
+                    b.Property<DateTime?>("PayDate")
+                        .HasColumnType("datetime2");
+
+                    b.Property<long>("StatusId")
+                        .HasColumnType("bigint");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("CarsId");
+
+                    b.HasIndex("CurrencyId");
+
+                    b.HasIndex("EmployeeId");
+
+                    b.HasIndex("FoundationId");
+
+                    b.HasIndex("StatusId");
+
+                    b.ToTable("Bids");
+                });
+
+            modelBuilder.Entity("TruckingIndustryAPI.Entities.Models.Cargo", b =>
+                {
+                    b.Property<long>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("bigint");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<long>("Id"), 1L, 1);
+
+                    b.Property<long>("BidsId")
+                        .HasColumnType("bigint");
+
+                    b.Property<string>("NameCargo")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<long>("TypeCargoId")
+                        .HasColumnType("bigint");
+
+                    b.Property<double>("WeightCargo")
+                        .HasColumnType("float");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("BidsId");
+
+                    b.HasIndex("TypeCargoId");
+
+                    b.ToTable("Cargo");
+                });
+
+            modelBuilder.Entity("TruckingIndustryAPI.Entities.Models.Cars", b =>
+                {
+                    b.Property<long>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("bigint");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<long>("Id"), 1L, 1);
+
+                    b.Property<string>("BrandTrailer")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<DateTime>("LastDateTechnicalInspection")
+                        .HasColumnType("datetime2");
+
+                    b.Property<double>("MaxWeight")
+                        .HasColumnType("float");
+
+                    b.Property<string>("TrailerNumber")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<bool>("WithHydroboard")
+                        .HasColumnType("bit");
+
+                    b.Property<bool>("WithOpenSide")
+                        .HasColumnType("bit");
+
+                    b.Property<bool>("WithRefrigerator")
+                        .HasColumnType("bit");
+
+                    b.Property<bool>("WithTent")
+                        .HasColumnType("bit");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Cars");
+                });
+
+            modelBuilder.Entity("TruckingIndustryAPI.Entities.Models.Client", b =>
+                {
+                    b.Property<long>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("bigint");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<long>("Id"), 1L, 1);
+
+                    b.Property<string>("Email")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int>("PassportNumber")
+                        .HasColumnType("int");
+
+                    b.Property<string>("Patronymic")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("PhoneNumber")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("SerialNumber")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Surname")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Client");
+                });
+
             modelBuilder.Entity("TruckingIndustryAPI.Entities.Models.Currency", b =>
                 {
                     b.Property<long>("Id")
@@ -210,7 +373,7 @@ namespace TruckingIndustryAPI.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("NameEmployee")
+                    b.Property<string>("Name")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
@@ -243,6 +406,73 @@ namespace TruckingIndustryAPI.Migrations
                     b.HasIndex("PositionId");
 
                     b.ToTable("Employees");
+                });
+
+            modelBuilder.Entity("TruckingIndustryAPI.Entities.Models.Expenses", b =>
+                {
+                    b.Property<long>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("bigint");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<long>("Id"), 1L, 1);
+
+                    b.Property<double>("Amount")
+                        .HasColumnType("float");
+
+                    b.Property<long>("BidsId")
+                        .HasColumnType("bigint");
+
+                    b.Property<string>("Commnet")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<long>("CurrencyId")
+                        .HasColumnType("bigint");
+
+                    b.Property<DateTime?>("DateTransfer")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("NameExpense")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("BidsId");
+
+                    b.HasIndex("CurrencyId");
+
+                    b.ToTable("Expenses");
+                });
+
+            modelBuilder.Entity("TruckingIndustryAPI.Entities.Models.Foundation", b =>
+                {
+                    b.Property<long>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("bigint");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<long>("Id"), 1L, 1);
+
+                    b.Property<string>("BIC")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("CertificateNumber")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<long>("ClientId")
+                        .HasColumnType("bigint");
+
+                    b.Property<string>("NameFoundation")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("ClientId");
+
+                    b.ToTable("Foundation");
                 });
 
             modelBuilder.Entity("TruckingIndustryAPI.Entities.Models.Identity.ApplicationUser", b =>
@@ -328,6 +558,34 @@ namespace TruckingIndustryAPI.Migrations
                     b.ToTable("Positions");
                 });
 
+            modelBuilder.Entity("TruckingIndustryAPI.Entities.Models.Route", b =>
+                {
+                    b.Property<long>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("bigint");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<long>("Id"), 1L, 1);
+
+                    b.Property<long>("BidsId")
+                        .HasColumnType("bigint");
+
+                    b.Property<string>("PointA")
+                        .IsRequired()
+                        .HasMaxLength(200)
+                        .HasColumnType("nvarchar(200)");
+
+                    b.Property<string>("PointB")
+                        .IsRequired()
+                        .HasMaxLength(200)
+                        .HasColumnType("nvarchar(200)");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("BidsId");
+
+                    b.ToTable("Routes");
+                });
+
             modelBuilder.Entity("TruckingIndustryAPI.Entities.Models.Status", b =>
                 {
                     b.Property<long>("Id")
@@ -343,6 +601,23 @@ namespace TruckingIndustryAPI.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("Status");
+                });
+
+            modelBuilder.Entity("TruckingIndustryAPI.Entities.Models.TypeCargo", b =>
+                {
+                    b.Property<long>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("bigint");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<long>("Id"), 1L, 1);
+
+                    b.Property<string>("NameTypeCargo")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("TypeCargo");
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>
@@ -396,6 +671,68 @@ namespace TruckingIndustryAPI.Migrations
                         .IsRequired();
                 });
 
+            modelBuilder.Entity("TruckingIndustryAPI.Entities.Models.Bids", b =>
+                {
+                    b.HasOne("TruckingIndustryAPI.Entities.Models.Cars", "Cars")
+                        .WithMany()
+                        .HasForeignKey("CarsId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("TruckingIndustryAPI.Entities.Models.Currency", "Currency")
+                        .WithMany()
+                        .HasForeignKey("CurrencyId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("TruckingIndustryAPI.Entities.Models.Employee", "Employee")
+                        .WithMany()
+                        .HasForeignKey("EmployeeId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("TruckingIndustryAPI.Entities.Models.Foundation", "Foundation")
+                        .WithMany()
+                        .HasForeignKey("FoundationId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("TruckingIndustryAPI.Entities.Models.Status", "Status")
+                        .WithMany()
+                        .HasForeignKey("StatusId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Cars");
+
+                    b.Navigation("Currency");
+
+                    b.Navigation("Employee");
+
+                    b.Navigation("Foundation");
+
+                    b.Navigation("Status");
+                });
+
+            modelBuilder.Entity("TruckingIndustryAPI.Entities.Models.Cargo", b =>
+                {
+                    b.HasOne("TruckingIndustryAPI.Entities.Models.Bids", "Bids")
+                        .WithMany()
+                        .HasForeignKey("BidsId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("TruckingIndustryAPI.Entities.Models.TypeCargo", "TypeCargo")
+                        .WithMany()
+                        .HasForeignKey("TypeCargoId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Bids");
+
+                    b.Navigation("TypeCargo");
+                });
+
             modelBuilder.Entity("TruckingIndustryAPI.Entities.Models.Employee", b =>
                 {
                     b.HasOne("TruckingIndustryAPI.Entities.Models.Identity.ApplicationUser", "ApplicationUser")
@@ -413,6 +750,47 @@ namespace TruckingIndustryAPI.Migrations
                     b.Navigation("ApplicationUser");
 
                     b.Navigation("Position");
+                });
+
+            modelBuilder.Entity("TruckingIndustryAPI.Entities.Models.Expenses", b =>
+                {
+                    b.HasOne("TruckingIndustryAPI.Entities.Models.Bids", "Bids")
+                        .WithMany()
+                        .HasForeignKey("BidsId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("TruckingIndustryAPI.Entities.Models.Currency", "Currency")
+                        .WithMany()
+                        .HasForeignKey("CurrencyId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Bids");
+
+                    b.Navigation("Currency");
+                });
+
+            modelBuilder.Entity("TruckingIndustryAPI.Entities.Models.Foundation", b =>
+                {
+                    b.HasOne("TruckingIndustryAPI.Entities.Models.Client", "Client")
+                        .WithMany()
+                        .HasForeignKey("ClientId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Client");
+                });
+
+            modelBuilder.Entity("TruckingIndustryAPI.Entities.Models.Route", b =>
+                {
+                    b.HasOne("TruckingIndustryAPI.Entities.Models.Bids", "Bids")
+                        .WithMany()
+                        .HasForeignKey("BidsId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Bids");
                 });
 #pragma warning restore 612, 618
         }

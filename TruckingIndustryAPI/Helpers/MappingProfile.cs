@@ -45,9 +45,9 @@ namespace TruckingIndustryAPI.Helpers
             CreateMap<UpdateTypeCargoCommand, TypeCargo>();
             CreateMap<DeleteTypeCargoCommand, TypeCargo>();
 
-            CreateMap<CreateCarsCommand, Cars>();
-            CreateMap<UpdateCarsCommand, Cars>();
-            CreateMap<DeleteCarsCommand, Cars>();
+            CreateMap<CreateCarsCommand, Car>();
+            CreateMap<UpdateCarsCommand, Car>();
+            CreateMap<DeleteCarsCommand, Car>();
 
             CreateMap<CreateClientCommand, Client>();
             CreateMap<UpdateClientCommand, Client>();
@@ -57,17 +57,17 @@ namespace TruckingIndustryAPI.Helpers
             CreateMap<UpdateFoundationCommand, Foundation>();
             CreateMap<DeleteFoundationCommand, Foundation>();
 
-            CreateMap<CreateBidsCommand, Bids>();
-            CreateMap<UpdateBidsCommand, Bids>();
-            CreateMap<DeleteBidsCommand, Bids>();
+            CreateMap<CreateBidsCommand, Bid>();
+            CreateMap<UpdateBidsCommand, Bid>();
+            CreateMap<DeleteBidsCommand, Bid>();
 
             CreateMap<CreateCargoCommand, Cargo>();
             CreateMap<UpdateCargoCommand, Cargo>();
             CreateMap<DeleteCargoCommand, Cargo>();
 
-            CreateMap<CreateExpensesCommand, Expenses>();
-            CreateMap<UpdateExpensesCommand, Expenses>();
-            CreateMap<DeleteExpensesCommand, Expenses>();
+            CreateMap<CreateExpensesCommand, Expense>();
+            CreateMap<UpdateExpensesCommand, Expense>();
+            CreateMap<DeleteExpensesCommand, Expense>();
 
             CreateMap<CreateRouteCommand, Entities.Models.Route>();
             CreateMap<UpdateRouteCommand, Entities.Models.Route>();

@@ -2,6 +2,7 @@
 
 using TruckingIndustryAPI.Data;
 using TruckingIndustryAPI.Entities.Models;
+using TruckingIndustryAPI.Repository.Employees;
 
 namespace TruckingIndustryAPI.Repository.Cargos
 {
@@ -9,11 +10,17 @@ namespace TruckingIndustryAPI.Repository.Cargos
     {
         public CargoRepository(ApplicationDbContext context, ILogger logger) : base(context, logger) { }
 
+        public override async Task<bool> AddAsync(Cargo entity)
+        {
+            await dbSet.AddAsync(entity);
+            return true;
+        }
+
         public override async Task<IEnumerable<Cargo>> GetAllAsync()
         {
             try
             {
-                return await dbSet.ToListAsync();
+                return await dbSet.Include(i => i.TypeCargo).ToListAsync();
             }
             catch (Exception ex)
             {
@@ -64,11 +71,24 @@ namespace TruckingIndustryAPI.Repository.Cargos
             }
         }
 
+        public override async Task<Cargo> GetByIdAsync(long id)
+        {
+            try
+            {
+                return await dbSet.Include(e => e.TypeCargo).Where(n => n.Id == id).FirstOrDefaultAsync();
+            }
+            catch (Exception ex)
+            {
+                _logger.LogError(ex, "{Repo} GetById function error", typeof(EmployeeRepository));
+                return new Cargo();
+            }
+        }
+
         public async Task<IEnumerable<Cargo>> GetByIdBidAsync(long idBid)
         {
             try
             {
-                var cargo = await dbSet.Where(x => x.BidsId == idBid).ToListAsync();
+                var cargo = await dbSet.Include(i => i.TypeCargo).Where(x => x.BidsId == idBid).ToListAsync();
                 return cargo;
             }
             catch (Exception ex)

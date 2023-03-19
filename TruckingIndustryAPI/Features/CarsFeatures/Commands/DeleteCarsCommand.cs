@@ -25,7 +25,7 @@ namespace TruckingIndustryAPI.Features.CarsFeatures.Commands
                 var result = await _unitOfWork.Cars.GetByIdAsync(command.Id);
                 if (result == null)
                 {
-                    throw new NotFoundException(nameof(Cars));
+                    throw new NotFoundException(nameof(Car));
                 }
                 await _unitOfWork.Cars.DeleteAsync(result.Id);
                 await _unitOfWork.CompleteAsync();

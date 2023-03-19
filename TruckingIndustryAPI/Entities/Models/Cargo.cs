@@ -14,6 +14,6 @@ namespace TruckingIndustryAPI.Entities.Models
 
         [ForeignKey("Bids")]
         public long BidsId { get; set; }
-        public Bids Bids { get; set; }
+        public Bid Bids { get; set; }
     }
 }

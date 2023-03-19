@@ -43,7 +43,7 @@ namespace TruckingIndustryAPI.Controllers
         }
 
         [HttpDelete]
-        public async Task<IActionResult> Delete(DeleteEmployeeCommand deleteEmployeeCommand)
+        public async Task<IActionResult> Delete([FromQuery] DeleteEmployeeCommand deleteEmployeeCommand)
         {
             return Ok(await _mediator.Send(deleteEmployeeCommand));
         }

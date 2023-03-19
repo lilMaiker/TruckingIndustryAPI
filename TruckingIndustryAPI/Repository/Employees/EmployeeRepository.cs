@@ -9,6 +9,19 @@ namespace TruckingIndustryAPI.Repository.Employees
     {
         public EmployeeRepository(ApplicationDbContext context, ILogger logger) : base(context, logger) { }
 
+        public override async Task<Employee> GetByIdAsync(long id)
+        {
+            try
+            {
+                return await dbSet.Include(e => e.Position).Include(e => e.ApplicationUser).Where(n => n.Id == id).FirstOrDefaultAsync();
+            }
+            catch (Exception ex)
+            {
+                _logger.LogError(ex, "{Repo} GetById function error", typeof(EmployeeRepository));
+                return new Employee();
+            }
+        }
+
         public override async Task<IEnumerable<Employee>> GetAllAsync()
         {
             try

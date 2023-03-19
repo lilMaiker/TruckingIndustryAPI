@@ -2,11 +2,11 @@
 
 namespace TruckingIndustryAPI.Entities.Models
 {
-    public class Bids : Base.BaseModelLong
+    public class Bid : Base.BaseModelLong
     {
         [ForeignKey("Cars")]
         public long CarsId { get; set; }
-        public Cars? Cars { get; set; }
+        public Car? Cars { get; set; }
 
         [ForeignKey("Foundation")]
         public long FoundationId { get; set; }

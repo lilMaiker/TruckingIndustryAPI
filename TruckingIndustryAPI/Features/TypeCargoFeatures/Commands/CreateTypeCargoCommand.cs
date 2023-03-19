@@ -2,6 +2,8 @@
 
 using MediatR;
 
+using System.ComponentModel.DataAnnotations;
+
 using TruckingIndustryAPI.Configuration.UoW;
 using TruckingIndustryAPI.Entities.Models;
 
@@ -9,6 +11,7 @@ namespace TruckingIndustryAPI.Features.TypeCargoFeatures.Commands
 {
     public class CreateTypeCargoCommand : IRequest<TypeCargo>
     {
+        [MaxLength(150)]
         public string NameTypeCargo { get; set; }
         public class CreateTypeCargoCommandHandler : IRequestHandler<CreateTypeCargoCommand, TypeCargo>
         {

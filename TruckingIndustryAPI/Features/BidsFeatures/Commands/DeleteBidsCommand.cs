@@ -25,7 +25,7 @@ namespace TruckingIndustryAPI.Features.BidsFeatures.Commands
                 var result = await _unitOfWork.Bids.GetByIdAsync(command.Id);
                 if (result == null)
                 {
-                    throw new NotFoundException(nameof(Bids));
+                    throw new NotFoundException(nameof(Bid));
                 }
                 await _unitOfWork.Bids.DeleteAsync(result.Id);
                 await _unitOfWork.CompleteAsync();

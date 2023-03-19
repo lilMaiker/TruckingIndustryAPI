@@ -2,6 +2,7 @@
 
 using TruckingIndustryAPI.Data;
 using TruckingIndustryAPI.Entities.Models.Identity;
+using TruckingIndustryAPI.Repository.ApplicationUsers;
 using TruckingIndustryAPI.Repository.Bids;
 using TruckingIndustryAPI.Repository.Cargos;
 using TruckingIndustryAPI.Repository.Cars;
@@ -37,6 +38,7 @@ namespace TruckingIndustryAPI.Configuration.UoW
         public ICargoRepository Cargo { get; private set; }
         public IExpensesRepository Expenses { get; private set; }
         public IRouteRepository Route { get; private set; }
+        public IApplicationUserRepository User { get; private set; }
 
         public UnitOfWork(ApplicationDbContext context,
             ILoggerFactory loggerFactory, UserManager<ApplicationUser> userManager,
@@ -60,6 +62,7 @@ namespace TruckingIndustryAPI.Configuration.UoW
             Cargo = new CargoRepository(context, _logger);
             Expenses = new ExpensesRepository(context, _logger);
             Route = new RouteRepository(context, _logger);
+            User = new ApplicationUserRepository(context, _logger);
         }
 
         public UserManager<ApplicationUser> UserManager

@@ -5,9 +5,9 @@ using TruckingIndustryAPI.Entities.Models;
 
 namespace TruckingIndustryAPI.Features.BidsFeatures.Queries
 {
-    public class GetAllBidsQuery : IRequest<IEnumerable<Bids>>
+    public class GetAllBidsQuery : IRequest<IEnumerable<Bid>>
     {
-        public class GetAllBidsQueryHandler : IRequestHandler<GetAllBidsQuery, IEnumerable<Bids>>
+        public class GetAllBidsQueryHandler : IRequestHandler<GetAllBidsQuery, IEnumerable<Bid>>
         {
             private readonly IUnitOfWork _unitOfWork;
 
@@ -16,7 +16,7 @@ namespace TruckingIndustryAPI.Features.BidsFeatures.Queries
                 _unitOfWork = unitOfWork;
             }
 
-            public async Task<IEnumerable<Bids>> Handle(GetAllBidsQuery request, CancellationToken cancellationToken)
+            public async Task<IEnumerable<Bid>> Handle(GetAllBidsQuery request, CancellationToken cancellationToken)
             {
                 return await _unitOfWork.Bids.GetAllAsync();
             }

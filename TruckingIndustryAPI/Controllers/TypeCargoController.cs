@@ -1,5 +1,6 @@
 ﻿using MediatR;
 
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 using TruckingIndustryAPI.Features.TypeCargoFeatures.Commands;
@@ -10,6 +11,7 @@ namespace TruckingIndustryAPI.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
+    //[Authorize("ADMINISTRATOR")]
     public class TypeCargoController : ControllerBase
     {
         private readonly IMediator _mediator;
@@ -34,18 +36,24 @@ namespace TruckingIndustryAPI.Controllers
         [HttpPost]
         public async Task<IActionResult> Create(CreateTypeCargoCommand createTypeCargoCommand)
         {
+            if (!ModelState.IsValid) return BadRequest(ModelState);
+
             return Ok(await _mediator.Send(createTypeCargoCommand));
         }
 
         [HttpPut]
         public async Task<IActionResult> Update(UpdateTypeCargoCommand updateTypeCargoCommand)
         {
+            if (!ModelState.IsValid) return BadRequest(ModelState);
+
             return Ok(await _mediator.Send(updateTypeCargoCommand));
         }
 
         [HttpDelete]
-        public async Task<IActionResult> Delete(DeleteTypeCargoCommand deleteTypeCargoCommand)
+        public async Task<IActionResult> Delete([FromQuery] DeleteTypeCargoCommand deleteTypeCargoCommand)
         {
+            if (!ModelState.IsValid) return BadRequest(ModelState);
+
             return Ok(await _mediator.Send(deleteTypeCargoCommand));
         }
     }

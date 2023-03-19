@@ -2,6 +2,9 @@
 
 using MediatR;
 
+using System.ComponentModel.DataAnnotations;
+using System.Xml.Linq;
+
 using TruckingIndustryAPI.Configuration.UoW;
 using TruckingIndustryAPI.Entities.Models;
 
@@ -9,6 +12,9 @@ namespace TruckingIndustryAPI.Features.PositionFeatures.Commands
 {
     public class CreatePositionCommand : IRequest<Position>
     {
+        [Display(Name = "Должность")]
+        [MaxLength(70, ErrorMessage = "Длина дложности не более 70 символов")]
+        [Required(ErrorMessage = "Название должности является обязательным полем")]
         public string NamePosition { get; set; }
         public class CreatePositionCommandHandler : IRequestHandler<CreatePositionCommand, Position>
         {

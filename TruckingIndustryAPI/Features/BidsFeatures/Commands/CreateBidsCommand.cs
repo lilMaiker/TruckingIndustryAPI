@@ -7,7 +7,7 @@ using TruckingIndustryAPI.Entities.Models;
 
 namespace TruckingIndustryAPI.Features.BidsFeatures.Commands
 {
-    public class CreateBidsCommand : IRequest<Bids>
+    public class CreateBidsCommand : IRequest<Bid>
     {
         public long CarsId { get; set; }
         public long FoundationId { get; set; }
@@ -19,7 +19,7 @@ namespace TruckingIndustryAPI.Features.BidsFeatures.Commands
         public long StatusId { get; set; }
         public DateTime PayDate { get; set; }
         public long EmployeeId { get; set; }
-        public class CreateBidsCommandHandler : IRequestHandler<CreateBidsCommand, Bids>
+        public class CreateBidsCommandHandler : IRequestHandler<CreateBidsCommand, Bid>
         {
             private readonly IUnitOfWork _unitOfWork;
             private readonly IMapper _mapper;
@@ -28,9 +28,9 @@ namespace TruckingIndustryAPI.Features.BidsFeatures.Commands
                 _unitOfWork = unitOfWork;
                 _mapper = mapper;
             }
-            public async Task<Bids> Handle(CreateBidsCommand command, CancellationToken cancellationToken)
+            public async Task<Bid> Handle(CreateBidsCommand command, CancellationToken cancellationToken)
             {
-                var result = _mapper.Map<Bids>(command);
+                var result = _mapper.Map<Bid>(command);
                 await _unitOfWork.Bids.AddAsync(result);
                 await _unitOfWork.CompleteAsync();
                 return result;

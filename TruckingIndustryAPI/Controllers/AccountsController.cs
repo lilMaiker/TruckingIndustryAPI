@@ -1,5 +1,6 @@
 ﻿using AutoMapper;
 
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.WebUtilities;
@@ -47,13 +48,13 @@ namespace TruckingIndustryAPI.Controllers
                 if (userForRegistration == null)
                 {
                     //_logger.LogError("UserForRegistrationDto is null.");
-                    return BadRequest("UserForRegistrationDto is null.");
+                    return BadRequest(new { message = "UserForRegistrationDto is null." });
                 }
 
                 if (!ModelState.IsValid)
                 {
                     //_logger.LogError("Invalid model state.");
-                    return BadRequest("Invalid model state.");
+                    return BadRequest(new { message = "Invalid model state." });
                 }
 
                 // Map the userForRegistration DTO to a ApplicationUser object using the mapper.
@@ -173,7 +174,7 @@ namespace TruckingIndustryAPI.Controllers
             var rolesUser = await _unitOfWork.UserManager.GetRolesAsync(user);
 
             //Send response for front-end
-            return Ok(new AuthResponseDto { Token = token, IsAuthSuccessful = true, Role = rolesUser });
+            return Ok(new AuthResponseDto { accessToken = token, IsAuthSuccessful = true, Role = rolesUser, Email = user.Email, username = user.UserName });
         }
 
         [HttpPost("Login")]
@@ -181,10 +182,10 @@ namespace TruckingIndustryAPI.Controllers
         {
             var user = await _unitOfWork.UserManager.FindByNameAsync(userForAuthentication.Email);
             if (user == null)
-                return BadRequest("Invalid Request");
+                return BadRequest(new { message = $"Не удалось найти пользователя {userForAuthentication.Email} в системе. Выполните регистрацию!" });
 
             if (!await _unitOfWork.UserManager.IsEmailConfirmedAsync(user))
-                return Unauthorized(new AuthResponseDto { ErrorMessage = "Email is not confirmed" });
+                return Unauthorized(new AuthResponseDto { message = "Электроная почта не подтверждена." });
 
             if (!await _unitOfWork.UserManager.CheckPasswordAsync(user, userForAuthentication.Password))
             {
@@ -198,10 +199,10 @@ namespace TruckingIndustryAPI.Controllers
 
                     await _emailSender.SendEmailAsync(message);
 
-                    return Unauthorized(new AuthResponseDto { ErrorMessage = "The account is locked out" });
+                    return Unauthorized(new AuthResponseDto { message = "The account is locked out" });
                 }
 
-                return Unauthorized(new AuthResponseDto { ErrorMessage = "Invalid Authentication" });
+                return Unauthorized(new AuthResponseDto { message = "Invalid Authentication" });
             }
 
             var rolesUser = await _unitOfWork.UserManager.GetRolesAsync(user);
@@ -213,7 +214,8 @@ namespace TruckingIndustryAPI.Controllers
 
             await _unitOfWork.UserManager.ResetAccessFailedCountAsync(user);
 
-            return Ok(new AuthResponseDto { IsAuthSuccessful = true, Token = token, Role = rolesUser });
+            return Ok(new AuthResponseDto { IsAuthSuccessful = true, accessToken = token, Role = rolesUser, 
+                Email = user.Email, username = user.UserName });
         }
 
         [HttpPost("TwoStepVerification")]
@@ -232,7 +234,7 @@ namespace TruckingIndustryAPI.Controllers
 
             var token = await _jwtHandler.GenerateToken(user);
 
-            return Ok(new AuthResponseDto { IsAuthSuccessful = true, Token = token });
+            return Ok(new AuthResponseDto { IsAuthSuccessful = true, accessToken = token });
         }
 
         [HttpPost("ForgotPassword")]
@@ -300,5 +302,12 @@ namespace TruckingIndustryAPI.Controllers
 
             return Ok();
         }
+
+        [HttpGet("ApplicationUsers")]
+        public async Task<IActionResult> ApplicationUsers()
+        {
+            return Ok(await _unitOfWork.User.GetAllAsync());
+        }
+
     }
 }

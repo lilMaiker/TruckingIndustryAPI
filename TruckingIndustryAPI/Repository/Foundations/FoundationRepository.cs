@@ -2,12 +2,26 @@
 
 using TruckingIndustryAPI.Data;
 using TruckingIndustryAPI.Entities.Models;
+using TruckingIndustryAPI.Repository.Employees;
 
 namespace TruckingIndustryAPI.Repository.Foundations
 {
     public class FoundationRepository : GenericRepository<Foundation>, IFoundationRepository
     {
         public FoundationRepository(ApplicationDbContext context, ILogger logger) : base(context, logger) { }
+
+        public override async Task<Foundation> GetByIdAsync(long id)
+        {
+            try
+            {
+                return await dbSet.Include(e => e.Client).Where(n => n.Id == id).FirstOrDefaultAsync();
+            }
+            catch (Exception ex)
+            {
+                _logger.LogError(ex, "{Repo} GetById function error", typeof(EmployeeRepository));
+                return new Foundation();
+            }
+        }
 
         public override async Task<IEnumerable<Foundation>> GetAllAsync()
         {

@@ -6,10 +6,10 @@ using TruckingIndustryAPI.Exceptions;
 
 namespace TruckingIndustryAPI.Features.ExpensesFeatures.Queries
 {
-    public class GetExpensesByIdQuery : IRequest<Expenses>
+    public class GetExpensesByIdQuery : IRequest<Expense>
     {
         public long Id { get; set; }
-        public class GetExpensesByIdQueryHandler : IRequestHandler<GetExpensesByIdQuery, Expenses>
+        public class GetExpensesByIdQueryHandler : IRequestHandler<GetExpensesByIdQuery, Expense>
         {
             private readonly IUnitOfWork _unitOfWork;
 
@@ -18,10 +18,10 @@ namespace TruckingIndustryAPI.Features.ExpensesFeatures.Queries
                 _unitOfWork = unitOfWork;
             }
 
-            public async Task<Expenses> Handle(GetExpensesByIdQuery request, CancellationToken cancellationToken)
+            public async Task<Expense> Handle(GetExpensesByIdQuery request, CancellationToken cancellationToken)
             {
                 var result = await _unitOfWork.Expenses.GetByIdAsync(request.Id);
-                if (result == null) throw new NotFoundException(nameof(Expenses));
+                if (result == null) throw new NotFoundException(nameof(Expense));
                 return result;
             }
         }

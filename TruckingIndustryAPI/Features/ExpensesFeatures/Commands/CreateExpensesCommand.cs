@@ -7,7 +7,7 @@ using TruckingIndustryAPI.Entities.Models;
 
 namespace TruckingIndustryAPI.Features.ExpensesFeatures.Commands
 {
-    public class CreateExpensesCommand : IRequest<Expenses>
+    public class CreateExpensesCommand : IRequest<Expense>
     {
         public string NameExpense { get; set; }
         public double Amount { get; set; }
@@ -15,7 +15,7 @@ namespace TruckingIndustryAPI.Features.ExpensesFeatures.Commands
         public DateTime DateTransfer { get; set; }
         public string Commnet { get; set; }
         public long BidsId { get; set; }
-        public class CreateExpensesCommandHandler : IRequestHandler<CreateExpensesCommand, Expenses>
+        public class CreateExpensesCommandHandler : IRequestHandler<CreateExpensesCommand, Expense>
         {
             private readonly IUnitOfWork _unitOfWork;
             private readonly IMapper _mapper;
@@ -24,9 +24,9 @@ namespace TruckingIndustryAPI.Features.ExpensesFeatures.Commands
                 _unitOfWork = unitOfWork;
                 _mapper = mapper;
             }
-            public async Task<Expenses> Handle(CreateExpensesCommand command, CancellationToken cancellationToken)
+            public async Task<Expense> Handle(CreateExpensesCommand command, CancellationToken cancellationToken)
             {
-                var result = _mapper.Map<Expenses>(command);
+                var result = _mapper.Map<Expense>(command);
                 await _unitOfWork.Expenses.AddAsync(result);
                 await _unitOfWork.CompleteAsync();
                 return result;

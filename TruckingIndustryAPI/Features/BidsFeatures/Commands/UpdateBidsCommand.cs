@@ -8,7 +8,7 @@ using TruckingIndustryAPI.Exceptions;
 
 namespace TruckingIndustryAPI.Features.BidsFeatures.Commands
 {
-    public class UpdateBidsCommand : IRequest<Bids>
+    public class UpdateBidsCommand : IRequest<Bid>
     {
         public long Id { get; set; }
         public long CarsId { get; set; }
@@ -21,7 +21,7 @@ namespace TruckingIndustryAPI.Features.BidsFeatures.Commands
         public long StatusId { get; set; }
         public DateTime PayDate { get; set; }
         public long EmployeeId { get; set; }
-        public class UpdateBidsCommandHandler : IRequestHandler<UpdateBidsCommand, Bids>
+        public class UpdateBidsCommandHandler : IRequestHandler<UpdateBidsCommand, Bid>
         {
             private readonly IUnitOfWork _unitOfWork;
             private readonly IMapper _mapper;
@@ -30,10 +30,10 @@ namespace TruckingIndustryAPI.Features.BidsFeatures.Commands
                 _unitOfWork = unitOfWork;
                 _mapper = mapper;
             }
-            public async Task<Bids> Handle(UpdateBidsCommand command, CancellationToken cancellationToken)
+            public async Task<Bid> Handle(UpdateBidsCommand command, CancellationToken cancellationToken)
             {
                 var result = await _unitOfWork.Bids.GetByIdAsync(command.Id);
-                if (result == null) throw new NotFoundException(nameof(Bids));
+                if (result == null) throw new NotFoundException(nameof(Bid));
                 _mapper.Map(command, result);
                 await _unitOfWork.Bids.UpdateAsync(result);
                 await _unitOfWork.CompleteAsync();

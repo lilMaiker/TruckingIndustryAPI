@@ -25,7 +25,7 @@ namespace TruckingIndustryAPI.Features.ExpensesFeatures.Commands
                 var result = await _unitOfWork.Expenses.GetByIdAsync(command.Id);
                 if (result == null)
                 {
-                    throw new NotFoundException(nameof(Expenses));
+                    throw new NotFoundException(nameof(Expense));
                 }
                 await _unitOfWork.Expenses.DeleteAsync(result.Id);
                 await _unitOfWork.CompleteAsync();

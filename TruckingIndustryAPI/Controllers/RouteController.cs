@@ -25,16 +25,21 @@ namespace TruckingIndustryAPI.Controllers
         /// </summary>
         /// <param name="id">Идентификатор маршрута</param>
         /// <returns>Маршрут</returns>
-        [HttpGet("{id}")]
-        public async Task<IActionResult> GetById([FromQuery] long id)
+        [HttpGet("GetById/{id}")]
+        public async Task<IActionResult> GetById(long id)
         {
             if (!ModelState.IsValid) return BadRequest(ModelState);
 
             return Ok(await _mediator.Send(new GetRouteByIdQuery { Id = id }));
         }
 
-        [HttpGet("{id}")]
-        public async Task<IActionResult> GetByIdBid([FromQuery] long idBid)
+        /// <summary>
+        /// Получить маршруты по идентификатору заявки
+        /// </summary>
+        /// <param name="id">Идентификатор заявки</param>
+        /// <returns>Маршрут</returns>
+        [HttpGet("GetByIdBid/{idBid}")]
+        public async Task<IActionResult> GetByIdBid(long idBid)
         {
             if (!ModelState.IsValid) return BadRequest(ModelState);
 
@@ -70,10 +75,10 @@ namespace TruckingIndustryAPI.Controllers
         /// <summary>
         /// Обновить маршрут
         /// </summary>
-        /// <param name="updateRouteCommand">Модель для обновления маршрута</param>
+        /// <param name="deleteRouteCommand">Модель для удаления маршрута</param>
         /// <returns>Маршрут</returns>
         [HttpDelete]
-        public async Task<IActionResult> Delete([FromBody] DeleteRouteCommand deleteRouteCommand)
+        public async Task<IActionResult> Delete([FromQuery] DeleteRouteCommand deleteRouteCommand)
         {
             if (!ModelState.IsValid) return BadRequest(ModelState);
 
@@ -81,9 +86,8 @@ namespace TruckingIndustryAPI.Controllers
         }
 
         /// <summary>
-        /// Обновить маршрут
+        /// Получить все маршруты
         /// </summary>
-        /// <param name="updateRouteCommand">Модель для обновления маршрута</param>
         /// <returns>Маршрут</returns>
         [HttpGet]
         public async Task<IActionResult> GetAll()

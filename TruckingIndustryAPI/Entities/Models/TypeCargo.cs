@@ -1,4 +1,5 @@
 ﻿using System.ComponentModel;
+using System.ComponentModel.DataAnnotations;
 
 namespace TruckingIndustryAPI.Entities.Models
 {
@@ -8,6 +9,7 @@ namespace TruckingIndustryAPI.Entities.Models
     public class TypeCargo : Base.BaseModelLong
     {
         [DisplayName("Тип груза")]
+        [MaxLength(150)]
         public string NameTypeCargo { get; set; }
     }
 }

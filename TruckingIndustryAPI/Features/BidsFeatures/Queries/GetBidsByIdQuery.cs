@@ -6,10 +6,10 @@ using TruckingIndustryAPI.Exceptions;
 
 namespace TruckingIndustryAPI.Features.BidsFeatures.Queries
 {
-    public class GetBidsByIdQuery : IRequest<Bids>
+    public class GetBidsByIdQuery : IRequest<Bid>
     {
         public long Id { get; set; }
-        public class GetBidsByIdQueryHandler : IRequestHandler<GetBidsByIdQuery, Bids>
+        public class GetBidsByIdQueryHandler : IRequestHandler<GetBidsByIdQuery, Bid>
         {
             private readonly IUnitOfWork _unitOfWork;
 
@@ -18,10 +18,10 @@ namespace TruckingIndustryAPI.Features.BidsFeatures.Queries
                 _unitOfWork = unitOfWork;
             }
 
-            public async Task<Bids> Handle(GetBidsByIdQuery request, CancellationToken cancellationToken)
+            public async Task<Bid> Handle(GetBidsByIdQuery request, CancellationToken cancellationToken)
             {
                 var result = await _unitOfWork.Bids.GetByIdAsync(request.Id);
-                if (result == null) throw new NotFoundException(nameof(Bids));
+                if (result == null) throw new NotFoundException(nameof(Bid));
                 return result;
             }
         }

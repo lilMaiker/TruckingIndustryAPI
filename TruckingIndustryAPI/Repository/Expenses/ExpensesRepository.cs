@@ -3,27 +3,41 @@
 using TruckingIndustryAPI.Data;
 using TruckingIndustryAPI.Entities.Models;
 using TruckingIndustryAPI.Repository.Cargos;
+using TruckingIndustryAPI.Repository.Employees;
 
 namespace TruckingIndustryAPI.Repository.Expenses
 {
-    public class ExpensesRepository : GenericRepository<Entities.Models.Expenses>, IExpensesRepository
+    public class ExpensesRepository : GenericRepository<Entities.Models.Expense>, IExpensesRepository
     {
         public ExpensesRepository(ApplicationDbContext context, ILogger logger) : base(context, logger) { }
 
-        public override async Task<IEnumerable<Entities.Models.Expenses>> GetAllAsync()
+        public override async Task<Expense> GetByIdAsync(long id)
         {
             try
             {
-                return await dbSet.ToListAsync();
+                return await dbSet.Include(e => e.Currency).Where(n => n.Id == id).FirstOrDefaultAsync();
+            }
+            catch (Exception ex)
+            {
+                _logger.LogError(ex, "{Repo} GetById function error", typeof(EmployeeRepository));
+                return new Expense();
+            }
+        }
+
+        public override async Task<IEnumerable<Expense>> GetAllAsync()
+        {
+            try
+            {
+                return await dbSet.Include(i => i.Currency).ToListAsync();
             }
             catch (Exception ex)
             {
                 _logger.LogError(ex, "{Repo} All function error", typeof(ExpensesRepository));
-                return new List<Entities.Models.Expenses>();
+                return new List<Expense>();
             }
         }
 
-        public override async Task<bool> UpdateAsync(Entities.Models.Expenses entity)
+        public override async Task<bool> UpdateAsync(Entities.Models.Expense entity)
         {
             try
             {
@@ -72,17 +86,17 @@ namespace TruckingIndustryAPI.Repository.Expenses
             }
         }
 
-        public async Task<IEnumerable<Entities.Models.Expenses>> GetByIdBidAsync(long idBid)
+        public async Task<IEnumerable<Expense>> GetByIdBidAsync(long idBid)
         {
             try
             {
-                var expenses = await dbSet.Where(x => x.BidsId == idBid).ToListAsync();
+                var expenses = await dbSet.Include(i => i.Currency).Where(x => x.BidsId == idBid).ToListAsync();
                 return expenses;
             }
             catch (Exception ex)
             {
                 _logger.LogError(ex, "{Repo} All function error", typeof(ExpensesRepository));
-                return new List<Entities.Models.Expenses>();
+                return new List<Entities.Models.Expense>();
             }
         }
 

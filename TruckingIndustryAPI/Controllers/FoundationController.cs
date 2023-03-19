@@ -44,7 +44,7 @@ namespace TruckingIndustryAPI.Controllers
         }
 
         [HttpDelete]
-        public async Task<IActionResult> Delete(DeleteFoundationCommand deleteFoundationCommand)
+        public async Task<IActionResult> Delete([FromQuery] DeleteFoundationCommand deleteFoundationCommand)
         {
             return Ok(await _mediator.Send(deleteFoundationCommand));
         }

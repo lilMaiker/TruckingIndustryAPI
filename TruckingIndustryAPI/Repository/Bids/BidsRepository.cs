@@ -1,27 +1,42 @@
 ﻿using Microsoft.EntityFrameworkCore;
 
 using TruckingIndustryAPI.Data;
+using TruckingIndustryAPI.Entities.Models;
+using TruckingIndustryAPI.Repository.Employees;
 
 namespace TruckingIndustryAPI.Repository.Bids
 {
-    public class BidsRepository : GenericRepository<Entities.Models.Bids>, IBidsRepository
+    public class BidsRepository : GenericRepository<Entities.Models.Bid>, IBidsRepository
     {
         public BidsRepository(ApplicationDbContext context, ILogger logger) : base(context, logger) { }
 
-        public override async Task<IEnumerable<Entities.Models.Bids>> GetAllAsync()
+        public override async Task<Entities.Models.Bid> GetByIdAsync(long id)
         {
             try
             {
-                return await dbSet.ToListAsync();
+                return await dbSet.Include(e => e.Cars).Include(e => e.Currency).Include(e => e.Employee).Include(e => e.Foundation).Include(e => e.Status).Where(n => n.Id == id).FirstOrDefaultAsync();
+            }
+            catch (Exception ex)
+            {
+                _logger.LogError(ex, "{Repo} GetById function error", typeof(EmployeeRepository));
+                return new Entities.Models.Bid();
+            }
+        }
+
+        public override async Task<IEnumerable<Entities.Models.Bid>> GetAllAsync()
+        {
+            try
+            {
+                return await dbSet.Include(e => e.Cars).Include(e => e.Currency).Include(e => e.Employee).Include(e => e.Foundation).Include(e => e.Status).ToListAsync();
             }
             catch (Exception ex)
             {
                 _logger.LogError(ex, "{Repo} All function error", typeof(BidsRepository));
-                return new List<Entities.Models.Bids>();
+                return new List<Entities.Models.Bid>();
             }
         }
 
-        public override async Task<bool> UpdateAsync(Entities.Models.Bids entity)
+        public override async Task<bool> UpdateAsync(Entities.Models.Bid entity)
         {
             try
             {

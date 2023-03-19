@@ -113,6 +113,17 @@ namespace TruckingIndustryAPI
 
             services.AddDatabaseDeveloperPageExceptionFilter();
 
+            services.AddAuthorization(options =>
+            {
+
+                options.AddPolicy("ADMINISTRATOR",
+                    authBuilder =>
+                    {
+                        authBuilder.RequireRole("ADMINISTRATOR");
+                    });
+
+            });
+
             services.AddSwaggerGen(c =>
             {
                 /* c.SwaggerDoc("v1", new OpenApiInfo { Title = "SupportService API v1", Version = "v1" });*/

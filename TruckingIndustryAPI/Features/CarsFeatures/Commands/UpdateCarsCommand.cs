@@ -8,7 +8,7 @@ using TruckingIndustryAPI.Exceptions;
 
 namespace TruckingIndustryAPI.Features.CarsFeatures.Commands
 {
-    public class UpdateCarsCommand : IRequest<Cars>
+    public class UpdateCarsCommand : IRequest<Car>
     {
         public long Id { get; set; }
         public string BrandTrailer { get; set; }
@@ -19,7 +19,7 @@ namespace TruckingIndustryAPI.Features.CarsFeatures.Commands
         public bool WithRefrigerator { get; set; }
         public bool WithTent { get; set; }
         public bool WithHydroboard { get; set; }
-        public class UpdateCarsCommandHandler : IRequestHandler<UpdateCarsCommand, Cars>
+        public class UpdateCarsCommandHandler : IRequestHandler<UpdateCarsCommand, Car>
         {
             private readonly IUnitOfWork _unitOfWork;
             private readonly IMapper _mapper;
@@ -28,10 +28,10 @@ namespace TruckingIndustryAPI.Features.CarsFeatures.Commands
                 _unitOfWork = unitOfWork;
                 _mapper = mapper;
             }
-            public async Task<Cars> Handle(UpdateCarsCommand command, CancellationToken cancellationToken)
+            public async Task<Car> Handle(UpdateCarsCommand command, CancellationToken cancellationToken)
             {
                 var result = await _unitOfWork.Cars.GetByIdAsync(command.Id);
-                if (result == null) throw new NotFoundException(nameof(Cars));
+                if (result == null) throw new NotFoundException(nameof(Car));
                 _mapper.Map(command, result);
                 await _unitOfWork.Cars.UpdateAsync(result);
                 await _unitOfWork.CompleteAsync();

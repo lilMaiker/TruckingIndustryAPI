@@ -20,16 +20,16 @@ namespace TruckingIndustryAPI.Controllers
             _mediator = mediator;
         }
 
-        [HttpGet("{id}")]
-        public async Task<IActionResult> GetByIdBid([FromQuery] long idBid)
+        [HttpGet("GetByIdBid/{idBid}")]
+        public async Task<IActionResult> GetByIdBid(long idBid)
         {
             if (!ModelState.IsValid) return BadRequest(ModelState);
 
             return Ok(await _mediator.Send(new GetExpensesByIdBidQuery { Id = idBid }));
         }
 
-        [HttpGet("{id}")]
-        public async Task<IActionResult> GetById([FromQuery] long id)
+        [HttpGet("GetById/{id}")]
+        public async Task<IActionResult> GetById(long id)
         {
             if (!ModelState.IsValid) return BadRequest(ModelState);
 
@@ -53,7 +53,7 @@ namespace TruckingIndustryAPI.Controllers
         }
 
         [HttpDelete]
-        public async Task<IActionResult> Delete([FromBody] DeleteExpensesCommand deleteExpensesCommand)
+        public async Task<IActionResult> Delete([FromQuery] DeleteExpensesCommand deleteExpensesCommand)
         {
             if (!ModelState.IsValid) return BadRequest(ModelState);
 

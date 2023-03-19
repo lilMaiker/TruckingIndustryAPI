@@ -18,6 +18,11 @@ namespace TruckingIndustryAPI.Configuration
                 {
                     Name = "Administrator",
                     NormalizedName = "ADMINISTRATOR"
+                },
+                new IdentityRole
+                {
+                    Name = "Moderator",
+                    NormalizedName = "MODERATOR"
                 }
             );
         }

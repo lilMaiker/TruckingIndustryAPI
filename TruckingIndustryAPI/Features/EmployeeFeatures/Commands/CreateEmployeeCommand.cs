@@ -10,7 +10,7 @@ namespace TruckingIndustryAPI.Features.EmployeeFeatures.Commands
     public class CreateEmployeeCommand : IRequest<Employee>
     {
         public string Surname { get; set; }
-        public string NameEmployee { get; set; }
+        public string Name { get; set; }
         public string Patronymic { get; set; }
         public long PositionId { get; set; }
         public string SerialNumber { get; set; }

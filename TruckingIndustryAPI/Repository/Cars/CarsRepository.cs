@@ -4,11 +4,11 @@ using TruckingIndustryAPI.Data;
 
 namespace TruckingIndustryAPI.Repository.Cars
 {
-    public class CarsRepository : GenericRepository<Entities.Models.Cars>, ICarsRepository
+    public class CarsRepository : GenericRepository<Entities.Models.Car>, ICarsRepository
     {
         public CarsRepository(ApplicationDbContext context, ILogger logger) : base(context, logger) { }
 
-        public override async Task<IEnumerable<Entities.Models.Cars>> GetAllAsync()
+        public override async Task<IEnumerable<Entities.Models.Car>> GetAllAsync()
         {
             try
             {
@@ -17,11 +17,11 @@ namespace TruckingIndustryAPI.Repository.Cars
             catch (Exception ex)
             {
                 _logger.LogError(ex, "{Repo} All function error", typeof(CarsRepository));
-                return new List<Entities.Models.Cars>();
+                return new List<Entities.Models.Car>();
             }
         }
 
-        public override async Task<bool> UpdateAsync(Entities.Models.Cars entity)
+        public override async Task<bool> UpdateAsync(Entities.Models.Car entity)
         {
             try
             {
