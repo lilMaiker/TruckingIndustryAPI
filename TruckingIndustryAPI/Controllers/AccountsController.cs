@@ -86,11 +86,23 @@ namespace TruckingIndustryAPI.Controllers
                 // Add the parameters to the client URI
                 string callback = QueryHelpers.AddQueryString(uri: url, queryString: parameters);
 
-                // Create a message object with the email, subject, and message body
-                var message = new Message(new string[] { user.Email }, "Email Confirmation token", $"Доброго времени суток, Вот ваша ссылка для подтверждения: {callback}", null);
+                // Create the email message
+                var message = new Message(
+                to: new string[] { user.Email },
+                subject: "Подтверждение почтового адреса",
+                content: $@"<html>
+<body>
+<p>Здравствуйте!</p>
+<p>Спасибо, что зарегистрировались на нашем сайте. Для завершения регистрации, пожалуйста, перейдите по ссылке ниже и подтвердите свой почтовый адрес:</p>
+<p><a href='{callback}'>Подтвердить почтовый адрес</a></p>
+<p>Если вы не регистрировались на нашем сайте, проигнорируйте это письмо.</p>
+<p>С уважением,<br>TruckingIndystry</p>
+</body>
+</html>", null);
 
                 // Send the email
                 await _emailSender.SendEmailAsync(message);
+
 
                 // Add the user to the "Viewer" role
                 await _unitOfWork.UserManager.AddToRoleAsync(user, "Viewer");
@@ -173,8 +185,12 @@ namespace TruckingIndustryAPI.Controllers
 
             var rolesUser = await _unitOfWork.UserManager.GetRolesAsync(user);
 
+            var role = await _unitOfWork.Role.GetAllAsync();
+
+            var roles = role.Where(w => w.Name == rolesUser.First().ToString()).Select(s => s.RoleInRussian);
+
             //Send response for front-end
-            return Ok(new AuthResponseDto { accessToken = token, IsAuthSuccessful = true, Role = rolesUser, Email = user.Email, username = user.UserName });
+            return Ok(new AuthResponseDto { accessToken = token, IsAuthSuccessful = true, Role = rolesUser, Email = user.Email, username = user.UserName, RolesInrussian = roles });
         }
 
         [HttpPost("Login")]
@@ -207,6 +223,10 @@ namespace TruckingIndustryAPI.Controllers
 
             var rolesUser = await _unitOfWork.UserManager.GetRolesAsync(user);
 
+            var role = await _unitOfWork.Role.GetAllAsync();
+
+            var roles = role.Where(w => w.Name == rolesUser.First().ToString()).Select(s => s.RoleInRussian);
+
             /*if (await _unitOfWork.UserManager.GetTwoFactorEnabledAsync(user))
                 return await GenerateOTPFor2StepVerification(user);*/
 
@@ -214,8 +234,14 @@ namespace TruckingIndustryAPI.Controllers
 
             await _unitOfWork.UserManager.ResetAccessFailedCountAsync(user);
 
-            return Ok(new AuthResponseDto { IsAuthSuccessful = true, accessToken = token, Role = rolesUser, 
-                Email = user.Email, username = user.UserName });
+            return Ok(new AuthResponseDto
+            {
+                IsAuthSuccessful = true,
+                accessToken = token,
+                Role = rolesUser,
+                RolesInrussian = roles,
+                Email = user.Email, username = user.UserName 
+            });
         }
 
         [HttpPost("TwoStepVerification")]

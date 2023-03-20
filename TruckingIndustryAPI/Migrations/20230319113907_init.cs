@@ -14,6 +14,8 @@ namespace TruckingIndustryAPI.Migrations
                 columns: table => new
                 {
                     Id = table.Column<string>(type: "nvarchar(450)", nullable: false),
+                    Discriminator = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    RoleInRussian = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     Name = table.Column<string>(type: "nvarchar(256)", maxLength: 256, nullable: true),
                     NormalizedName = table.Column<string>(type: "nvarchar(256)", maxLength: 256, nullable: true),
                     ConcurrencyStamp = table.Column<string>(type: "nvarchar(max)", nullable: true)
@@ -54,8 +56,8 @@ namespace TruckingIndustryAPI.Migrations
                 {
                     Id = table.Column<long>(type: "bigint", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    BrandTrailer = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    TrailerNumber = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    BrandTrailer = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    TrailerNumber = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     LastDateTechnicalInspection = table.Column<DateTime>(type: "datetime2", nullable: false),
                     MaxWeight = table.Column<double>(type: "float", nullable: false),
                     WithOpenSide = table.Column<bool>(type: "bit", nullable: false),
@@ -94,7 +96,7 @@ namespace TruckingIndustryAPI.Migrations
                     Id = table.Column<long>(type: "bigint", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
                     NameCurrency = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    CurrencyCode = table.Column<string>(type: "nvarchar(max)", nullable: false)
+                    CurrencyCode = table.Column<string>(type: "nvarchar(3)", maxLength: 3, nullable: false)
                 },
                 constraints: table =>
                 {
@@ -133,7 +135,7 @@ namespace TruckingIndustryAPI.Migrations
                 {
                     Id = table.Column<long>(type: "bigint", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    NameTypeCargo = table.Column<string>(type: "nvarchar(max)", nullable: false)
+                    NameTypeCargo = table.Column<string>(type: "nvarchar(150)", maxLength: 150, nullable: false)
                 },
                 constraints: table =>
                 {
@@ -402,7 +404,7 @@ namespace TruckingIndustryAPI.Migrations
                         column: x => x.BidsId,
                         principalTable: "Bids",
                         principalColumn: "Id",
-                        onDelete: ReferentialAction.NoAction);
+                        onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
                         name: "FK_Expenses_Currencies_CurrencyId",
                         column: x => x.CurrencyId,
@@ -434,13 +436,18 @@ namespace TruckingIndustryAPI.Migrations
 
             migrationBuilder.InsertData(
                 table: "AspNetRoles",
-                columns: new[] { "Id", "ConcurrencyStamp", "Name", "NormalizedName" },
-                values: new object[] { "22c49695-878a-4a9d-b9c5-8114dfd6530b", "bd3eb28a-ec9f-4c8c-a5e5-d13a8435a211", "Viewer", "VIEWER" });
+                columns: new[] { "Id", "ConcurrencyStamp", "Discriminator", "Name", "NormalizedName", "RoleInRussian" },
+                values: new object[] { "196112b5-322c-4538-85af-bc05ef621ee7", "cd4b749e-126b-4f53-9d0b-06036ad6fa1a", "ApplicationRole", "Moderator", "MODERATOR", "Модератор" });
 
             migrationBuilder.InsertData(
                 table: "AspNetRoles",
-                columns: new[] { "Id", "ConcurrencyStamp", "Name", "NormalizedName" },
-                values: new object[] { "bb8534a9-ae6c-4114-97d2-a9d00891b18e", "ad3cbc2c-67e2-4304-9c1a-a938c505fd2b", "Administrator", "ADMINISTRATOR" });
+                columns: new[] { "Id", "ConcurrencyStamp", "Discriminator", "Name", "NormalizedName", "RoleInRussian" },
+                values: new object[] { "edb9c7ce-1892-427f-8d37-752be773034e", "d05b7b08-9314-40d6-bc38-3df0a73832f1", "ApplicationRole", "Viewer", "VIEWER", "Просмотр" });
+
+            migrationBuilder.InsertData(
+                table: "AspNetRoles",
+                columns: new[] { "Id", "ConcurrencyStamp", "Discriminator", "Name", "NormalizedName", "RoleInRussian" },
+                values: new object[] { "f8cdaff3-7cd2-454a-a899-bc063a884d3b", "67e44959-f0a1-40e5-ae58-efad267d3bb2", "ApplicationRole", "Administrator", "ADMINISTRATOR", "Администратор" });
 
             migrationBuilder.CreateIndex(
                 name: "IX_AspNetRoleClaims_RoleId",

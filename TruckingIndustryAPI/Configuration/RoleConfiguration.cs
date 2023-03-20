@@ -2,27 +2,32 @@
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 
+using TruckingIndustryAPI.Entities.Models.Identity;
+
 namespace TruckingIndustryAPI.Configuration
 {
-    public class RoleConfiguration : IEntityTypeConfiguration<IdentityRole>
+    public class RoleConfiguration : IEntityTypeConfiguration<ApplicationRole>
     {
-        public void Configure(EntityTypeBuilder<IdentityRole> builder)
+        public void Configure(EntityTypeBuilder<ApplicationRole> builder)
         {
             builder.HasData(
-                new IdentityRole
+                new ApplicationRole
                 {
                     Name = "Viewer",
-                    NormalizedName = "VIEWER"
+                    NormalizedName = "VIEWER",
+                    RoleInRussian = "Просмотр"
                 },
-                new IdentityRole
+                new ApplicationRole
                 {
                     Name = "Administrator",
-                    NormalizedName = "ADMINISTRATOR"
+                    NormalizedName = "ADMINISTRATOR",
+                    RoleInRussian = "Администратор"
                 },
-                new IdentityRole
+                new ApplicationRole
                 {
                     Name = "Moderator",
-                    NormalizedName = "MODERATOR"
+                    NormalizedName = "MODERATOR",
+                    RoleInRussian = "Модератор"
                 }
             );
         }

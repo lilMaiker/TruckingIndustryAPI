@@ -10,5 +10,6 @@
         public string? username { get; set; }
         public string? Email { get; set; }
         public IList<string>? Role { get; set; }
+        public IEnumerable<string>? RolesInrussian { get; set; }
     }
 }

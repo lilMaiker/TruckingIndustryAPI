@@ -1,6 +1,7 @@
 ﻿using Microsoft.AspNetCore.Identity;
 
 using TruckingIndustryAPI.Entities.Models.Identity;
+using TruckingIndustryAPI.Repository.ApplicationRole;
 using TruckingIndustryAPI.Repository.ApplicationUsers;
 using TruckingIndustryAPI.Repository.Bids;
 using TruckingIndustryAPI.Repository.Cargos;
@@ -34,6 +35,7 @@ namespace TruckingIndustryAPI.Configuration.UoW
         IExpensesRepository Expenses { get; }
         IRouteRepository Route { get; }
         IApplicationUserRepository User { get; }
+        IApplicationRoleRepository Role { get; }
         Task CompleteAsync();
     }
 }

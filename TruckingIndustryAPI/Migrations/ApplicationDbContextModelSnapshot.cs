@@ -3,7 +3,6 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
-using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using TruckingIndustryAPI.Data;
 
@@ -12,10 +11,9 @@ using TruckingIndustryAPI.Data;
 namespace TruckingIndustryAPI.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20230311160851_init")]
-    partial class init
+    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
     {
-        protected override void BuildTargetModel(ModelBuilder modelBuilder)
+        protected override void BuildModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -31,6 +29,10 @@ namespace TruckingIndustryAPI.Migrations
 
                     b.Property<string>("ConcurrencyStamp")
                         .IsConcurrencyToken()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Discriminator")
+                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Name")
@@ -50,21 +52,7 @@ namespace TruckingIndustryAPI.Migrations
 
                     b.ToTable("AspNetRoles", (string)null);
 
-                    b.HasData(
-                        new
-                        {
-                            Id = "22c49695-878a-4a9d-b9c5-8114dfd6530b",
-                            ConcurrencyStamp = "bd3eb28a-ec9f-4c8c-a5e5-d13a8435a211",
-                            Name = "Viewer",
-                            NormalizedName = "VIEWER"
-                        },
-                        new
-                        {
-                            Id = "bb8534a9-ae6c-4114-97d2-a9d00891b18e",
-                            ConcurrencyStamp = "ad3cbc2c-67e2-4304-9c1a-a938c505fd2b",
-                            Name = "Administrator",
-                            NormalizedName = "ADMINISTRATOR"
-                        });
+                    b.HasDiscriminator<string>("Discriminator").HasValue("IdentityRole");
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>
@@ -173,7 +161,7 @@ namespace TruckingIndustryAPI.Migrations
                     b.ToTable("AspNetUserTokens", (string)null);
                 });
 
-            modelBuilder.Entity("TruckingIndustryAPI.Entities.Models.Bids", b =>
+            modelBuilder.Entity("TruckingIndustryAPI.Entities.Models.Bid", b =>
                 {
                     b.Property<long>("Id")
                         .ValueGeneratedOnAdd()
@@ -227,6 +215,43 @@ namespace TruckingIndustryAPI.Migrations
                     b.ToTable("Bids");
                 });
 
+            modelBuilder.Entity("TruckingIndustryAPI.Entities.Models.Car", b =>
+                {
+                    b.Property<long>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("bigint");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<long>("Id"), 1L, 1);
+
+                    b.Property<string>("BrandTrailer")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<DateTime>("LastDateTechnicalInspection")
+                        .HasColumnType("datetime2");
+
+                    b.Property<double>("MaxWeight")
+                        .HasColumnType("float");
+
+                    b.Property<string>("TrailerNumber")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<bool>("WithHydroboard")
+                        .HasColumnType("bit");
+
+                    b.Property<bool>("WithOpenSide")
+                        .HasColumnType("bit");
+
+                    b.Property<bool>("WithRefrigerator")
+                        .HasColumnType("bit");
+
+                    b.Property<bool>("WithTent")
+                        .HasColumnType("bit");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Cars");
+                });
+
             modelBuilder.Entity("TruckingIndustryAPI.Entities.Models.Cargo", b =>
                 {
                     b.Property<long>("Id")
@@ -255,45 +280,6 @@ namespace TruckingIndustryAPI.Migrations
                     b.HasIndex("TypeCargoId");
 
                     b.ToTable("Cargo");
-                });
-
-            modelBuilder.Entity("TruckingIndustryAPI.Entities.Models.Cars", b =>
-                {
-                    b.Property<long>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("bigint");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<long>("Id"), 1L, 1);
-
-                    b.Property<string>("BrandTrailer")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<DateTime>("LastDateTechnicalInspection")
-                        .HasColumnType("datetime2");
-
-                    b.Property<double>("MaxWeight")
-                        .HasColumnType("float");
-
-                    b.Property<string>("TrailerNumber")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<bool>("WithHydroboard")
-                        .HasColumnType("bit");
-
-                    b.Property<bool>("WithOpenSide")
-                        .HasColumnType("bit");
-
-                    b.Property<bool>("WithRefrigerator")
-                        .HasColumnType("bit");
-
-                    b.Property<bool>("WithTent")
-                        .HasColumnType("bit");
-
-                    b.HasKey("Id");
-
-                    b.ToTable("Cars");
                 });
 
             modelBuilder.Entity("TruckingIndustryAPI.Entities.Models.Client", b =>
@@ -346,7 +332,8 @@ namespace TruckingIndustryAPI.Migrations
 
                     b.Property<string>("CurrencyCode")
                         .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                        .HasMaxLength(3)
+                        .HasColumnType("nvarchar(3)");
 
                     b.Property<string>("NameCurrency")
                         .IsRequired()
@@ -408,7 +395,7 @@ namespace TruckingIndustryAPI.Migrations
                     b.ToTable("Employees");
                 });
 
-            modelBuilder.Entity("TruckingIndustryAPI.Entities.Models.Expenses", b =>
+            modelBuilder.Entity("TruckingIndustryAPI.Entities.Models.Expense", b =>
                 {
                     b.Property<long>("Id")
                         .ValueGeneratedOnAdd()
@@ -613,11 +600,48 @@ namespace TruckingIndustryAPI.Migrations
 
                     b.Property<string>("NameTypeCargo")
                         .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                        .HasMaxLength(150)
+                        .HasColumnType("nvarchar(150)");
 
                     b.HasKey("Id");
 
                     b.ToTable("TypeCargo");
+                });
+
+            modelBuilder.Entity("TruckingIndustryAPI.Entities.Models.Identity.ApplicationRole", b =>
+                {
+                    b.HasBaseType("Microsoft.AspNetCore.Identity.IdentityRole");
+
+                    b.Property<string>("RoleInRussian")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasDiscriminator().HasValue("ApplicationRole");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = "8721fb60-35e5-4d1b-a769-1ddb57c36168",
+                            ConcurrencyStamp = "3993f682-e109-4930-aaba-e2f4d34b2943",
+                            Name = "Viewer",
+                            NormalizedName = "VIEWER",
+                            RoleInRussian = "Просмотр"
+                        },
+                        new
+                        {
+                            Id = "5254408e-9ae3-4ddf-b7ee-ff725ba38f9a",
+                            ConcurrencyStamp = "361c64b2-0fc3-4dfc-a1e3-6912599844d8",
+                            Name = "Administrator",
+                            NormalizedName = "ADMINISTRATOR",
+                            RoleInRussian = "Администратор"
+                        },
+                        new
+                        {
+                            Id = "828d8b0c-f7d5-46a4-b6c3-f0a60c9a4404",
+                            ConcurrencyStamp = "3edc8096-a616-40e8-bcdf-f1f0cca7413f",
+                            Name = "Moderator",
+                            NormalizedName = "MODERATOR",
+                            RoleInRussian = "Модератор"
+                        });
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>
@@ -671,9 +695,9 @@ namespace TruckingIndustryAPI.Migrations
                         .IsRequired();
                 });
 
-            modelBuilder.Entity("TruckingIndustryAPI.Entities.Models.Bids", b =>
+            modelBuilder.Entity("TruckingIndustryAPI.Entities.Models.Bid", b =>
                 {
-                    b.HasOne("TruckingIndustryAPI.Entities.Models.Cars", "Cars")
+                    b.HasOne("TruckingIndustryAPI.Entities.Models.Car", "Cars")
                         .WithMany()
                         .HasForeignKey("CarsId")
                         .OnDelete(DeleteBehavior.Cascade)
@@ -716,7 +740,7 @@ namespace TruckingIndustryAPI.Migrations
 
             modelBuilder.Entity("TruckingIndustryAPI.Entities.Models.Cargo", b =>
                 {
-                    b.HasOne("TruckingIndustryAPI.Entities.Models.Bids", "Bids")
+                    b.HasOne("TruckingIndustryAPI.Entities.Models.Bid", "Bids")
                         .WithMany()
                         .HasForeignKey("BidsId")
                         .OnDelete(DeleteBehavior.Cascade)
@@ -752,9 +776,9 @@ namespace TruckingIndustryAPI.Migrations
                     b.Navigation("Position");
                 });
 
-            modelBuilder.Entity("TruckingIndustryAPI.Entities.Models.Expenses", b =>
+            modelBuilder.Entity("TruckingIndustryAPI.Entities.Models.Expense", b =>
                 {
-                    b.HasOne("TruckingIndustryAPI.Entities.Models.Bids", "Bids")
+                    b.HasOne("TruckingIndustryAPI.Entities.Models.Bid", "Bids")
                         .WithMany()
                         .HasForeignKey("BidsId")
                         .OnDelete(DeleteBehavior.Cascade)
@@ -784,7 +808,7 @@ namespace TruckingIndustryAPI.Migrations
 
             modelBuilder.Entity("TruckingIndustryAPI.Entities.Models.Route", b =>
                 {
-                    b.HasOne("TruckingIndustryAPI.Entities.Models.Bids", "Bids")
+                    b.HasOne("TruckingIndustryAPI.Entities.Models.Bid", "Bids")
                         .WithMany()
                         .HasForeignKey("BidsId")
                         .OnDelete(DeleteBehavior.Cascade)

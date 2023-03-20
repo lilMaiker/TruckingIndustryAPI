@@ -39,6 +39,7 @@
   <ItemGroup>
     <Folder Include="Helpers\Google\Drive\" />
     <Folder Include="Migrations\" />
+    <Folder Include="Repository\ApplicationUserRoles\" />
   </ItemGroup>
 
   <ItemGroup>
