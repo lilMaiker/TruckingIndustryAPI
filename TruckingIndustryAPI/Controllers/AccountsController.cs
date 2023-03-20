@@ -1,6 +1,5 @@
 ﻿using AutoMapper;
 
-using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.WebUtilities;
@@ -240,7 +239,8 @@ namespace TruckingIndustryAPI.Controllers
                 accessToken = token,
                 Role = rolesUser,
                 RolesInrussian = roles,
-                Email = user.Email, username = user.UserName 
+                Email = user.Email,
+                username = user.UserName
             });
         }
 

@@ -2,10 +2,6 @@
 
 using MediatR;
 
-using Microsoft.AspNetCore.Mvc;
-
-using System.Diagnostics;
-
 using TruckingIndustryAPI.Configuration.UoW;
 using TruckingIndustryAPI.Entities.Models;
 
@@ -45,8 +41,8 @@ namespace TruckingIndustryAPI.Features.CargoFeatures.Commands
 
                 foreach (var b in bidForCar)
                 {
-                   var cargo =  await _unitOfWork.Cargo.GetByIdBidAsync(b.Id);
-                   sumWeight += cargo.Sum(s => s.WeightCargo);
+                    var cargo = await _unitOfWork.Cargo.GetByIdBidAsync(b.Id);
+                    sumWeight += cargo.Sum(s => s.WeightCargo);
                 }
 
                 if (maxWeightCar < sumWeight) throw new Exception("Транспортное средство переполнено.");

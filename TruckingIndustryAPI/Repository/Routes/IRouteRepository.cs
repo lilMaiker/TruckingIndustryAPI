@@ -1,6 +1,4 @@
-﻿using TruckingIndustryAPI.Entities.Models;
-
-namespace TruckingIndustryAPI.Repository.Routes
+﻿namespace TruckingIndustryAPI.Repository.Routes
 {
     public interface IRouteRepository : IGenericRepository<Entities.Models.Route>
     {

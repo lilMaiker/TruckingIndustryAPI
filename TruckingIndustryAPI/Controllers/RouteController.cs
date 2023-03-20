@@ -2,7 +2,6 @@
 
 using Microsoft.AspNetCore.Mvc;
 
-using TruckingIndustryAPI.Features.CargoFeatures.Queries;
 using TruckingIndustryAPI.Features.Routes.Commands;
 
 using TruckingIndustryAPI.Features.Routes.Queries;

@@ -1,7 +1,6 @@
 ﻿using MediatR;
+
 using TruckingIndustryAPI.Configuration.UoW;
-using TruckingIndustryAPI.Entities.Models;
-using TruckingIndustryAPI.Features.CargoFeatures.Queries;
 
 namespace TruckingIndustryAPI.Features.Routes.Queries
 {

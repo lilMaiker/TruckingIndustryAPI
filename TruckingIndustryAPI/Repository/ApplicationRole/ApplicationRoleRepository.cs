@@ -1,8 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore;
 
 using TruckingIndustryAPI.Data;
-using TruckingIndustryAPI.Entities.Models;
-using TruckingIndustryAPI.Repository.ApplicationUsers;
 using TruckingIndustryAPI.Repository.Employees;
 
 namespace TruckingIndustryAPI.Repository.ApplicationRole

@@ -5,8 +5,6 @@ using Google.Apis.Drive.v3;
 using Google.Apis.Services;
 using Google.Apis.Util.Store;
 
-using Microsoft.CodeAnalysis;
-
 using System.Diagnostics;
 
 namespace TruckingIndustryAPI.Helpers.Google.Calendar
@@ -72,31 +70,31 @@ namespace TruckingIndustryAPI.Helpers.Google.Calendar
 
         public static void QucikAdd()
         {
-            
-
-           /* // List events.
-            Events events = request.Execute();
-            Debug.WriteLine("Upcoming events:");
-            if (events.Items != null && events.Items.Count > 0)
-            {
-                foreach (var eventItem in events.Items)
-                {
-                    string when = eventItem.Start.DateTime.ToString();
-                    if (String.IsNullOrEmpty(when))
-                    {
-                        when = eventItem.Start.Date;
-                    }
-                    Debug.WriteLine("{0} ({1})", eventItem.Summary, when);
-                }
-            }
-            else
-            {
-                Debug.WriteLine("No upcoming events found.");
-            }*/
 
 
-            
-           /* Debug.WriteLine($"Event created {ev.HtmlLink}");*/
+            /* // List events.
+             Events events = request.Execute();
+             Debug.WriteLine("Upcoming events:");
+             if (events.Items != null && events.Items.Count > 0)
+             {
+                 foreach (var eventItem in events.Items)
+                 {
+                     string when = eventItem.Start.DateTime.ToString();
+                     if (String.IsNullOrEmpty(when))
+                     {
+                         when = eventItem.Start.Date;
+                     }
+                     Debug.WriteLine("{0} ({1})", eventItem.Summary, when);
+                 }
+             }
+             else
+             {
+                 Debug.WriteLine("No upcoming events found.");
+             }*/
+
+
+
+            /* Debug.WriteLine($"Event created {ev.HtmlLink}");*/
         }
     }
 }

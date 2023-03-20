@@ -2,7 +2,6 @@
 
 using TruckingIndustryAPI.Data;
 using TruckingIndustryAPI.Entities.Models;
-using TruckingIndustryAPI.Repository.Cargos;
 using TruckingIndustryAPI.Repository.Employees;
 
 namespace TruckingIndustryAPI.Repository.Expenses

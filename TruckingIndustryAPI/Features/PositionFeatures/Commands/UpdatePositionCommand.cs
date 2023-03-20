@@ -3,7 +3,6 @@
 using MediatR;
 
 using System.ComponentModel.DataAnnotations;
-using System.Xml.Linq;
 
 using TruckingIndustryAPI.Configuration.UoW;
 using TruckingIndustryAPI.Entities.Models;

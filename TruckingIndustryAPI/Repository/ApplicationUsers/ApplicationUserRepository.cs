@@ -1,7 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore;
 
 using TruckingIndustryAPI.Data;
-using TruckingIndustryAPI.Repository.Bids;
 
 namespace TruckingIndustryAPI.Repository.ApplicationUsers
 {
@@ -22,6 +21,6 @@ namespace TruckingIndustryAPI.Repository.ApplicationUsers
             }
         }
 
-      
+
     }
 }
