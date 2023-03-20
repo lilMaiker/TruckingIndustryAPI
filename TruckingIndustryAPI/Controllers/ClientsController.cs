@@ -1,5 +1,6 @@
 ﻿using MediatR;
 
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 using TruckingIndustryAPI.Features.ClientFeatures.Commands;
@@ -9,6 +10,7 @@ namespace TruckingIndustryAPI.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
+    [Authorize]
     public class ClientsController : ControllerBase
     {
         private readonly IMediator _mediator;

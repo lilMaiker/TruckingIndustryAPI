@@ -1,5 +1,6 @@
 ﻿using MediatR;
 
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 using TruckingIndustryAPI.Features.PositionFeatures.Commands;
@@ -9,7 +10,7 @@ namespace TruckingIndustryAPI.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    //[Authorize]
+    [Authorize]
     public class PositionsController : ControllerBase
     {
         private readonly IMediator _mediator;

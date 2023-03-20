@@ -1,8 +1,13 @@
 ﻿using AutoMapper;
 
+using Google.Apis.Drive.v3.Data;
+
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.WebUtilities;
+
+using System.Data;
 
 using TruckingIndustryAPI.Configuration.UoW;
 using TruckingIndustryAPI.Entities.DTO.Request;
@@ -222,9 +227,10 @@ namespace TruckingIndustryAPI.Controllers
 
             var rolesUser = await _unitOfWork.UserManager.GetRolesAsync(user);
 
-            var role = await _unitOfWork.Role.GetAllAsync();
+            var roles = await _unitOfWork.Role.GetAllAsync();
 
-            var roles = role.Where(w => w.Name == rolesUser.First().ToString()).Select(s => s.RoleInRussian);
+            var rolesRus = roles.Where(w => rolesUser.Contains(w.Name)).Select(s => s.RoleInRussian);
+
 
             /*if (await _unitOfWork.UserManager.GetTwoFactorEnabledAsync(user))
                 return await GenerateOTPFor2StepVerification(user);*/
@@ -238,7 +244,7 @@ namespace TruckingIndustryAPI.Controllers
                 IsAuthSuccessful = true,
                 accessToken = token,
                 Role = rolesUser,
-                RolesInrussian = roles,
+                RolesInrussian = rolesRus,
                 Email = user.Email,
                 username = user.UserName
             });
@@ -333,6 +339,37 @@ namespace TruckingIndustryAPI.Controllers
         public async Task<IActionResult> ApplicationUsers()
         {
             return Ok(await _unitOfWork.User.GetAllAsync());
+        }
+
+        [HttpGet("ApplicationRoles")]
+        //[Authorize("ADMINISTRATOR")]
+        public async Task<IActionResult> ApplicationRoles()
+        {
+            return Ok(await _unitOfWork.Role.GetAllAsync());
+        }
+
+        [HttpPost("UpdateApplicationRoles")]
+        //[Authorize("ADMINISTRATOR")]
+        public async Task<IActionResult> UpdateApplicationRoles([FromBody] RoleForUpdateDto roleForUpdateDto)
+        {
+            var appUser = await _unitOfWork.UserManager.FindByIdAsync(roleForUpdateDto.Id);
+
+            if (appUser == null) NotFound();
+
+            // получем список ролей пользователя
+            var userRoles = await _unitOfWork.UserManager.GetRolesAsync(appUser);
+
+            // получаем все роли
+            var allRoles = _unitOfWork.RoleManager.Roles.ToList();
+
+            await _unitOfWork.UserManager.RemoveFromRolesAsync(appUser, userRoles);
+
+            // получаем список ролей, которые были добавлены
+            var addedRoles = roleForUpdateDto.SelectedRoles.Select(s => s.Label);
+
+            await _unitOfWork.UserManager.AddToRolesAsync(appUser, addedRoles);
+
+            return Ok();
         }
 
     }

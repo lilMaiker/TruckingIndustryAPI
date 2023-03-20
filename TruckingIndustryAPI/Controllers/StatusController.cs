@@ -1,5 +1,6 @@
 ﻿using MediatR;
 
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 using TruckingIndustryAPI.Features.StatusFeatures.Commands;
@@ -10,6 +11,7 @@ namespace TruckingIndustryAPI.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
+    [Authorize]
     public class StatusController : ControllerBase
     {
         private readonly IMediator _mediator;

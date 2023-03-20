@@ -26,7 +26,6 @@ namespace TruckingIndustryAPI
         public IConfiguration Configuration { get; }
         public IWebHostEnvironment WebHostEnvironment { get; }
 
-        // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
             // Интеграция с IIS для прокси-сервера или InProcess-хостинга.
@@ -121,6 +120,11 @@ namespace TruckingIndustryAPI
                     {
                         authBuilder.RequireRole("ADMINISTRATOR");
                     });
+                 options.AddPolicy("MODERATOR",
+                    authBuilder =>
+                    {
+                        authBuilder.RequireRole("MODERATOR");
+                    });
 
             });
 
@@ -163,12 +167,20 @@ namespace TruckingIndustryAPI
             services.AddEndpointsApiExplorer();
         }
 
-        // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
+        /// <summary>
+        /// Метод настройки конвейера обработки HTTP-запросов
+        /// </summary>
+        /// <param name="app">Экземпляр класса IApplicationBuilder</param>
+        /// <param name="env">Экземпляр класса IWebHostEnvironment</param>
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
         {
+            // Проверяем, что приложение находится в режиме разработки
             if (env.IsDevelopment())
             {
+                // Используем страницу с информацией об ошибке при разработке
                 app.UseDeveloperExceptionPage();
+
+                // Добавляем использование Swagger для документирования API
                 app.UseSwagger();
                 app.UseSwaggerUI(c =>
                 {
@@ -176,15 +188,22 @@ namespace TruckingIndustryAPI
                 });
             }
 
+            // Разрешаем редирект на HTTPS
             app.UseHttpsRedirection();
 
+            // Включаем CORS-политику
             app.UseCors("CorsPolicy");
 
+            // Включаем маршрутизацию запросов
             app.UseRouting();
 
+            // Включаем аутентификацию
             app.UseAuthentication();
+
+            // Включаем авторизацию
             app.UseAuthorization();
 
+            // Маппим контроллеры
             app.UseEndpoints(endpoints =>
             {
                 endpoints.MapControllers();
