@@ -22,11 +22,18 @@ namespace TruckingIndustryAPI.Features.BidsFeatures.Commands
             }
             public async Task<ICommandResult> Handle(DeleteBidsCommand command, CancellationToken cancellationToken)
             {
-                var result = await _unitOfWork.Bids.GetByIdAsync(command.Id);
-                if (result == null) return new NotFoundResult() { };
-                await _unitOfWork.Bids.DeleteAsync(result.Id);
-                await _unitOfWork.CompleteAsync();
-                return new CommandResult() {Data = result.Id, Errors = null, Success = true };
+                try
+                {
+                    var result = await _unitOfWork.Bids.GetByIdAsync(command.Id);
+                    if (result == null) return new NotFoundResult() { };
+                    await _unitOfWork.Bids.DeleteAsync(result.Id);
+                    await _unitOfWork.CompleteAsync();
+                    return new CommandResult() { Data = result.Id, Success = true };
+                }
+                catch (Exception ex)
+                {
+                    return new BadRequestResult() { Errors = ex.Message };
+                }
             }
         }
     }

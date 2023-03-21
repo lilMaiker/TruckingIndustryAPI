@@ -3,11 +3,12 @@
 using MediatR;
 
 using TruckingIndustryAPI.Configuration.UoW;
+using TruckingIndustryAPI.Entities.Command;
 using TruckingIndustryAPI.Entities.Models;
 
 namespace TruckingIndustryAPI.Features.BidsFeatures.Commands
 {
-    public class CreateBidsCommand : IRequest<Bid>
+    public class CreateBidsCommand : IRequest<ICommandResult>
     {
         public long CarsId { get; set; }
         public long FoundationId { get; set; }
@@ -19,7 +20,7 @@ namespace TruckingIndustryAPI.Features.BidsFeatures.Commands
         public long StatusId { get; set; }
         public DateTime PayDate { get; set; }
         public long EmployeeId { get; set; }
-        public class CreateBidsCommandHandler : IRequestHandler<CreateBidsCommand, Bid>
+        public class CreateBidsCommandHandler : IRequestHandler<CreateBidsCommand, ICommandResult>
         {
             private readonly IUnitOfWork _unitOfWork;
             private readonly IMapper _mapper;
@@ -28,12 +29,19 @@ namespace TruckingIndustryAPI.Features.BidsFeatures.Commands
                 _unitOfWork = unitOfWork;
                 _mapper = mapper;
             }
-            public async Task<Bid> Handle(CreateBidsCommand command, CancellationToken cancellationToken)
+            public async Task<ICommandResult> Handle(CreateBidsCommand command, CancellationToken cancellationToken)
             {
-                var result = _mapper.Map<Bid>(command);
-                await _unitOfWork.Bids.AddAsync(result);
-                await _unitOfWork.CompleteAsync();
-                return result;
+                try
+                {
+                    var result = _mapper.Map<Bid>(command);
+                    await _unitOfWork.Bids.AddAsync(result);
+                    await _unitOfWork.CompleteAsync();
+                    return new CommandResult() { Data = result, Success = true };
+                }
+                catch (Exception ex)
+                {
+                    return new BadRequestResult() { Errors = ex.Message };
+                }
             }
         }
     }

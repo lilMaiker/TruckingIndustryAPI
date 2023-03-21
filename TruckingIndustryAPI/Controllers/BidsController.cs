@@ -6,6 +6,8 @@ using Microsoft.AspNetCore.Mvc;
 using TruckingIndustryAPI.Features.BidsFeatures.Commands;
 
 using TruckingIndustryAPI.Features.BidsFeatures.Queries;
+using TruckingIndustryAPI.Features.CargoFeatures.Commands;
+using TruckingIndustryAPI.Features.CarsFeatures.Commands;
 
 namespace TruckingIndustryAPI.Controllers
 {
@@ -25,33 +27,77 @@ namespace TruckingIndustryAPI.Controllers
         }
 
         [HttpGet("{id}")]
+        [ProducesResponseType(StatusCodes.Status200OK)]
         public async Task<IActionResult> GetById(long id)
         {
             return Ok(await _mediator.Send(new GetBidsByIdQuery { Id = id }));
         }
 
         [HttpGet]
+        [ProducesResponseType(StatusCodes.Status200OK)]
         public async Task<IActionResult> GetAll()
         {
             return Ok(await _mediator.Send(new GetAllBidsQuery()));
         }
 
         [HttpPost]
+        [ProducesResponseType(StatusCodes.Status200OK)]
+        [ProducesResponseType(StatusCodes.Status400BadRequest)]
         public async Task<IActionResult> Create(CreateBidsCommand createBidsCommand)
         {
-            return Ok(await _mediator.Send(createBidsCommand));
+            if (!ModelState.IsValid) return BadRequest(ModelState);
+
+            var result = await _mediator.Send(createBidsCommand);
+
+            if (!result.Success)
+            {
+                _logger.LogError(result.Errors);
+                return BadRequest(new Entities.Command.BadRequestResult { Errors = result.Errors });
+            }
+
+            return Ok(result);
         }
 
         [HttpPut]
+        [ProducesResponseType(StatusCodes.Status200OK)]
+        [ProducesResponseType(StatusCodes.Status404NotFound)]
+        [ProducesResponseType(StatusCodes.Status400BadRequest)]
         public async Task<IActionResult> Update(UpdateBidsCommand updateBidsCommand)
         {
-            return Ok(await _mediator.Send(updateBidsCommand));
+            if (!ModelState.IsValid) return BadRequest(ModelState);
+
+            var result = await _mediator.Send(updateBidsCommand);
+
+            if (!result.Success && result.Errors.Contains("Not Found")) return NotFound();
+
+            if (!result.Success)
+            {
+                _logger.LogError(result.Errors);
+                return BadRequest(new Entities.Command.BadRequestResult { Errors = result.Errors });
+            }
+
+            return Ok(result);
         }
 
         [HttpDelete]
+        [ProducesResponseType(StatusCodes.Status200OK)]
+        [ProducesResponseType(StatusCodes.Status404NotFound)]
+        [ProducesResponseType(StatusCodes.Status400BadRequest)]
         public async Task<IActionResult> Delete([FromQuery] DeleteBidsCommand deleteBidsCommand)
         {
-            return Ok(await _mediator.Send(deleteBidsCommand));
+            if (!ModelState.IsValid) return BadRequest(ModelState);
+
+            var result = await _mediator.Send(deleteBidsCommand);
+
+            if (!result.Success && result.Errors.Contains("Not Found")) return NotFound();
+
+            if (!result.Success)
+            {
+                _logger.LogError(result.Errors);
+                return BadRequest(new Entities.Command.BadRequestResult { Errors = result.Errors });
+            }
+
+            return Ok(result);
         }
     }
 }

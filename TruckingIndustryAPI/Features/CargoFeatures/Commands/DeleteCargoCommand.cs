@@ -28,7 +28,7 @@ namespace TruckingIndustryAPI.Features.CargoFeatures.Commands
                     if (result == null) return new NotFoundResult() { };
                     await _unitOfWork.Cargo.DeleteAsync(result.Id);
                     await _unitOfWork.CompleteAsync();
-                    return new CommandResult() { Data = result.Id, Errors = null, Success = true };
+                    return new CommandResult() { Data = result.Id, Success = true };
                 }
                 catch (Exception ex)
                 {
