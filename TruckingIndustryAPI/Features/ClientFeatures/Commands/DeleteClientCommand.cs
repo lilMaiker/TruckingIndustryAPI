@@ -23,11 +23,18 @@ namespace TruckingIndustryAPI.Features.ClientFeatures.Commands
             }
             public async Task<ICommandResult> Handle(DeleteClientCommand command, CancellationToken cancellationToken)
             {
-                var result = await _unitOfWork.Client.GetByIdAsync(command.Id);
-                if (result == null) return new NotFoundResult() { };
-                await _unitOfWork.Client.DeleteAsync(result.Id);
-                await _unitOfWork.CompleteAsync();
-                return new CommandResult() {Data = result.Id, Errors = null, Success = true };
+                try
+                {
+                    var result = await _unitOfWork.Client.GetByIdAsync(command.Id);
+                    if (result == null) return new NotFoundResult() { };
+                    await _unitOfWork.Client.DeleteAsync(result.Id);
+                    await _unitOfWork.CompleteAsync();
+                    return new CommandResult() { Data = result.Id, Success = true };
+                }
+                catch (Exception ex)
+                {
+                    return new BadRequestResult() { Errors = ex.Message };
+                }
             }
         }
     }

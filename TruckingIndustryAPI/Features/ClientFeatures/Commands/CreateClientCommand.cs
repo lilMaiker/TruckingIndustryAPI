@@ -3,11 +3,12 @@
 using MediatR;
 
 using TruckingIndustryAPI.Configuration.UoW;
+using TruckingIndustryAPI.Entities.Command;
 using TruckingIndustryAPI.Entities.Models;
 
 namespace TruckingIndustryAPI.Features.ClientFeatures.Commands
 {
-    public class CreateClientCommand : IRequest<Client>
+    public class CreateClientCommand : IRequest<ICommandResult>
     {
         public string Surname { get; set; }
         public string Name { get; set; }
@@ -16,7 +17,7 @@ namespace TruckingIndustryAPI.Features.ClientFeatures.Commands
         public int PassportNumber { get; set; }
         public string PhoneNumber { get; set; }
         public string Email { get; set; }
-        public class CreateClientCommandHandler : IRequestHandler<CreateClientCommand, Client>
+        public class CreateClientCommandHandler : IRequestHandler<CreateClientCommand, ICommandResult>
         {
             private readonly IUnitOfWork _unitOfWork;
             private readonly IMapper _mapper;
@@ -25,12 +26,19 @@ namespace TruckingIndustryAPI.Features.ClientFeatures.Commands
                 _unitOfWork = unitOfWork;
                 _mapper = mapper;
             }
-            public async Task<Client> Handle(CreateClientCommand command, CancellationToken cancellationToken)
+            public async Task<ICommandResult> Handle(CreateClientCommand command, CancellationToken cancellationToken)
             {
-                var result = _mapper.Map<Client>(command);
-                await _unitOfWork.Client.AddAsync(result);
-                await _unitOfWork.CompleteAsync();
-                return result;
+                try
+                {
+                    var result = _mapper.Map<Client>(command);
+                    await _unitOfWork.Client.AddAsync(result);
+                    await _unitOfWork.CompleteAsync();
+                    return new CommandResult() { Data = result, Success = true };
+                }
+                catch (Exception ex)
+                {
+                    return new BadRequestResult() { Errors = ex.Message };
+                }
             }
         }
     }

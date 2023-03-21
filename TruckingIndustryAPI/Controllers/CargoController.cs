@@ -76,7 +76,7 @@ namespace TruckingIndustryAPI.Controllers
 
             var result = await _mediator.Send(updateCargoCommand);
 
-            if (!result.Success && result.Errors.Contains("Not Found")) return NotFound();
+            if (!result.Success && result.Errors.Contains("Not Found")) return NotFound(result);
 
             if (!result.Success)
             {
@@ -97,7 +97,7 @@ namespace TruckingIndustryAPI.Controllers
 
             var result = await _mediator.Send(deleteCargoCommand);
 
-            if (!result.Success && result.Errors.Contains("Not Found")) return NotFound();
+            if (!result.Success && result.Errors.Contains("Not Found")) return NotFound(result);
 
             if (!result.Success)
             {

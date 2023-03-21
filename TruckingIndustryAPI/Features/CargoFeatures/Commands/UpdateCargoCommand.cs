@@ -32,7 +32,7 @@ namespace TruckingIndustryAPI.Features.CargoFeatures.Commands
                 try
                 {
                     var result = await _unitOfWork.Cargo.GetByIdAsync(command.Id);
-                    if (result == null) return new NotFoundResult() { };
+                    if (result == null) return new NotFoundResult() { Data = nameof(Cargo)};
                     _mapper.Map(command, result);
                     await _unitOfWork.Cargo.UpdateAsync(result);
                     await _unitOfWork.CompleteAsync();
