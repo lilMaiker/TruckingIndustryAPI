@@ -57,9 +57,9 @@ namespace TruckingIndustryAPI.Helpers
             CreateMap<UpdateFoundationCommand, Foundation>();
             CreateMap<DeleteFoundationCommand, Foundation>();
 
-            CreateMap<CreateBidsCommand, Bid>();
-            CreateMap<UpdateBidsCommand, Bid>();
-            CreateMap<DeleteBidsCommand, Bid>();
+            CreateMap<CreateBidCommand, Bid>();
+            CreateMap<UpdateBidCommand, Bid>();
+            CreateMap<DeleteBidCommand, Bid>();
 
             CreateMap<CreateCargoCommand, Cargo>();
             CreateMap<UpdateCargoCommand, Cargo>();

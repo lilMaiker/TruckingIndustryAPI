@@ -43,7 +43,7 @@ namespace TruckingIndustryAPI.Controllers
         [HttpPost]
         [ProducesResponseType(StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
-        public async Task<IActionResult> Create(CreateBidsCommand createBidsCommand)
+        public async Task<IActionResult> Create(CreateBidCommand createBidsCommand)
         {
             if (!ModelState.IsValid) return BadRequest(ModelState);
 
@@ -62,7 +62,7 @@ namespace TruckingIndustryAPI.Controllers
         [ProducesResponseType(StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status404NotFound)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
-        public async Task<IActionResult> Update(UpdateBidsCommand updateBidsCommand)
+        public async Task<IActionResult> Update(UpdateBidCommand updateBidsCommand)
         {
             if (!ModelState.IsValid) return BadRequest(ModelState);
 
@@ -83,7 +83,7 @@ namespace TruckingIndustryAPI.Controllers
         [ProducesResponseType(StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status404NotFound)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
-        public async Task<IActionResult> Delete([FromQuery] DeleteBidsCommand deleteBidsCommand)
+        public async Task<IActionResult> Delete([FromQuery] DeleteBidCommand deleteBidsCommand)
         {
             if (!ModelState.IsValid) return BadRequest(ModelState);
 

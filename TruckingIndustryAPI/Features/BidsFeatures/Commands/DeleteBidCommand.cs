@@ -9,10 +9,10 @@ using TruckingIndustryAPI.Exceptions;
 
 namespace TruckingIndustryAPI.Features.BidsFeatures.Commands
 {
-    public class DeleteBidsCommand : IRequest<ICommandResult>
+    public class DeleteBidCommand : IRequest<ICommandResult>
     {
         public long Id { get; set; }
-        public class DeleteBidsCommandHandler : IRequestHandler<DeleteBidsCommand, ICommandResult>
+        public class DeleteBidsCommandHandler : IRequestHandler<DeleteBidCommand, ICommandResult>
         {
             private readonly IUnitOfWork _unitOfWork;
 
@@ -20,7 +20,7 @@ namespace TruckingIndustryAPI.Features.BidsFeatures.Commands
             {
                 _unitOfWork = unitOfWork;
             }
-            public async Task<ICommandResult> Handle(DeleteBidsCommand command, CancellationToken cancellationToken)
+            public async Task<ICommandResult> Handle(DeleteBidCommand command, CancellationToken cancellationToken)
             {
                 try
                 {

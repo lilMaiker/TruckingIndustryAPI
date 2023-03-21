@@ -5,11 +5,13 @@ using MediatR;
 using TruckingIndustryAPI.Configuration.UoW;
 using TruckingIndustryAPI.Entities.Command;
 using TruckingIndustryAPI.Entities.Models;
+using TruckingIndustryAPI.Exceptions;
 
 namespace TruckingIndustryAPI.Features.BidsFeatures.Commands
 {
-    public class CreateBidsCommand : IRequest<ICommandResult>
+    public class UpdateBidCommand : IRequest<ICommandResult>
     {
+        public long Id { get; set; }
         public long CarsId { get; set; }
         public long FoundationId { get; set; }
         public double FreightAMount { get; set; }
@@ -20,21 +22,23 @@ namespace TruckingIndustryAPI.Features.BidsFeatures.Commands
         public long StatusId { get; set; }
         public DateTime PayDate { get; set; }
         public long EmployeeId { get; set; }
-        public class CreateBidsCommandHandler : IRequestHandler<CreateBidsCommand, ICommandResult>
+        public class UpdateBidsCommandHandler : IRequestHandler<UpdateBidCommand, ICommandResult>
         {
             private readonly IUnitOfWork _unitOfWork;
             private readonly IMapper _mapper;
-            public CreateBidsCommandHandler(IUnitOfWork unitOfWork, IMapper mapper)
+            public UpdateBidsCommandHandler(IUnitOfWork unitOfWork, IMapper mapper)
             {
                 _unitOfWork = unitOfWork;
                 _mapper = mapper;
             }
-            public async Task<ICommandResult> Handle(CreateBidsCommand command, CancellationToken cancellationToken)
+            public async Task<ICommandResult> Handle(UpdateBidCommand command, CancellationToken cancellationToken)
             {
                 try
                 {
-                    var result = _mapper.Map<Bid>(command);
-                    await _unitOfWork.Bids.AddAsync(result);
+                    var result = await _unitOfWork.Bids.GetByIdAsync(command.Id);
+                    if (result == null) return new NotFoundResult() { };
+                    _mapper.Map(command, result);
+                    await _unitOfWork.Bids.UpdateAsync(result);
                     await _unitOfWork.CompleteAsync();
                     return new CommandResult() { Data = result, Success = true };
                 }

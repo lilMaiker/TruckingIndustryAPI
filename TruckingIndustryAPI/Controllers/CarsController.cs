@@ -3,6 +3,7 @@
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
+using TruckingIndustryAPI.Features.CargoFeatures.Commands;
 using TruckingIndustryAPI.Features.CarsFeatures.Commands;
 
 using TruckingIndustryAPI.Features.CarsFeatures.Queries;
@@ -24,6 +25,7 @@ namespace TruckingIndustryAPI.Controllers
         }
 
         [HttpGet("{id}")]
+        [ProducesResponseType(StatusCodes.Status200OK)]
         public async Task<IActionResult> GetById(long id)
         {
             if (!ModelState.IsValid) return BadRequest();
@@ -32,33 +34,70 @@ namespace TruckingIndustryAPI.Controllers
         }
 
         [HttpGet]
+        [ProducesResponseType(StatusCodes.Status200OK)]
         public async Task<IActionResult> GetAll()
         {
             return Ok(await _mediator.Send(new GetAllCarsQuery()));
         }
 
         [HttpPost]
-        public async Task<IActionResult> Create([FromBody] CreateCarCommand createCarsCommand)
+        [ProducesResponseType(StatusCodes.Status200OK)]
+        [ProducesResponseType(StatusCodes.Status400BadRequest)]
+        public async Task<IActionResult> Create([FromBody] CreateCarCommand createCarCommand)
         {
-            if (!ModelState.IsValid) return BadRequest();
+            if (!ModelState.IsValid) return BadRequest(ModelState);
 
-            return Ok(await _mediator.Send(createCarsCommand));
+            var result = await _mediator.Send(createCarCommand);
+
+            if (!result.Success)
+            {
+                _logger.LogError(result.Errors);
+                return BadRequest(new Entities.Command.BadRequestResult { Errors = result.Errors });
+            }
+
+            return Ok(result);
         }
 
         [HttpPut]
-        public async Task<IActionResult> Update([FromBody] UpdateCarCommand updateCarsCommand)
+        [ProducesResponseType(StatusCodes.Status200OK)]
+        [ProducesResponseType(StatusCodes.Status404NotFound)]
+        [ProducesResponseType(StatusCodes.Status400BadRequest)]
+        public async Task<IActionResult> Update([FromBody] UpdateCarCommand updateCarCommand)
         {
-            if (!ModelState.IsValid) return BadRequest();
+            if (!ModelState.IsValid) return BadRequest(ModelState);
 
-            return Ok(await _mediator.Send(updateCarsCommand));
+            var result = await _mediator.Send(updateCarCommand);
+
+            if (!result.Success && result.Errors.Contains("Not Found")) return NotFound();
+
+            if (!result.Success)
+            {
+                _logger.LogError(result.Errors);
+                return BadRequest(new Entities.Command.BadRequestResult { Errors = result.Errors });
+            }
+
+            return Ok(result);
         }
 
         [HttpDelete]
-        public async Task<IActionResult> Delete([FromQuery] DeleteCarCommand deleteCarsCommand)
+        [ProducesResponseType(StatusCodes.Status200OK)]
+        [ProducesResponseType(StatusCodes.Status404NotFound)]
+        [ProducesResponseType(StatusCodes.Status400BadRequest)]
+        public async Task<IActionResult> Delete([FromQuery] DeleteCarCommand deleteCarCommand)
         {
-            if (!ModelState.IsValid) return BadRequest();
+            if (!ModelState.IsValid) return BadRequest(ModelState);
 
-            return Ok(await _mediator.Send(deleteCarsCommand));
+            var result = await _mediator.Send(deleteCarCommand);
+
+            if (!result.Success && result.Errors.Contains("Not Found")) return NotFound();
+
+            if (!result.Success)
+            {
+                _logger.LogError(result.Errors);
+                return BadRequest(new Entities.Command.BadRequestResult { Errors = result.Errors });
+            }
+
+            return Ok(result);
         }
     }
 }
