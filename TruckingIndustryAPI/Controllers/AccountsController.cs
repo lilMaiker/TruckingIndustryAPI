@@ -26,15 +26,17 @@ namespace TruckingIndustryAPI.Controllers
         private readonly IUnitOfWork _unitOfWork;
         private readonly JwtHandlerService _jwtHandler;
         private readonly IEmailSenderService _emailSender;
+        private readonly ILogger _logger;
 
         public AccountsController(IMapper mapper, JwtHandlerService jwtHandler,
-            IUnitOfWork unitOfWork, IEmailSenderService emailSender)
+            IUnitOfWork unitOfWork, IEmailSenderService emailSender, ILogger<AccountsController> logger)
         {
             _mapper = mapper;
             _jwtHandler = jwtHandler;
             _unitOfWork = unitOfWork;
             //_logger = logger;
             _emailSender = emailSender;
+            _logger = logger;
         }
 
         /// <summary>
@@ -342,29 +344,24 @@ namespace TruckingIndustryAPI.Controllers
         }
 
         [HttpGet("ApplicationRoles")]
-        //[Authorize("ADMINISTRATOR")]
         public async Task<IActionResult> ApplicationRoles()
         {
             return Ok(await _unitOfWork.Role.GetAllAsync());
         }
 
         [HttpPost("UpdateApplicationRoles")]
-        //[Authorize("ADMINISTRATOR")]
         public async Task<IActionResult> UpdateApplicationRoles([FromBody] RoleForUpdateDto roleForUpdateDto)
         {
             var appUser = await _unitOfWork.UserManager.FindByIdAsync(roleForUpdateDto.Id);
 
             if (appUser == null) NotFound();
 
-            // получем список ролей пользователя
             var userRoles = await _unitOfWork.UserManager.GetRolesAsync(appUser);
 
-            // получаем все роли
             var allRoles = _unitOfWork.RoleManager.Roles.ToList();
 
             await _unitOfWork.UserManager.RemoveFromRolesAsync(appUser, userRoles);
 
-            // получаем список ролей, которые были добавлены
             var addedRoles = roleForUpdateDto.SelectedRoles.Select(s => s.Label);
 
             await _unitOfWork.UserManager.AddToRolesAsync(appUser, addedRoles);

@@ -29,28 +29,44 @@ ASP.NET Core Identity
 
 
 
-• Сохранение файлов в виде массива байт и шифрование
+• Сохранение файлов в виде массива байт 
 
-• Прогнозирование 
-	• Экспонтециональное сглаживание
+• Прогнозирование (front + back)
+	• Экспонтециональное сглаживание (back)
 
-• Генерация документов
-	- Договор
-• Dnd File
-	• Сохранение файлов через массив байт на диске
+• Генерация документов (back)
+	- Договор (back)
 
-• Google Disk
-	- Добавление файла на Google Disk
-	- Удаление файла с Google Disk
+• Dnd File (front)
+	• Сохранение файлов через массив байт на диске (front + back)
 
-• Забиндить типы грузов, валюты, должности, статусы
-• Добавить проверку на тип груза и есть ли в машине рефрежиратор
-• Google Calendaer
-	- Добавление записи в Google Calendar
-	- Добавление записи в Google Calendar с маршрутом 
-	- Удаление записи в Google Calendar
-• Сортировка столбцов на фронте
+• Google Disk (front + back)
+	- Добавление файла на Google Disk (front + back)
+	- Удаление файла с Google Disk (front + back)
+
+• Добавить popup окна для подтверждений действий (Front)
+
+• Забиндить типы грузов, валюты, должности, статусы (back)
+• Добавить проверку на тип груза и есть ли в машине рефрежиратор (back)
+• Google Calendaer (back)
+	- Добавление записи в Google Calendar (front + back)
+	- Добавление записи в Google Calendar с маршрутом (front + back)
+	- Удаление записи в Google Calendar ( back)
+• Сортировка столбцов на фронте (front)
 	- Cursor Bean
+
+
+Замечания:
+
+ExpensesLinksAwareRepository
+ExpensesRepositoryWithLinks
+ExpensesRepositoryWithNeighbours
+      
+as query
+      
+прокинуть логгер на контроллеры (? Elmah.io)
+Асинхронные сервисы
+добавить обработчик ошибок в контроллеры 
 
 
 ✅ Изменить начальную точку для Google Maps

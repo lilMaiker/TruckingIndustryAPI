@@ -14,10 +14,12 @@ namespace TruckingIndustryAPI.Controllers
     public class PositionsController : ControllerBase
     {
         private readonly IMediator _mediator;
+        private readonly ILogger _logger;
 
-        public PositionsController(IMediator mediator)
+        public PositionsController(IMediator mediator, ILogger<PositionsController> logger)
         {
             _mediator = mediator;
+            _logger = logger;
         }
 
         [HttpPost]

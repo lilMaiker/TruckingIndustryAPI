@@ -15,10 +15,12 @@ namespace TruckingIndustryAPI.Controllers
     public class CargoController : ControllerBase
     {
         private readonly IMediator _mediator;
+        private readonly ILogger _logger;
 
-        public CargoController(IMediator mediator)
+        public CargoController(IMediator mediator, ILogger<CargoController> logger)
         {
             _mediator = mediator;
+            _logger = logger;
         }
 
         [HttpGet("GetById/{id}")]
@@ -46,6 +48,16 @@ namespace TruckingIndustryAPI.Controllers
         [HttpPost]
         public async Task<IActionResult> Create([FromBody] CreateCargoCommand createCargoCommand)
         {
+            /*if (!ModelState.IsValid) return BadRequest(ModelState);
+
+            var result = await _mediator.Send(createCargoCommand);
+
+            if (result == null) return NotFound(new NotFoundResult());
+
+            if (!result.Success) return BadRequest(new BadRequestResult { Errors = result.Errors });
+
+            return Ok(await _mediator.Send(createCargoCommand));*/
+
             try
             {
                 if (!ModelState.IsValid) return BadRequest(ModelState);
@@ -55,6 +67,7 @@ namespace TruckingIndustryAPI.Controllers
             catch (Exception ex)
             {
                 ModelState.AddModelError("errors", ex.Message);
+                _logger.LogError(ex.Message);
                 return BadRequest(ModelState);
             }
         }

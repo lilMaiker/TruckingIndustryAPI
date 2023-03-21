@@ -15,10 +15,12 @@ namespace TruckingIndustryAPI.Controllers
     public class ExpensesController : ControllerBase
     {
         private readonly IMediator _mediator;
+        private readonly ILogger _logger;
 
-        public ExpensesController(IMediator mediator)
+        public ExpensesController(IMediator mediator, ILogger<ExpensesController> logger)
         {
             _mediator = mediator;
+            _logger = logger;
         }
 
         [HttpGet("GetByIdBid/{idBid}")]

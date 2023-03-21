@@ -15,10 +15,12 @@ namespace TruckingIndustryAPI.Controllers
     public class FoundationController : ControllerBase
     {
         private readonly IMediator _mediator;
+        private readonly ILogger _logger;
 
-        public FoundationController(IMediator mediator)
+        public FoundationController(IMediator mediator, ILogger<FoundationController> logger)
         {
             _mediator = mediator;
+            _logger = logger;
         }
 
         [HttpGet("{id}")]

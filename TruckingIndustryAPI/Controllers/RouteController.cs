@@ -15,10 +15,12 @@ namespace TruckingIndustryAPI.Controllers
     public class RouteController : ControllerBase
     {
         private readonly IMediator _mediator;
+        private readonly ILogger _logger;
 
-        public RouteController(IMediator mediator)
+        public RouteController(IMediator mediator, ILogger<RouteController> logger)
         {
             _mediator = mediator;
+            _logger = logger;
         }
 
         /// <summary>

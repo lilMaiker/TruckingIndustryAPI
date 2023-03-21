@@ -6,7 +6,7 @@ using TruckingIndustryAPI.Repository.Employees;
 
 namespace TruckingIndustryAPI.Repository.Expenses
 {
-    public class ExpensesRepository : GenericRepository<Entities.Models.Expense>, IExpensesRepository
+    public class ExpensesRepository : GenericRepository<Expense>, IExpensesRepository
     {
         public ExpensesRepository(ApplicationDbContext context, ILogger logger) : base(context, logger) { }
 
@@ -36,7 +36,7 @@ namespace TruckingIndustryAPI.Repository.Expenses
             }
         }
 
-        public override async Task<bool> UpdateAsync(Entities.Models.Expense entity)
+        public override async Task<bool> UpdateAsync(Expense entity)
         {
             try
             {

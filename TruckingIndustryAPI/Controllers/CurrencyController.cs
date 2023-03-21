@@ -15,10 +15,12 @@ namespace TruckingIndustryAPI.Controllers
     public class CurrencyController : ControllerBase
     {
         private readonly IMediator _mediator;
+        private readonly ILogger _logger;
 
-        public CurrencyController(IMediator mediator)
+        public CurrencyController(IMediator mediator, ILogger<CurrencyController> logger)
         {
             _mediator = mediator;
+            _logger = logger;
         }
 
         [HttpGet("{id}")]

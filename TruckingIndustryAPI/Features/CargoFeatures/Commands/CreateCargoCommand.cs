@@ -22,6 +22,7 @@ namespace TruckingIndustryAPI.Features.CargoFeatures.Commands
                 _unitOfWork = unitOfWork;
                 _mapper = mapper;
             }
+
             public async Task<Cargo> Handle(CreateCargoCommand command, CancellationToken cancellationToken)
             {
                 var result = _mapper.Map<Cargo>(command);
@@ -47,7 +48,7 @@ namespace TruckingIndustryAPI.Features.CargoFeatures.Commands
 
                 if (maxWeightCar < sumWeight) throw new Exception("Транспортное средство переполнено.");
 
-                if (maxWeightCar == sumWeight) throw new Exception("Транспортное средство заполнено полностью.");
+                if (maxWeightCar == sumWeight) throw new Exception("В транспортном средстве нет свободного места.");
 
                 //Получить количества места которое можно добавить
                 var freeWeight = maxWeightCar - sumWeight;

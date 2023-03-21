@@ -130,7 +130,6 @@ namespace TruckingIndustryAPI
 
             services.AddSwaggerGen(c =>
             {
-                /* c.SwaggerDoc("v1", new OpenApiInfo { Title = "SupportService API v1", Version = "v1" });*/
                 c.AddSecurityDefinition("Bearer", new OpenApiSecurityScheme
                 {
                     Description = "JWT Authorization header using the Bearer scheme. Example: \"Authorization: Bearer {token}\"",

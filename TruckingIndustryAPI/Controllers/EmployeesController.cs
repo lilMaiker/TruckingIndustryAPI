@@ -14,10 +14,11 @@ namespace TruckingIndustryAPI.Controllers
     public class EmployeesController : ControllerBase
     {
         private readonly IMediator _mediator;
-
-        public EmployeesController(IMediator mediator)
+        private readonly ILogger _logger;
+        public EmployeesController(IMediator mediator, ILogger<EmployeesController> logger)
         {
             _mediator = mediator;
+            _logger = logger;
         }
 
         [HttpGet]

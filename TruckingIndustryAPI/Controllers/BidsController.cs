@@ -15,10 +15,13 @@ namespace TruckingIndustryAPI.Controllers
     public class BidsController : ControllerBase
     {
         private readonly IMediator _mediator;
+        private readonly ILogger _logger;
 
-        public BidsController(IMediator mediator)
+        public BidsController(IMediator mediator, ILogger<BidsController> logger)
         {
             _mediator = mediator;
+            _logger = logger;
+
         }
 
         [HttpGet("{id}")]
