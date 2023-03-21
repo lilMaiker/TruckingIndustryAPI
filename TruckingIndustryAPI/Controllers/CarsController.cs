@@ -38,7 +38,7 @@ namespace TruckingIndustryAPI.Controllers
         }
 
         [HttpPost]
-        public async Task<IActionResult> Create([FromBody] CreateCarsCommand createCarsCommand)
+        public async Task<IActionResult> Create([FromBody] CreateCarCommand createCarsCommand)
         {
             if (!ModelState.IsValid) return BadRequest();
 
@@ -46,7 +46,7 @@ namespace TruckingIndustryAPI.Controllers
         }
 
         [HttpPut]
-        public async Task<IActionResult> Update([FromBody] UpdateCarsCommand updateCarsCommand)
+        public async Task<IActionResult> Update([FromBody] UpdateCarCommand updateCarsCommand)
         {
             if (!ModelState.IsValid) return BadRequest();
 
@@ -54,7 +54,7 @@ namespace TruckingIndustryAPI.Controllers
         }
 
         [HttpDelete]
-        public async Task<IActionResult> Delete([FromQuery] DeleteCarsCommand deleteCarsCommand)
+        public async Task<IActionResult> Delete([FromQuery] DeleteCarCommand deleteCarsCommand)
         {
             if (!ModelState.IsValid) return BadRequest();
 

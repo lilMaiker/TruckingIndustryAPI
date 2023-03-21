@@ -29,16 +29,16 @@ namespace TruckingIndustryAPI.Configuration.UoW
         private readonly UserManager<ApplicationUser> _userManager;
         private readonly RoleManager<IdentityRole> _roleManager;
         public IPositionRepository Positions { get; private set; }
-        public IEmployeeRepository Employees { get; private set; }
+        public IEmployeeRepositoryWithLinks Employees { get; private set; }
         public IStatusRepository Status { get; private set; }
         public ICurrencyRepository Currency { get; private set; }
         public ITypeCargoRepository TypeCargo { get; private set; }
         public ICarsRepository Cars { get; private set; }
         public IClientRepository Client { get; private set; }
-        public IFoundationRepository Foundation { get; private set; }
-        public IBidsRepository Bids { get; private set; }
-        public ICargoRepository Cargo { get; private set; }
-        public IExpensesRepository Expenses { get; private set; }
+        public IFoundationRepositoryWithLinks Foundation { get; private set; }
+        public IBidsRepositoryWithLinks Bids { get; private set; }
+        public ICargoRepositoryWithLinks Cargo { get; private set; }
+        public IExpensesRepositoryWithLinks Expenses { get; private set; }
         public IRouteRepository Route { get; private set; }
         public IApplicationUserRepository User { get; private set; }
         public IApplicationRoleRepository Role { get; private set; }
@@ -56,15 +56,15 @@ namespace TruckingIndustryAPI.Configuration.UoW
 
             Positions = new PositionRepository(context, _logger);
             Currency = new CurrencyRepository(context, _logger);
-            Employees = new EmployeeRepository(context, _logger);
+            Employees = new EmployeeRepositoryWithLinks(context, _logger);
             Status = new StatusRepository(context, _logger);
             TypeCargo = new TypeCargoRepository(context, _logger);
             Cars = new CarsRepository(context, _logger);
             Client = new ClientRepository(context, _logger);
-            Foundation = new FoundationRepository(context, _logger);
-            Bids = new BidsRepository(context, _logger);
-            Cargo = new CargoRepository(context, _logger);
-            Expenses = new ExpensesRepository(context, _logger);
+            Foundation = new FoundationRepositoryWithLinks(context, _logger);
+            Bids = new BidsRepositoryWithLinks(context, _logger);
+            Cargo = new CargoRepositoryWithLinks(context, _logger);
+            Expenses = new ExpensesRepositoryWithLinks(context, _logger);
             Route = new RouteRepository(context, _logger);
             User = new ApplicationUserRepository(context, _logger);
             Role = new ApplicationRoleRepository(context, _logger);

@@ -7,28 +7,28 @@ using TruckingIndustryAPI.Entities.Command;
 using TruckingIndustryAPI.Entities.Models;
 using TruckingIndustryAPI.Exceptions;
 
-namespace TruckingIndustryAPI.Features.CargoFeatures.Commands
+namespace TruckingIndustryAPI.Features.CarsFeatures.Commands
 {
-    public class DeleteCargoCommand : IRequest<ICommandResult>
+    public class DeleteCarCommand : IRequest<ICommandResult>
     {
         public long Id { get; set; }
-        public class DeleteCargoCommandHandler : IRequestHandler<DeleteCargoCommand, ICommandResult>
+        public class DeleteCarsCommandHandler : IRequestHandler<DeleteCarCommand, ICommandResult>
         {
             private readonly IUnitOfWork _unitOfWork;
 
-            public DeleteCargoCommandHandler(IUnitOfWork unitOfWork)
+            public DeleteCarsCommandHandler(IUnitOfWork unitOfWork)
             {
                 _unitOfWork = unitOfWork;
             }
-            public async Task<ICommandResult> Handle(DeleteCargoCommand command, CancellationToken cancellationToken)
+            public async Task<ICommandResult> Handle(DeleteCarCommand command, CancellationToken cancellationToken)
             {
                 try
                 {
-                    var result = await _unitOfWork.Cargo.GetByIdAsync(command.Id);
+                    var result = await _unitOfWork.Cars.GetByIdAsync(command.Id);
                     if (result == null) return new NotFoundResult() { };
-                    await _unitOfWork.Cargo.DeleteAsync(result.Id);
+                    await _unitOfWork.Cars.DeleteAsync(result.Id);
                     await _unitOfWork.CompleteAsync();
-                    return new CommandResult() { Data = result.Id, Errors = null, Success = true };
+                    return new CommandResult() { Data = result.Id, Success = true };
                 }
                 catch (Exception ex)
                 {

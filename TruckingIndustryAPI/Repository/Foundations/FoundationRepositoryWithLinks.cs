@@ -6,9 +6,9 @@ using TruckingIndustryAPI.Repository.Employees;
 
 namespace TruckingIndustryAPI.Repository.Foundations
 {
-    public class FoundationRepository : GenericRepository<Foundation>, IFoundationRepository
+    public class FoundationRepositoryWithLinks : GenericRepository<Foundation>, IFoundationRepositoryWithLinks
     {
-        public FoundationRepository(ApplicationDbContext context, ILogger logger) : base(context, logger) { }
+        public FoundationRepositoryWithLinks(ApplicationDbContext context, ILogger logger) : base(context, logger) { }
 
         public override async Task<Foundation> GetByIdAsync(long id)
         {
@@ -18,7 +18,7 @@ namespace TruckingIndustryAPI.Repository.Foundations
             }
             catch (Exception ex)
             {
-                _logger.LogError(ex, "{Repo} GetById function error", typeof(EmployeeRepository));
+                _logger.LogError(ex, "{Repo} GetById function error", typeof(EmployeeRepositoryWithLinks));
                 return new Foundation();
             }
         }
@@ -31,7 +31,7 @@ namespace TruckingIndustryAPI.Repository.Foundations
             }
             catch (Exception ex)
             {
-                _logger.LogError(ex, "{Repo} All function error", typeof(FoundationRepository));
+                _logger.LogError(ex, "{Repo} All function error", typeof(FoundationRepositoryWithLinks));
                 return new List<Foundation>();
             }
         }
@@ -57,7 +57,7 @@ namespace TruckingIndustryAPI.Repository.Foundations
             }
             catch (Exception ex)
             {
-                _logger.LogError(ex, "{Repo} Update function error", typeof(FoundationRepository));
+                _logger.LogError(ex, "{Repo} Update function error", typeof(FoundationRepositoryWithLinks));
                 return false;
             }
         }
@@ -76,7 +76,7 @@ namespace TruckingIndustryAPI.Repository.Foundations
             }
             catch (Exception ex)
             {
-                _logger.LogError(ex, "{Repo} Delete function error", typeof(FoundationRepository));
+                _logger.LogError(ex, "{Repo} Delete function error", typeof(FoundationRepositoryWithLinks));
                 return false;
             }
         }

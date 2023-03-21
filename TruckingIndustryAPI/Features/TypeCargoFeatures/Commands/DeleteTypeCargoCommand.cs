@@ -3,15 +3,16 @@
 using MediatR;
 
 using TruckingIndustryAPI.Configuration.UoW;
+using TruckingIndustryAPI.Entities.Command;
 using TruckingIndustryAPI.Entities.Models;
 using TruckingIndustryAPI.Exceptions;
 
 namespace TruckingIndustryAPI.Features.TypeCargoFeatures.Commands
 {
-    public class DeleteTypeCargoCommand : IRequest<long>
+    public class DeleteTypeCargoCommand : IRequest<ICommandResult>
     {
         public long Id { get; set; }
-        public class DeleteTypeCargoCommandHandler : IRequestHandler<DeleteTypeCargoCommand, long>
+        public class DeleteTypeCargoCommandHandler : IRequestHandler<DeleteTypeCargoCommand, ICommandResult>
         {
             private readonly IUnitOfWork _unitOfWork;
             private readonly IMapper _mapper;
@@ -20,16 +21,13 @@ namespace TruckingIndustryAPI.Features.TypeCargoFeatures.Commands
                 _unitOfWork = unitOfWork;
                 _mapper = mapper;
             }
-            public async Task<long> Handle(DeleteTypeCargoCommand command, CancellationToken cancellationToken)
+            public async Task<ICommandResult> Handle(DeleteTypeCargoCommand command, CancellationToken cancellationToken)
             {
                 var result = await _unitOfWork.TypeCargo.GetByIdAsync(command.Id);
-                if (result == null)
-                {
-                    throw new NotFoundException(nameof(TypeCargo));
-                }
+                if (result == null) return new NotFoundResult() { };
                 await _unitOfWork.TypeCargo.DeleteAsync(result.Id);
                 await _unitOfWork.CompleteAsync();
-                return result.Id;
+                return new CommandResult() {Data = result.Id, Success = true };
             }
         }
     }

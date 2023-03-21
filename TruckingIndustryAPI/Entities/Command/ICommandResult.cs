@@ -4,6 +4,6 @@
     {
         bool Success { get; }
         object Data { get; }
-        IEnumerable<string> Errors { get; }
+        string Errors { get; }
     }
 }

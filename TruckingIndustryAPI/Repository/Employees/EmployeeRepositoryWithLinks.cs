@@ -5,9 +5,9 @@ using TruckingIndustryAPI.Entities.Models;
 
 namespace TruckingIndustryAPI.Repository.Employees
 {
-    public class EmployeeRepository : GenericRepository<Employee>, IEmployeeRepository
+    public class EmployeeRepositoryWithLinks : GenericRepository<Employee>, IEmployeeRepositoryWithLinks
     {
-        public EmployeeRepository(ApplicationDbContext context, ILogger logger) : base(context, logger) { }
+        public EmployeeRepositoryWithLinks(ApplicationDbContext context, ILogger logger) : base(context, logger) { }
 
         public override async Task<Employee> GetByIdAsync(long id)
         {
@@ -17,7 +17,7 @@ namespace TruckingIndustryAPI.Repository.Employees
             }
             catch (Exception ex)
             {
-                _logger.LogError(ex, "{Repo} GetById function error", typeof(EmployeeRepository));
+                _logger.LogError(ex, "{Repo} GetById function error", typeof(EmployeeRepositoryWithLinks));
                 return new Employee();
             }
         }
@@ -30,7 +30,7 @@ namespace TruckingIndustryAPI.Repository.Employees
             }
             catch (Exception ex)
             {
-                _logger.LogError(ex, "{Repo} All function error", typeof(EmployeeRepository));
+                _logger.LogError(ex, "{Repo} All function error", typeof(EmployeeRepositoryWithLinks));
                 return new List<Employee>();
             }
         }
@@ -58,7 +58,7 @@ namespace TruckingIndustryAPI.Repository.Employees
             }
             catch (Exception ex)
             {
-                _logger.LogError(ex, "{Repo} Update function error", typeof(EmployeeRepository));
+                _logger.LogError(ex, "{Repo} Update function error", typeof(EmployeeRepositoryWithLinks));
                 return false;
             }
         }
@@ -77,7 +77,7 @@ namespace TruckingIndustryAPI.Repository.Employees
             }
             catch (Exception ex)
             {
-                _logger.LogError(ex, "{Repo} Delete function error", typeof(EmployeeRepository));
+                _logger.LogError(ex, "{Repo} Delete function error", typeof(EmployeeRepositoryWithLinks));
                 return false;
             }
         }

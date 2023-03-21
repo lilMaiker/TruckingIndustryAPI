@@ -2,7 +2,7 @@
 
 namespace TruckingIndustryAPI.Repository.Foundations
 {
-    public interface IFoundationRepository : IGenericRepository<Foundation>
+    public interface IFoundationRepositoryWithLinks : IGenericRepository<Foundation>
     {
 
     }

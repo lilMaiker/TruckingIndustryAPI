@@ -3,17 +3,18 @@
 using MediatR;
 
 using TruckingIndustryAPI.Configuration.UoW;
+using TruckingIndustryAPI.Entities.Command;
 using TruckingIndustryAPI.Entities.Models;
 
 namespace TruckingIndustryAPI.Features.CargoFeatures.Commands
 {
-    public class CreateCargoCommand : IRequest<Cargo>
+    public class CreateCargoCommand : IRequest<ICommandResult>
     {
         public string NameCargo { get; set; }
         public double WeightCargo { get; set; }
         public long TypeCargoId { get; set; }
         public long BidsId { get; set; }
-        public class CreateCargoCommandHandler : IRequestHandler<CreateCargoCommand, Cargo>
+        public class CreateCargoCommandHandler : IRequestHandler<CreateCargoCommand, ICommandResult>
         {
             private readonly IUnitOfWork _unitOfWork;
             private readonly IMapper _mapper;
@@ -23,46 +24,79 @@ namespace TruckingIndustryAPI.Features.CargoFeatures.Commands
                 _mapper = mapper;
             }
 
-            public async Task<Cargo> Handle(CreateCargoCommand command, CancellationToken cancellationToken)
+            public async Task<ICommandResult> Handle(CreateCargoCommand command, CancellationToken cancellationToken)
             {
-                var result = _mapper.Map<Cargo>(command);
+                try
+                {
+                    // Преобразуем команду в сущность груза
+                    var cargo = _mapper.Map<Cargo>(command);
 
-                var bid = await _unitOfWork.Bids.GetByIdAsync(result.BidsId);
+                    // Получаем заявку и трансопрт, связанные с грузом
+                    var bid = await _unitOfWork.Bids.GetByIdAsync(cargo.BidsId);
+                    var car = await _unitOfWork.Cars.GetByIdAsync(bid.CarsId);
 
-                var car = await _unitOfWork.Cars.GetByIdAsync(bid.CarsId);
+                    // Проверяем, может ли трансопрт вместить груз
+                    if (!CanFitCargo(car, cargo).Result) return new BadRequestResult() { Errors = GetErrorMessage(car, cargo).Result };
 
-                //Получить всего места в машине
+                    // Добавляем груз и сохраняем изменения
+                    await _unitOfWork.Cargo.AddAsync(cargo);
+                    await _unitOfWork.CompleteAsync();
+
+                    return new CommandResult() { Data = cargo, Success = true };
+                }
+                catch (Exception ex)
+                {
+                    return new BadRequestResult() { Errors = ex.Message };
+                }
+            }
+
+            /// <summary>
+            /// Вспомогательный метод для проверки, поместится ли груз в автомобиль
+            /// </summary>
+            /// <param name="car"></param>
+            /// <param name="cargo"></param>
+            /// <returns></returns>
+            private async Task<bool> CanFitCargo(Car car, Cargo cargo)
+            {
+                // Получаем общее пространство и вес автомобиля
                 double maxWeightCar = car.MaxWeight;
 
-                var bids = await _unitOfWork.Bids.GetAllAsync();
+                // Получаем общий вес грузов в автомобиле
+                double sumWeight = await _unitOfWork.Cargo.GetTotalWeightByCarIdAsync(car.Id);
 
-                var bidForCar = bids.Where(w => w.CarsId == car.Id).ToList();
+                // Получаем вес груза, который нужно добавить
+                var weightCargo = cargo.WeightCargo;
 
-                double sumWeight = 0;
+                // Возвращаем true, если есть достаточно места для груза, false в противном случае
+                return maxWeightCar >= sumWeight + weightCargo;
+            }
 
-                foreach (var b in bidForCar)
+            /// <summary>
+            /// Вспомогательный метод для получения сообщения об ошибке, когда груз не помещается в автомобиль
+            /// </summary>
+            /// <param name="car"></param>
+            /// <param name="cargo"></param>
+            /// <returns></returns>
+            private async Task<string> GetErrorMessage(Car car, Cargo cargo)
+            {
+                // Получаем общее пространство и вес автомобиля
+                double maxWeightCar = car.MaxWeight;
+
+                // Получаем общий вес грузов в автомобиле
+                double sumWeight = await _unitOfWork.Cargo.GetTotalWeightByCarIdAsync(car.Id);
+
+                // Проверяем, если
+
+                // Автомобиль полон или перегружен
+                if (maxWeightCar <= sumWeight) return "Автомобиль полон или перегружен.";
+
+                // Автомобиль не имеет достаточно места для определенного количества кг
+                else
                 {
-                    var cargo = await _unitOfWork.Cargo.GetByIdBidAsync(b.Id);
-                    sumWeight += cargo.Sum(s => s.WeightCargo);
+                    var freeWeight = maxWeightCar - sumWeight;
+                    var weightCargo = cargo.WeightCargo;
+                    return $"Автомобиль не имеет достаточно места для {weightCargo} кг. Осталось только {freeWeight} кг.";
                 }
-
-                if (maxWeightCar < sumWeight) throw new Exception("Транспортное средство переполнено.");
-
-                if (maxWeightCar == sumWeight) throw new Exception("В транспортном средстве нет свободного места.");
-
-                //Получить количества места которое можно добавить
-                var freeWeight = maxWeightCar - sumWeight;
-
-                //Получить количесвто которое я хочу добавить
-                var weightCargo = result.WeightCargo;
-
-                var sumAll = sumWeight + weightCargo;
-
-                if (maxWeightCar < sumAll) throw new Exception($"В трансопрте недостаточно места для {weightCargo} кг. Осталось свободного {freeWeight}");
-
-                await _unitOfWork.Cargo.AddAsync(result);
-                await _unitOfWork.CompleteAsync();
-                return result;
             }
         }
     }

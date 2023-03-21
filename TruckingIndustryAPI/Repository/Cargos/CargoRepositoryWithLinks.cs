@@ -6,14 +6,25 @@ using TruckingIndustryAPI.Repository.Employees;
 
 namespace TruckingIndustryAPI.Repository.Cargos
 {
-    public class CargoRepository : GenericRepository<Cargo>, ICargoRepository
+    public class CargoRepositoryWithLinks : GenericRepository<Cargo>, ICargoRepositoryWithLinks
     {
-        public CargoRepository(ApplicationDbContext context, ILogger logger) : base(context, logger) { }
+        public CargoRepositoryWithLinks(ApplicationDbContext context, ILogger logger) : base(context, logger) { }
 
         public override async Task<bool> AddAsync(Cargo entity)
         {
             await dbSet.AddAsync(entity);
             return true;
+        }
+
+        public async Task<double> GetTotalWeightByCarIdAsync(long carId)
+        {
+            // Получить все грузы для машины
+            var cargoes = await dbSet.Include(i => i.Bids).Where(w => w.Bids.CarsId == carId).ToListAsync();
+
+            // Суммировать веса грузов
+            double sumWeight = cargoes.Sum(s => s.WeightCargo);
+
+            return sumWeight;
         }
 
         public override async Task<IEnumerable<Cargo>> GetAllAsync()
@@ -24,7 +35,7 @@ namespace TruckingIndustryAPI.Repository.Cargos
             }
             catch (Exception ex)
             {
-                _logger.LogError(ex, "{Repo} All function error", typeof(CargoRepository));
+                _logger.LogError(ex, "{Repo} All function error", typeof(CargoRepositoryWithLinks));
                 return new List<Cargo>();
             }
         }
@@ -47,7 +58,7 @@ namespace TruckingIndustryAPI.Repository.Cargos
             }
             catch (Exception ex)
             {
-                _logger.LogError(ex, "{Repo} Update function error", typeof(CargoRepository));
+                _logger.LogError(ex, "{Repo} Update function error", typeof(CargoRepositoryWithLinks));
                 return false;
             }
         }
@@ -66,7 +77,7 @@ namespace TruckingIndustryAPI.Repository.Cargos
             }
             catch (Exception ex)
             {
-                _logger.LogError(ex, "{Repo} Delete function error", typeof(CargoRepository));
+                _logger.LogError(ex, "{Repo} Delete function error", typeof(CargoRepositoryWithLinks));
                 return false;
             }
         }
@@ -79,7 +90,7 @@ namespace TruckingIndustryAPI.Repository.Cargos
             }
             catch (Exception ex)
             {
-                _logger.LogError(ex, "{Repo} GetById function error", typeof(EmployeeRepository));
+                _logger.LogError(ex, "{Repo} GetById function error", typeof(EmployeeRepositoryWithLinks));
                 return new Cargo();
             }
         }
@@ -93,7 +104,7 @@ namespace TruckingIndustryAPI.Repository.Cargos
             }
             catch (Exception ex)
             {
-                _logger.LogError(ex, "{Repo} All function error", typeof(CargoRepository));
+                _logger.LogError(ex, "{Repo} All function error", typeof(CargoRepositoryWithLinks));
                 return new List<Cargo>();
             }
         }

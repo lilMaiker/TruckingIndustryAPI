@@ -7,7 +7,7 @@ using TruckingIndustryAPI.Entities.Models;
 
 namespace TruckingIndustryAPI.Features.CarsFeatures.Commands
 {
-    public class CreateCarsCommand : IRequest<Car>
+    public class CreateCarCommand : IRequest<Car>
     {
         public string BrandTrailer { get; set; }
         public string TrailerNumber { get; set; }
@@ -17,7 +17,7 @@ namespace TruckingIndustryAPI.Features.CarsFeatures.Commands
         public bool WithRefrigerator { get; set; }
         public bool WithTent { get; set; }
         public bool WithHydroboard { get; set; }
-        public class CreateCarsCommandHandler : IRequestHandler<CreateCarsCommand, Car>
+        public class CreateCarsCommandHandler : IRequestHandler<CreateCarCommand, Car>
         {
             private readonly IUnitOfWork _unitOfWork;
             private readonly IMapper _mapper;
@@ -26,7 +26,7 @@ namespace TruckingIndustryAPI.Features.CarsFeatures.Commands
                 _unitOfWork = unitOfWork;
                 _mapper = mapper;
             }
-            public async Task<Car> Handle(CreateCarsCommand command, CancellationToken cancellationToken)
+            public async Task<Car> Handle(CreateCarCommand command, CancellationToken cancellationToken)
             {
                 var result = _mapper.Map<Car>(command);
                 await _unitOfWork.Cars.AddAsync(result);

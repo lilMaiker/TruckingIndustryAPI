@@ -4,6 +4,6 @@
     {
         public bool Success => false;
         public object Data => null;
-        public IEnumerable<string> Errors => new List<string> { "Not found" };
+        public string Errors { get; set; } = "Not Found";
     }
 }

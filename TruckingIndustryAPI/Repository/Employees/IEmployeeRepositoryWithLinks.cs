@@ -2,7 +2,7 @@
 
 namespace TruckingIndustryAPI.Repository.Employees
 {
-    public interface IEmployeeRepository : IGenericRepository<Employee>
+    public interface IEmployeeRepositoryWithLinks : IGenericRepository<Employee>
     {
     }
 }

@@ -28,12 +28,12 @@ namespace TruckingIndustryAPI.Configuration.UoW
         ICarsRepository Cars { get; }
         ICurrencyRepository Currency { get; }
         ITypeCargoRepository TypeCargo { get; }
-        IEmployeeRepository Employees { get; }
+        IEmployeeRepositoryWithLinks Employees { get; }
         IClientRepository Client { get; }
-        IFoundationRepository Foundation { get; }
-        IBidsRepository Bids { get; }
-        ICargoRepository Cargo { get; }
-        IExpensesRepository Expenses { get; }
+        IFoundationRepositoryWithLinks Foundation { get; }
+        IBidsRepositoryWithLinks Bids { get; }
+        ICargoRepositoryWithLinks Cargo { get; }
+        IExpensesRepositoryWithLinks Expenses { get; }
         IRouteRepository Route { get; }
         IApplicationUserRepository User { get; }
         IApplicationRoleRepository Role { get; }

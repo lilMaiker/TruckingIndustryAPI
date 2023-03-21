@@ -17,7 +17,7 @@ namespace TruckingIndustryAPI.Repository.ApplicationRole
             }
             catch (Exception ex)
             {
-                _logger.LogError(ex, "{Repo} GetById function error", typeof(EmployeeRepository));
+                _logger.LogError(ex, "{Repo} GetById function error", typeof(EmployeeRepositoryWithLinks));
                 return new Entities.Models.Identity.ApplicationRole();
             }
         }

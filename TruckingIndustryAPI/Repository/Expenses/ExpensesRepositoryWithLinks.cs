@@ -6,9 +6,9 @@ using TruckingIndustryAPI.Repository.Employees;
 
 namespace TruckingIndustryAPI.Repository.Expenses
 {
-    public class ExpensesRepository : GenericRepository<Expense>, IExpensesRepository
+    public class ExpensesRepositoryWithLinks : GenericRepository<Expense>, IExpensesRepositoryWithLinks
     {
-        public ExpensesRepository(ApplicationDbContext context, ILogger logger) : base(context, logger) { }
+        public ExpensesRepositoryWithLinks(ApplicationDbContext context, ILogger logger) : base(context, logger) { }
 
         public override async Task<Expense> GetByIdAsync(long id)
         {
@@ -18,7 +18,7 @@ namespace TruckingIndustryAPI.Repository.Expenses
             }
             catch (Exception ex)
             {
-                _logger.LogError(ex, "{Repo} GetById function error", typeof(EmployeeRepository));
+                _logger.LogError(ex, "{Repo} GetById function error", typeof(EmployeeRepositoryWithLinks));
                 return new Expense();
             }
         }
@@ -31,7 +31,7 @@ namespace TruckingIndustryAPI.Repository.Expenses
             }
             catch (Exception ex)
             {
-                _logger.LogError(ex, "{Repo} All function error", typeof(ExpensesRepository));
+                _logger.LogError(ex, "{Repo} All function error", typeof(ExpensesRepositoryWithLinks));
                 return new List<Expense>();
             }
         }
@@ -61,7 +61,7 @@ namespace TruckingIndustryAPI.Repository.Expenses
             }
             catch (Exception ex)
             {
-                _logger.LogError(ex, "{Repo} Update function error", typeof(ExpensesRepository));
+                _logger.LogError(ex, "{Repo} Update function error", typeof(ExpensesRepositoryWithLinks));
                 return false;
             }
         }
@@ -80,7 +80,7 @@ namespace TruckingIndustryAPI.Repository.Expenses
             }
             catch (Exception ex)
             {
-                _logger.LogError(ex, "{Repo} Delete function error", typeof(ExpensesRepository));
+                _logger.LogError(ex, "{Repo} Delete function error", typeof(ExpensesRepositoryWithLinks));
                 return false;
             }
         }
@@ -94,7 +94,7 @@ namespace TruckingIndustryAPI.Repository.Expenses
             }
             catch (Exception ex)
             {
-                _logger.LogError(ex, "{Repo} All function error", typeof(ExpensesRepository));
+                _logger.LogError(ex, "{Repo} All function error", typeof(ExpensesRepositoryWithLinks));
                 return new List<Entities.Models.Expense>();
             }
         }

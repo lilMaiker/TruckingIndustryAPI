@@ -5,9 +5,9 @@ using TruckingIndustryAPI.Repository.Employees;
 
 namespace TruckingIndustryAPI.Repository.Bids
 {
-    public class BidsRepository : GenericRepository<Entities.Models.Bid>, IBidsRepository
+    public class BidsRepositoryWithLinks : GenericRepository<Entities.Models.Bid>, IBidsRepositoryWithLinks
     {
-        public BidsRepository(ApplicationDbContext context, ILogger logger) : base(context, logger) { }
+        public BidsRepositoryWithLinks(ApplicationDbContext context, ILogger logger) : base(context, logger) { }
 
         public override async Task<Entities.Models.Bid> GetByIdAsync(long id)
         {
@@ -17,7 +17,7 @@ namespace TruckingIndustryAPI.Repository.Bids
             }
             catch (Exception ex)
             {
-                _logger.LogError(ex, "{Repo} GetById function error", typeof(EmployeeRepository));
+                _logger.LogError(ex, "{Repo} GetById function error", typeof(EmployeeRepositoryWithLinks));
                 return new Entities.Models.Bid();
             }
         }
@@ -30,7 +30,7 @@ namespace TruckingIndustryAPI.Repository.Bids
             }
             catch (Exception ex)
             {
-                _logger.LogError(ex, "{Repo} All function error", typeof(BidsRepository));
+                _logger.LogError(ex, "{Repo} All function error", typeof(BidsRepositoryWithLinks));
                 return new List<Entities.Models.Bid>();
             }
         }
@@ -68,7 +68,7 @@ namespace TruckingIndustryAPI.Repository.Bids
             }
             catch (Exception ex)
             {
-                _logger.LogError(ex, "{Repo} Update function error", typeof(BidsRepository));
+                _logger.LogError(ex, "{Repo} Update function error", typeof(BidsRepositoryWithLinks));
                 return false;
             }
         }
@@ -87,7 +87,7 @@ namespace TruckingIndustryAPI.Repository.Bids
             }
             catch (Exception ex)
             {
-                _logger.LogError(ex, "{Repo} Delete function error", typeof(BidsRepository));
+                _logger.LogError(ex, "{Repo} Delete function error", typeof(BidsRepositoryWithLinks));
                 return false;
             }
         }

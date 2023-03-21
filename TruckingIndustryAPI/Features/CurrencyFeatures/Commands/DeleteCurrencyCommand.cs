@@ -3,15 +3,16 @@
 using MediatR;
 
 using TruckingIndustryAPI.Configuration.UoW;
+using TruckingIndustryAPI.Entities.Command;
 using TruckingIndustryAPI.Entities.Models;
 using TruckingIndustryAPI.Exceptions;
 
 namespace TruckingIndustryAPI.Features.CurrencyFeatures.Commands
 {
-    public class DeleteCurrencyCommand : IRequest<long>
+    public class DeleteCurrencyCommand : IRequest<ICommandResult>
     {
         public long Id { get; set; }
-        public class DeleteCurrencyCommandHandler : IRequestHandler<DeleteCurrencyCommand, long>
+        public class DeleteCurrencyCommandHandler : IRequestHandler<DeleteCurrencyCommand, ICommandResult>
         {
             private readonly IUnitOfWork _unitOfWork;
             private readonly IMapper _mapper;
@@ -20,16 +21,13 @@ namespace TruckingIndustryAPI.Features.CurrencyFeatures.Commands
                 _unitOfWork = unitOfWork;
                 _mapper = mapper;
             }
-            public async Task<long> Handle(DeleteCurrencyCommand command, CancellationToken cancellationToken)
+            public async Task<ICommandResult> Handle(DeleteCurrencyCommand command, CancellationToken cancellationToken)
             {
                 var result = await _unitOfWork.Currency.GetByIdAsync(command.Id);
-                if (result == null)
-                {
-                    throw new NotFoundException(nameof(Currency));
-                }
+                if (result == null) return new NotFoundResult() { };
                 await _unitOfWork.Currency.DeleteAsync(result.Id);
                 await _unitOfWork.CompleteAsync();
-                return result.Id;
+                return new CommandResult() {Data = result.Id, Errors = null, Success = true };
             }
         }
     }

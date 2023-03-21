@@ -45,9 +45,9 @@ namespace TruckingIndustryAPI.Helpers
             CreateMap<UpdateTypeCargoCommand, TypeCargo>();
             CreateMap<DeleteTypeCargoCommand, TypeCargo>();
 
-            CreateMap<CreateCarsCommand, Car>();
-            CreateMap<UpdateCarsCommand, Car>();
-            CreateMap<DeleteCarsCommand, Car>();
+            CreateMap<CreateCarCommand, Car>();
+            CreateMap<UpdateCarCommand, Car>();
+            CreateMap<DeleteCarCommand, Car>();
 
             CreateMap<CreateClientCommand, Client>();
             CreateMap<UpdateClientCommand, Client>();

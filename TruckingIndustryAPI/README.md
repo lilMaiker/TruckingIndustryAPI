@@ -46,6 +46,8 @@ ASP.NET Core Identity
 
 • Добавить popup окна для подтверждений действий (Front)
 
+(? Elmah.io)
+
 • Забиндить типы грузов, валюты, должности, статусы (back)
 • Добавить проверку на тип груза и есть ли в машине рефрежиратор (back)
 • Google Calendaer (back)
@@ -57,18 +59,13 @@ ASP.NET Core Identity
 
 
 Замечания:
+      
+as queryable 
 
-ExpensesLinksAwareRepository
-ExpensesRepositoryWithLinks
-ExpensesRepositoryWithNeighbours
-      
-as query
-      
-прокинуть логгер на контроллеры (? Elmah.io)
 Асинхронные сервисы
 добавить обработчик ошибок в контроллеры 
 
-
+✅ прокинуть логгер на контроллеры 
 ✅ Изменить начальную точку для Google Maps
 ✅ Правки по Google Maps
 ✅ Формат дат
@@ -78,6 +75,9 @@ as query
 ✅ Управление ролями
 ✅ если у пользователя уже есть хотя бы одна роль, то добавить нельзя
 ✅ Роль администратора и модератора (добавить ограничения)
+✅ExpensesLinksAwareRepository
+✅ExpensesRepositoryWithLinks
+✅ExpensesRepositoryWithNeighbours
 
 
 

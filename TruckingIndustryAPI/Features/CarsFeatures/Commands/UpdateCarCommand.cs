@@ -3,12 +3,13 @@
 using MediatR;
 
 using TruckingIndustryAPI.Configuration.UoW;
+using TruckingIndustryAPI.Entities.Command;
 using TruckingIndustryAPI.Entities.Models;
 using TruckingIndustryAPI.Exceptions;
 
 namespace TruckingIndustryAPI.Features.CarsFeatures.Commands
 {
-    public class UpdateCarsCommand : IRequest<Car>
+    public class UpdateCarCommand : IRequest<ICommandResult>
     {
         public long Id { get; set; }
         public string BrandTrailer { get; set; }
@@ -19,7 +20,7 @@ namespace TruckingIndustryAPI.Features.CarsFeatures.Commands
         public bool WithRefrigerator { get; set; }
         public bool WithTent { get; set; }
         public bool WithHydroboard { get; set; }
-        public class UpdateCarsCommandHandler : IRequestHandler<UpdateCarsCommand, Car>
+        public class UpdateCarsCommandHandler : IRequestHandler<UpdateCarCommand, ICommandResult>
         {
             private readonly IUnitOfWork _unitOfWork;
             private readonly IMapper _mapper;
@@ -28,14 +29,21 @@ namespace TruckingIndustryAPI.Features.CarsFeatures.Commands
                 _unitOfWork = unitOfWork;
                 _mapper = mapper;
             }
-            public async Task<Car> Handle(UpdateCarsCommand command, CancellationToken cancellationToken)
+            public async Task<ICommandResult> Handle(UpdateCarCommand command, CancellationToken cancellationToken)
             {
-                var result = await _unitOfWork.Cars.GetByIdAsync(command.Id);
-                if (result == null) throw new NotFoundException(nameof(Car));
-                _mapper.Map(command, result);
-                await _unitOfWork.Cars.UpdateAsync(result);
-                await _unitOfWork.CompleteAsync();
-                return result;
+                try
+                {
+                    var result = await _unitOfWork.Cars.GetByIdAsync(command.Id);
+                    if (result == null) return new NotFoundResult() { };
+                    _mapper.Map(command, result);
+                    await _unitOfWork.Cars.UpdateAsync(result);
+                    await _unitOfWork.CompleteAsync();
+                    return new CommandResult() { Data = result, Success = true };
+                }
+                catch (Exception ex)
+                {
+                    return new BadRequestResult() { Errors = ex.Message };
+                }
             }
         }
     }

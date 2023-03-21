@@ -3,15 +3,16 @@
 using MediatR;
 
 using TruckingIndustryAPI.Configuration.UoW;
+using TruckingIndustryAPI.Entities.Command;
 using TruckingIndustryAPI.Entities.Models;
 using TruckingIndustryAPI.Exceptions;
 
 namespace TruckingIndustryAPI.Features.ClientFeatures.Commands
 {
-    public class DeleteClientCommand : IRequest<long>
+    public class DeleteClientCommand : IRequest<ICommandResult>
     {
         public long Id { get; set; }
-        public class DeleteClientCommandHandler : IRequestHandler<DeleteClientCommand, long>
+        public class DeleteClientCommandHandler : IRequestHandler<DeleteClientCommand, ICommandResult>
         {
             private readonly IUnitOfWork _unitOfWork;
             private readonly IMapper _mapper;
@@ -20,16 +21,13 @@ namespace TruckingIndustryAPI.Features.ClientFeatures.Commands
                 _unitOfWork = unitOfWork;
                 _mapper = mapper;
             }
-            public async Task<long> Handle(DeleteClientCommand command, CancellationToken cancellationToken)
+            public async Task<ICommandResult> Handle(DeleteClientCommand command, CancellationToken cancellationToken)
             {
                 var result = await _unitOfWork.Client.GetByIdAsync(command.Id);
-                if (result == null)
-                {
-                    throw new NotFoundException(nameof(Client));
-                }
+                if (result == null) return new NotFoundResult() { };
                 await _unitOfWork.Client.DeleteAsync(result.Id);
                 await _unitOfWork.CompleteAsync();
-                return result.Id;
+                return new CommandResult() {Data = result.Id, Errors = null, Success = true };
             }
         }
     }

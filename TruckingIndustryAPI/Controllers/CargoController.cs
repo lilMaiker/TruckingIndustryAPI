@@ -24,6 +24,7 @@ namespace TruckingIndustryAPI.Controllers
         }
 
         [HttpGet("GetById/{id}")]
+        [ProducesResponseType(StatusCodes.Status200OK)]
         public async Task<IActionResult> GetById(long id)
         {
             if (!ModelState.IsValid) return BadRequest(ModelState);
@@ -32,6 +33,7 @@ namespace TruckingIndustryAPI.Controllers
         }
 
         [HttpGet("GetByIdBid/{idBid}")]
+        [ProducesResponseType(StatusCodes.Status200OK)]
         public async Task<IActionResult> GetByIdBid(long idBid)
         {
             if (!ModelState.IsValid) return BadRequest(ModelState);
@@ -40,52 +42,70 @@ namespace TruckingIndustryAPI.Controllers
         }
 
         [HttpGet]
+        [ProducesResponseType(StatusCodes.Status200OK)]
         public async Task<IActionResult> GetAll()
         {
             return Ok(await _mediator.Send(new GetAllCargoQuery()));
         }
 
         [HttpPost]
+        [ProducesResponseType(StatusCodes.Status200OK)]
+        [ProducesResponseType(StatusCodes.Status400BadRequest)]
         public async Task<IActionResult> Create([FromBody] CreateCargoCommand createCargoCommand)
         {
-            /*if (!ModelState.IsValid) return BadRequest(ModelState);
+            if (!ModelState.IsValid) return BadRequest(ModelState);
 
             var result = await _mediator.Send(createCargoCommand);
 
-            if (result == null) return NotFound(new NotFoundResult());
-
-            if (!result.Success) return BadRequest(new BadRequestResult { Errors = result.Errors });
-
-            return Ok(await _mediator.Send(createCargoCommand));*/
-
-            try
+            if (!result.Success)
             {
-                if (!ModelState.IsValid) return BadRequest(ModelState);
+                _logger.LogError(result.Errors);
+                return BadRequest(new Entities.Command.BadRequestResult { Errors = result.Errors });
+            }
 
-                return Ok(await _mediator.Send(createCargoCommand));
-            }
-            catch (Exception ex)
-            {
-                ModelState.AddModelError("errors", ex.Message);
-                _logger.LogError(ex.Message);
-                return BadRequest(ModelState);
-            }
+            return Ok(result);
         }
 
         [HttpPut]
+        [ProducesResponseType(StatusCodes.Status200OK)]
+        [ProducesResponseType(StatusCodes.Status404NotFound)]
+        [ProducesResponseType(StatusCodes.Status400BadRequest)]
         public async Task<IActionResult> Update([FromBody] UpdateCargoCommand updateCargoCommand)
         {
             if (!ModelState.IsValid) return BadRequest(ModelState);
 
-            return Ok(await _mediator.Send(updateCargoCommand));
+            var result = await _mediator.Send(updateCargoCommand);
+
+            if (!result.Success && result.Errors.Contains("Not Found")) return NotFound();
+
+            if (!result.Success)
+            {
+                _logger.LogError(result.Errors);
+                return BadRequest(new Entities.Command.BadRequestResult { Errors = result.Errors });
+            }
+
+            return Ok(result);
         }
 
         [HttpDelete]
+        [ProducesResponseType(StatusCodes.Status200OK)]
+        [ProducesResponseType(StatusCodes.Status404NotFound)]
+        [ProducesResponseType(StatusCodes.Status400BadRequest)]
         public async Task<IActionResult> Delete([FromQuery] DeleteCargoCommand deleteCargoCommand)
         {
             if (!ModelState.IsValid) return BadRequest(ModelState);
 
-            return Ok(await _mediator.Send(deleteCargoCommand));
+            var result = await _mediator.Send(deleteCargoCommand);
+
+            if (!result.Success && result.Errors.Contains("Not Found")) return NotFound();
+
+            if (!result.Success)
+            {
+                _logger.LogError(result.Errors);
+                return BadRequest(new Entities.Command.BadRequestResult { Errors = result.Errors });
+            }
+
+            return Ok(result);
         }
     }
 }
