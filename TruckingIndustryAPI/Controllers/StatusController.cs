@@ -17,12 +17,10 @@ namespace TruckingIndustryAPI.Controllers
     public class StatusController : BaseApiController
     {
         private readonly IMediator _mediator;
-        private readonly ILogger _logger;
 
         public StatusController(IMediator mediator, ILogger<StatusController> logger) : base(logger)
         {
             _mediator = mediator;
-            _logger = logger;
         }
 
         [HttpGet("{id}")]

@@ -17,12 +17,10 @@ namespace TruckingIndustryAPI.Controllers
     public class CargoController : BaseApiController
     {
         private readonly IMediator _mediator;
-        private readonly ILogger _logger;
 
         public CargoController(IMediator mediator, ILogger<CargoController> logger) : base(logger)
         {
             _mediator = mediator;
-            _logger = logger;
         }
 
         /// <summary>

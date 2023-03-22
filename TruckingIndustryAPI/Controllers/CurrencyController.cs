@@ -17,12 +17,10 @@ namespace TruckingIndustryAPI.Controllers
     public class CurrencyController : BaseApiController
     {
         private readonly IMediator _mediator;
-        private readonly ILogger _logger;
 
         public CurrencyController(IMediator mediator, ILogger<CurrencyController> logger) : base(logger)
         {
             _mediator = mediator;
-            _logger = logger;
         }
 
         [HttpGet("{id}")]

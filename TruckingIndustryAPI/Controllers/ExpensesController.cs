@@ -18,12 +18,10 @@ namespace TruckingIndustryAPI.Controllers
     public class ExpensesController : BaseApiController
     {
         private readonly IMediator _mediator;
-        private readonly ILogger _logger;
 
         public ExpensesController(IMediator mediator, ILogger<ExpensesController> logger) : base(logger)
         {
             _mediator = mediator;
-            _logger = logger;
         }
 
         [HttpGet]

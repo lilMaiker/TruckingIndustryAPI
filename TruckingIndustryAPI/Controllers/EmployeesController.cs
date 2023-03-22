@@ -17,11 +17,9 @@ namespace TruckingIndustryAPI.Controllers
     public class EmployeesController : BaseApiController
     {
         private readonly IMediator _mediator;
-        private readonly ILogger _logger;
         public EmployeesController(IMediator mediator, ILogger<EmployeesController> logger) : base(logger)
         {
             _mediator = mediator;
-            _logger = logger;
         }
 
         [HttpGet]

@@ -198,12 +198,12 @@ namespace TruckingIndustryAPI.Controllers
 
             var rolesUser = await _unitOfWork.UserManager.GetRolesAsync(user);
 
-            var role = await _unitOfWork.Role.GetAllAsync();
+            var roles = await _unitOfWork.Role.GetAllAsync();
 
-            var roles = role.Where(w => w.Name == rolesUser.First().ToString()).Select(s => s.RoleInRussian);
+            var rolesRus = roles.Where(w => rolesUser.Contains(w.Name)).Select(s => s.RoleInRussian);
 
             //Send response for front-end
-            return Ok(new AuthResponseDto { accessToken = token, IsAuthSuccessful = true, Role = rolesUser, Email = user.Email, username = user.UserName, RolesInrussian = roles });
+            return Ok(new AuthResponseDto { accessToken = token, IsAuthSuccessful = true, Role = rolesUser, Email = user.Email, username = user.UserName, RolesInrussian = rolesRus });
         }
 
         [HttpPost("Login")]
