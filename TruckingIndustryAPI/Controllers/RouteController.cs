@@ -5,7 +5,6 @@ using Microsoft.AspNetCore.Mvc;
 
 using TruckingIndustryAPI.Entities.Controller;
 using TruckingIndustryAPI.Extensions.Attributes;
-using TruckingIndustryAPI.Features.PositionFeatures.Commands;
 using TruckingIndustryAPI.Features.Routes.Commands;
 
 using TruckingIndustryAPI.Features.Routes.Queries;

@@ -10,7 +10,7 @@ namespace TruckingIndustryAPI.Entities.DTO.Request
         [Required(ErrorMessage = "Password is required")]
         public string? Password { get; set; }
 
-       /* [Compare("Password", ErrorMessage = "The password and confirmation password do not match.")]
-        public string? ConfirmPassword { get; set; }*/
+        /* [Compare("Password", ErrorMessage = "The password and confirmation password do not match.")]
+         public string? ConfirmPassword { get; set; }*/
     }
 }

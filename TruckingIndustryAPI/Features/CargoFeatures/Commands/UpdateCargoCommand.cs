@@ -2,12 +2,8 @@
 
 using MediatR;
 
-using System.Windows.Input;
-
 using TruckingIndustryAPI.Configuration.UoW;
 using TruckingIndustryAPI.Entities.Command;
-using TruckingIndustryAPI.Entities.Models;
-using TruckingIndustryAPI.Exceptions;
 using TruckingIndustryAPI.Services;
 
 namespace TruckingIndustryAPI.Features.CargoFeatures.Commands

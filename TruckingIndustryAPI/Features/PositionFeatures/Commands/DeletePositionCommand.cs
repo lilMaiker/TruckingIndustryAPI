@@ -5,7 +5,6 @@ using MediatR;
 using TruckingIndustryAPI.Configuration.UoW;
 using TruckingIndustryAPI.Entities.Command;
 using TruckingIndustryAPI.Entities.Models;
-using TruckingIndustryAPI.Exceptions;
 
 namespace TruckingIndustryAPI.Features.PositionFeatures.Commands
 {
@@ -26,7 +25,7 @@ namespace TruckingIndustryAPI.Features.PositionFeatures.Commands
                 try
                 {
                     var result = await _unitOfWork.Positions.GetByIdAsync(command.Id);
-                    if (result == null) return new NotFoundResult() {Data = nameof(Position) };
+                    if (result == null) return new NotFoundResult() { Data = nameof(Position) };
                     await _unitOfWork.Positions.DeleteAsync(result.Id);
                     await _unitOfWork.CompleteAsync();
                     return new CommandResult() { Data = result.Id, Success = true };

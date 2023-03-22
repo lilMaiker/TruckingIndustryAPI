@@ -1,10 +1,7 @@
 ﻿using AutoMapper;
 
-using Google.Apis.Drive.v3.Data;
-
 using MediatR;
 
-using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.WebUtilities;
@@ -18,7 +15,6 @@ using TruckingIndustryAPI.Entities.DTO.Response;
 using TruckingIndustryAPI.Entities.Models.Identity;
 using TruckingIndustryAPI.Extensions.Attributes;
 using TruckingIndustryAPI.Features.AccountFeatures.Commands;
-using TruckingIndustryAPI.Features.BidsFeatures.Commands;
 using TruckingIndustryAPI.Helpers;
 using TruckingIndustryAPI.Services.Email;
 

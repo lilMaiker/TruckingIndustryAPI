@@ -4,8 +4,6 @@ using MediatR;
 
 using TruckingIndustryAPI.Configuration.UoW;
 using TruckingIndustryAPI.Entities.Command;
-using TruckingIndustryAPI.Entities.Models;
-using TruckingIndustryAPI.Exceptions;
 
 namespace TruckingIndustryAPI.Features.ClientFeatures.Commands
 {

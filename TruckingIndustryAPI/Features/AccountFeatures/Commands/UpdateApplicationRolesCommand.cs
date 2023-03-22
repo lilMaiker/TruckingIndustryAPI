@@ -1,10 +1,10 @@
 ﻿using AutoMapper;
+
 using MediatR;
 
 using TruckingIndustryAPI.Configuration.UoW;
 using TruckingIndustryAPI.Entities.Command;
 using TruckingIndustryAPI.Entities.DTO.Request;
-using TruckingIndustryAPI.Entities.Models;
 using TruckingIndustryAPI.Entities.Models.Identity;
 
 namespace TruckingIndustryAPI.Features.AccountFeatures.Commands

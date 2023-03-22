@@ -5,7 +5,6 @@ using Microsoft.AspNetCore.Mvc;
 
 using TruckingIndustryAPI.Entities.Controller;
 using TruckingIndustryAPI.Extensions.Attributes;
-using TruckingIndustryAPI.Features.CurrencyFeatures.Commands;
 using TruckingIndustryAPI.Features.EmployeeFeatures.Commands;
 using TruckingIndustryAPI.Features.EmployeeFeatures.Queries;
 

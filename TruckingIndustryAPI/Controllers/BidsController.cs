@@ -8,8 +8,6 @@ using TruckingIndustryAPI.Extensions.Attributes;
 using TruckingIndustryAPI.Features.BidsFeatures.Commands;
 
 using TruckingIndustryAPI.Features.BidsFeatures.Queries;
-using TruckingIndustryAPI.Features.CargoFeatures.Commands;
-using TruckingIndustryAPI.Features.CarsFeatures.Commands;
 
 namespace TruckingIndustryAPI.Controllers
 {

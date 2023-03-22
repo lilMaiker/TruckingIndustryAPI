@@ -2,7 +2,6 @@
 
 using TruckingIndustryAPI.Configuration.UoW;
 using TruckingIndustryAPI.Entities.Command;
-using TruckingIndustryAPI.Entities.Models;
 
 namespace TruckingIndustryAPI.Features.CargoFeatures.Queries
 {

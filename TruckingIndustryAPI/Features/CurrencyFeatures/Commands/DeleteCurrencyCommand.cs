@@ -1,11 +1,8 @@
-﻿using AutoMapper;
-
-using MediatR;
+﻿using MediatR;
 
 using TruckingIndustryAPI.Configuration.UoW;
 using TruckingIndustryAPI.Entities.Command;
 using TruckingIndustryAPI.Entities.Models;
-using TruckingIndustryAPI.Exceptions;
 
 namespace TruckingIndustryAPI.Features.CurrencyFeatures.Commands
 {
@@ -26,7 +23,7 @@ namespace TruckingIndustryAPI.Features.CurrencyFeatures.Commands
                 try
                 {
                     var result = await _unitOfWork.Currency.GetByIdAsync(command.Id);
-                    if (result == null) return new NotFoundResult() { Data = nameof(Currency)};
+                    if (result == null) return new NotFoundResult() { Data = nameof(Currency) };
                     await _unitOfWork.Currency.DeleteAsync(result.Id);
                     await _unitOfWork.CompleteAsync();
                     return new CommandResult() { Data = result.Id, Success = true };

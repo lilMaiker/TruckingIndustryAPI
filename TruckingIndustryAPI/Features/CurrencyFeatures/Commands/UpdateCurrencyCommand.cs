@@ -3,12 +3,10 @@
 using MediatR;
 
 using System.ComponentModel.DataAnnotations;
-using System.Windows.Input;
 
 using TruckingIndustryAPI.Configuration.UoW;
 using TruckingIndustryAPI.Entities.Command;
 using TruckingIndustryAPI.Entities.Models;
-using TruckingIndustryAPI.Exceptions;
 
 namespace TruckingIndustryAPI.Features.CurrencyFeatures.Commands
 {

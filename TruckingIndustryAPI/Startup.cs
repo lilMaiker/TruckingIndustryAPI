@@ -121,11 +121,11 @@ namespace TruckingIndustryAPI
                     {
                         authBuilder.RequireRole("ADMINISTRATOR");
                     });
-                 options.AddPolicy("MODERATOR",
-                    authBuilder =>
-                    {
-                        authBuilder.RequireRole("MODERATOR");
-                    });
+                options.AddPolicy("MODERATOR",
+                   authBuilder =>
+                   {
+                       authBuilder.RequireRole("MODERATOR");
+                   });
 
             });
 

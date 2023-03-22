@@ -1,4 +1,5 @@
 ﻿using AutoMapper;
+
 using MediatR;
 
 using System.ComponentModel.DataAnnotations;
@@ -6,7 +7,6 @@ using System.ComponentModel.DataAnnotations;
 using TruckingIndustryAPI.Configuration.UoW;
 using TruckingIndustryAPI.Entities.Command;
 using TruckingIndustryAPI.Entities.Models;
-using TruckingIndustryAPI.Features.BidsFeatures.Commands;
 
 namespace TruckingIndustryAPI.Features.AccountFeatures.Commands
 {
