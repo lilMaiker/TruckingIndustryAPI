@@ -73,6 +73,11 @@ namespace TruckingIndustryAPI.Helpers
             CreateMap<UpdateRouteCommand, Entities.Models.Route>();
             CreateMap<DeleteRouteCommand, Entities.Models.Route>();
 
+            CreateMap<Car, CarWithFreeWeight>()
+        .ForMember(dest => dest.FreeWeight, opt => opt.Ignore())
+        .ForMember(dest => dest.LoadedWeight, opt => opt.Ignore());
+
+
         }
     }
 }

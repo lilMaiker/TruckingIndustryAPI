@@ -20,6 +20,5 @@ namespace TruckingIndustryAPI.Entities.Models
 
         [DisplayName("Гидроборт")]
         public bool WithHydroboard { get; set; }
-
     }
 }
