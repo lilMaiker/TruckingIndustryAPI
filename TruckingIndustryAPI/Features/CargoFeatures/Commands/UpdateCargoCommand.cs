@@ -8,6 +8,7 @@ using TruckingIndustryAPI.Configuration.UoW;
 using TruckingIndustryAPI.Entities.Command;
 using TruckingIndustryAPI.Entities.Models;
 using TruckingIndustryAPI.Exceptions;
+using TruckingIndustryAPI.Services;
 
 namespace TruckingIndustryAPI.Features.CargoFeatures.Commands
 {
@@ -22,21 +23,34 @@ namespace TruckingIndustryAPI.Features.CargoFeatures.Commands
         {
             private readonly IUnitOfWork _unitOfWork;
             private readonly IMapper _mapper;
-            public UpdateCargoCommandHandler(IUnitOfWork unitOfWork, IMapper mapper)
+            private readonly ICargoService _cargoService;
+            public UpdateCargoCommandHandler(IUnitOfWork unitOfWork, IMapper mapper, ICargoService cargoService)
             {
                 _unitOfWork = unitOfWork;
                 _mapper = mapper;
+                _cargoService = cargoService;
             }
             public async Task<ICommandResult> Handle(UpdateCargoCommand command, CancellationToken cancellationToken)
             {
                 try
                 {
-                    var result = await _unitOfWork.Cargo.GetByIdAsync(command.Id);
-                    if (result == null) return new NotFoundResult() { Data = nameof(Cargo)};
-                    _mapper.Map(command, result);
-                    await _unitOfWork.Cargo.UpdateAsync(result);
+                    // Получаем заявку и трансопрт, связанные с грузом
+                    var bid = await _unitOfWork.Bids.GetByIdAsync(command.BidsId);
+                    var car = await _unitOfWork.Cars.GetByIdAsync(bid.CarsId);
+                    var cargo = await _unitOfWork.Cargo.GetByIdAsync(command.Id);
+
+                    // Проверяем, может ли транспорт вместить груз
+                    if (!await _cargoService.CanFitCargo(car, cargo)) throw new Exception(await _cargoService.GetErrorMessage(car, cargo));
+
+                    // Проверяем, может ли транспорт доставлять такой тип груза
+                    if (!await _cargoService.CanSetTypeCargo(car, cargo)) throw new Exception(await _cargoService.GetErrorMessage(car, cargo));
+
+                    // Обновляем груз в базе данных
+                    _mapper.Map(command, cargo);
+                    await _unitOfWork.Cargo.UpdateAsync(cargo);
                     await _unitOfWork.CompleteAsync();
-                    return new CommandResult() { Data = result, Success = true };
+
+                    return new CommandResult() { Data = cargo, Success = true };
                 }
                 catch (Exception ex)
                 {

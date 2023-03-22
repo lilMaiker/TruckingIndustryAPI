@@ -25,6 +25,11 @@ namespace TruckingIndustryAPI.Controllers
             _logger = logger;
         }
 
+        /// <summary>
+        /// Получить груз по идентификатору груза
+        /// </summary>
+        /// <param name="id">Идентификатор груза</param>
+        /// <returns></returns>
         [HttpGet("GetById/{id}")]
         [ValidateModel]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
@@ -34,6 +39,11 @@ namespace TruckingIndustryAPI.Controllers
             return Ok(await _mediator.Send(new GetCargoByIdQuery { Id = id }));
         }
 
+        /// <summary>
+        /// Получить груз по идентификатору заявки
+        /// </summary>
+        /// <param name="idBid">Идентификатор заявки</param>
+        /// <returns></returns>
         [HttpGet("GetByIdBid/{idBid}")]
         [ValidateModel]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
@@ -43,6 +53,10 @@ namespace TruckingIndustryAPI.Controllers
             return Ok(await _mediator.Send(new GetCargoByIdBidQuery { Id = idBid }));
         }
 
+        /// <summary>
+        /// Получить весь груз
+        /// </summary>
+        /// <returns></returns>
         [HttpGet]
         [ProducesResponseType(StatusCodes.Status200OK)]
         public async Task<IActionResult> GetAll()
@@ -50,6 +64,11 @@ namespace TruckingIndustryAPI.Controllers
             return Ok(await _mediator.Send(new GetAllCargoQuery()));
         }
 
+        /// <summary>
+        /// Добавить новый груз в заявку
+        /// </summary>
+        /// <param name="createCargoCommand"></param>
+        /// <returns></returns>
         [HttpPost]
         [ValidateModel]
         [ProducesResponseType(StatusCodes.Status200OK)]
@@ -59,6 +78,11 @@ namespace TruckingIndustryAPI.Controllers
             return HandleResult(await _mediator.Send(createCargoCommand));
         }
 
+        /// <summary>
+        /// Обновить груз по заявке
+        /// </summary>
+        /// <param name="updateCargoCommand"></param>
+        /// <returns></returns>
         [HttpPut]
         [ValidateModel]
         [ProducesResponseType(StatusCodes.Status200OK)]
@@ -69,6 +93,11 @@ namespace TruckingIndustryAPI.Controllers
             return HandleResult(await _mediator.Send(updateCargoCommand));
         }
 
+        /// <summary>
+        /// Удалить груз из заявки
+        /// </summary>
+        /// <param name="deleteCargoCommand"></param>
+        /// <returns></returns>
         [HttpDelete]
         [ValidateModel]
         [ProducesResponseType(StatusCodes.Status200OK)]

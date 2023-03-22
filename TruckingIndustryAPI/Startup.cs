@@ -11,6 +11,7 @@ using TruckingIndustryAPI.Data;
 using TruckingIndustryAPI.Entities.Models.Identity;
 using TruckingIndustryAPI.Extensions;
 using TruckingIndustryAPI.Helpers;
+using TruckingIndustryAPI.Services;
 using TruckingIndustryAPI.Services.Email;
 
 namespace TruckingIndustryAPI
@@ -161,6 +162,8 @@ namespace TruckingIndustryAPI
 
             // Регистрация службы EmailSender с ограниченным временем жизни (scoped lifetime) и интерфейсом IEmailSender.
             services.AddScoped<IEmailSenderService, EmailSenderService>();
+
+            services.AddScoped<ICargoService, CargoService>();
 
             // Добавление службы, которая генерирует OpenAPI-спецификацию для конечных точек приложения, зарегистрированных в контейнере DI.
             services.AddEndpointsApiExplorer();
