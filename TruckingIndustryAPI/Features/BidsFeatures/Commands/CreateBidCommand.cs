@@ -40,7 +40,7 @@ namespace TruckingIndustryAPI.Features.BidsFeatures.Commands
                 }
                 catch (Exception ex)
                 {
-                    return new BadRequestResult() { Errors = ex.Message };
+                    return new BadRequestResult() { Error = ex.Message };
                 }
             }
         }

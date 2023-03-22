@@ -37,7 +37,7 @@ namespace TruckingIndustryAPI.Features.ClientFeatures.Commands
                 }
                 catch (Exception ex)
                 {
-                    return new BadRequestResult() { Errors = ex.Message };
+                    return new BadRequestResult() { Error = ex.Message };
                 }
             }
         }

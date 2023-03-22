@@ -3,11 +3,12 @@
 using MediatR;
 
 using TruckingIndustryAPI.Configuration.UoW;
+using TruckingIndustryAPI.Entities.Command;
 using TruckingIndustryAPI.Entities.Models;
 
 namespace TruckingIndustryAPI.Features.EmployeeFeatures.Commands
 {
-    public class CreateEmployeeCommand : IRequest<Employee>
+    public class CreateEmployeeCommand : IRequest<ICommandResult>
     {
         public string Surname { get; set; }
         public string Name { get; set; }
@@ -19,7 +20,7 @@ namespace TruckingIndustryAPI.Features.EmployeeFeatures.Commands
         public string Email { get; set; }
         public string ApplicationUserId { get; set; }
 
-        public class CreateEmployeeCommandHandler : IRequestHandler<CreateEmployeeCommand, Employee>
+        public class CreateEmployeeCommandHandler : IRequestHandler<CreateEmployeeCommand, ICommandResult>
         {
             private readonly IUnitOfWork _unitOfWork;
             private readonly IMapper _mapper;
@@ -28,12 +29,19 @@ namespace TruckingIndustryAPI.Features.EmployeeFeatures.Commands
                 _unitOfWork = unitOfWork;
                 _mapper = mapper;
             }
-            public async Task<Employee> Handle(CreateEmployeeCommand command, CancellationToken cancellationToken)
+            public async Task<ICommandResult> Handle(CreateEmployeeCommand command, CancellationToken cancellationToken)
             {
-                var employee = _mapper.Map<Employee>(command);
-                await _unitOfWork.Employees.AddAsync(employee);
-                await _unitOfWork.CompleteAsync();
-                return employee;
+                try
+                {
+                    var result = _mapper.Map<Employee>(command);
+                    await _unitOfWork.Employees.AddAsync(result);
+                    await _unitOfWork.CompleteAsync();
+                    return new CommandResult() { Data = result, Success = true };
+                }
+                catch (Exception ex)
+                {
+                    return new BadRequestResult() { Error = ex.Message };
+                }
             }
         }
     }

@@ -5,17 +5,18 @@ using MediatR;
 using System.ComponentModel.DataAnnotations;
 
 using TruckingIndustryAPI.Configuration.UoW;
+using TruckingIndustryAPI.Entities.Command;
 using TruckingIndustryAPI.Entities.Models;
 
 namespace TruckingIndustryAPI.Features.PositionFeatures.Commands
 {
-    public class CreatePositionCommand : IRequest<Position>
+    public class CreatePositionCommand : IRequest<ICommandResult>
     {
         [Display(Name = "Должность")]
         [MaxLength(70, ErrorMessage = "Длина дложности не более 70 символов")]
         [Required(ErrorMessage = "Название должности является обязательным полем")]
         public string NamePosition { get; set; }
-        public class CreatePositionCommandHandler : IRequestHandler<CreatePositionCommand, Position>
+        public class CreatePositionCommandHandler : IRequestHandler<CreatePositionCommand, ICommandResult>
         {
             private readonly IUnitOfWork _unitOfWork;
             private readonly IMapper _mapper;
@@ -24,12 +25,19 @@ namespace TruckingIndustryAPI.Features.PositionFeatures.Commands
                 _unitOfWork = unitOfWork;
                 _mapper = mapper;
             }
-            public async Task<Position> Handle(CreatePositionCommand command, CancellationToken cancellationToken)
+            public async Task<ICommandResult> Handle(CreatePositionCommand command, CancellationToken cancellationToken)
             {
-                var position = _mapper.Map<Position>(command);
-                await _unitOfWork.Positions.AddAsync(position);
-                await _unitOfWork.CompleteAsync();
-                return position;
+                try
+                {
+                    var result = _mapper.Map<Position>(command);
+                    await _unitOfWork.Positions.AddAsync(result);
+                    await _unitOfWork.CompleteAsync();
+                    return new CommandResult() { Data = result, Success = true };
+                }
+                catch (Exception ex)
+                {
+                    return new BadRequestResult() { Error = ex.Message };
+                }
             }
         }
     }

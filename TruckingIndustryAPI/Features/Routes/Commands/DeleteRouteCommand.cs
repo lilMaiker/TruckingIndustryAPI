@@ -22,11 +22,18 @@ namespace TruckingIndustryAPI.Features.Routes.Commands
             }
             public async Task<ICommandResult> Handle(DeleteRouteCommand command, CancellationToken cancellationToken)
             {
-                var result = await _unitOfWork.Route.GetByIdAsync(command.Id);
-                if (result == null) return new NotFoundResult() { };
-                await _unitOfWork.Route.DeleteAsync(result.Id);
-                await _unitOfWork.CompleteAsync();
-                return new CommandResult() {Data = result.Id, Errors = null, Success = true };
+                try
+                {
+                    var result = await _unitOfWork.Route.GetByIdAsync(command.Id);
+                    if (result == null) return new NotFoundResult() { Data = nameof(Route) };
+                    await _unitOfWork.Route.DeleteAsync(result.Id);
+                    await _unitOfWork.CompleteAsync();
+                    return new CommandResult() { Data = result.Id, Success = true };
+                }
+                catch (Exception ex)
+                {
+                    return new BadRequestResult() { Error = ex.Message };
+                }
             }
         }
     }

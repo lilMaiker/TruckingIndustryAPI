@@ -36,7 +36,7 @@ namespace TruckingIndustryAPI.Features.CargoFeatures.Commands
                     var car = await _unitOfWork.Cars.GetByIdAsync(bid.CarsId);
 
                     // Проверяем, может ли трансопрт вместить груз
-                    if (!CanFitCargo(car, cargo).Result) return new BadRequestResult() { Errors = GetErrorMessage(car, cargo).Result };
+                    if (!CanFitCargo(car, cargo).Result) return new BadRequestResult() { Error = GetErrorMessage(car, cargo).Result };
 
                     // Добавляем груз и сохраняем изменения
                     await _unitOfWork.Cargo.AddAsync(cargo);
@@ -46,7 +46,7 @@ namespace TruckingIndustryAPI.Features.CargoFeatures.Commands
                 }
                 catch (Exception ex)
                 {
-                    return new BadRequestResult() { Errors = ex.Message };
+                    return new BadRequestResult() { Error = ex.Message };
                 }
             }
 

@@ -15,25 +15,23 @@ namespace TruckingIndustryAPI.Features.ClientFeatures.Commands
         public class DeleteClientCommandHandler : IRequestHandler<DeleteClientCommand, ICommandResult>
         {
             private readonly IUnitOfWork _unitOfWork;
-            private readonly IMapper _mapper;
-            public DeleteClientCommandHandler(IUnitOfWork unitOfWork, IMapper mapper)
+            public DeleteClientCommandHandler(IUnitOfWork unitOfWork)
             {
                 _unitOfWork = unitOfWork;
-                _mapper = mapper;
             }
             public async Task<ICommandResult> Handle(DeleteClientCommand command, CancellationToken cancellationToken)
             {
                 try
                 {
                     var result = await _unitOfWork.Client.GetByIdAsync(command.Id);
-                    if (result == null) return new NotFoundResult() { };
+                    if (result == null) return new NotFoundResult() { Data = nameof(Client) };
                     await _unitOfWork.Client.DeleteAsync(result.Id);
                     await _unitOfWork.CompleteAsync();
                     return new CommandResult() { Data = result.Id, Success = true };
                 }
                 catch (Exception ex)
                 {
-                    return new BadRequestResult() { Errors = ex.Message };
+                    return new BadRequestResult() { Error = ex.Message };
                 }
             }
         }

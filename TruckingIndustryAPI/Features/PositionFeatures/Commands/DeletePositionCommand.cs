@@ -23,11 +23,18 @@ namespace TruckingIndustryAPI.Features.PositionFeatures.Commands
             }
             public async Task<ICommandResult> Handle(DeletePositionCommand command, CancellationToken cancellationToken)
             {
-                var result = await _unitOfWork.Positions.GetByIdAsync(command.Id);
-                if (result == null) return new NotFoundResult() { };
-                await _unitOfWork.Positions.DeleteAsync(result.Id);
-                await _unitOfWork.CompleteAsync();
-                return new CommandResult() { Data = result.Id, Errors = null, Success = true };
+                try
+                {
+                    var result = await _unitOfWork.Positions.GetByIdAsync(command.Id);
+                    if (result == null) return new NotFoundResult() {Data = nameof(Position) };
+                    await _unitOfWork.Positions.DeleteAsync(result.Id);
+                    await _unitOfWork.CompleteAsync();
+                    return new CommandResult() { Data = result.Id, Success = true };
+                }
+                catch (Exception ex)
+                {
+                    return new BadRequestResult() { Error = ex.Message };
+                }
             }
         }
     }

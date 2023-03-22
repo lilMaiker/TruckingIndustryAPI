@@ -3,12 +3,13 @@
 using MediatR;
 
 using TruckingIndustryAPI.Configuration.UoW;
+using TruckingIndustryAPI.Entities.Command;
 using TruckingIndustryAPI.Entities.Models;
 using TruckingIndustryAPI.Exceptions;
 
 namespace TruckingIndustryAPI.Features.EmployeeFeatures.Commands
 {
-    public class UpdateEmployeeCommand : IRequest<Employee>
+    public class UpdateEmployeeCommand : IRequest<ICommandResult>
     {
         public long Id { get; set; }
         public string Surname { get; set; }
@@ -20,7 +21,7 @@ namespace TruckingIndustryAPI.Features.EmployeeFeatures.Commands
         public string PhoneNumber { get; set; }
         public string Email { get; set; }
         public string ApplicationUserId { get; set; }
-        public class UpdateEmployeeCommandHandler : IRequestHandler<UpdateEmployeeCommand, Employee>
+        public class UpdateEmployeeCommandHandler : IRequestHandler<UpdateEmployeeCommand, ICommandResult>
         {
             private readonly IUnitOfWork _unitOfWork;
             private readonly IMapper _mapper;
@@ -29,14 +30,21 @@ namespace TruckingIndustryAPI.Features.EmployeeFeatures.Commands
                 _unitOfWork = unitOfWork;
                 _mapper = mapper;
             }
-            public async Task<Employee> Handle(UpdateEmployeeCommand command, CancellationToken cancellationToken)
+            public async Task<ICommandResult> Handle(UpdateEmployeeCommand command, CancellationToken cancellationToken)
             {
-                var result = await _unitOfWork.Employees.GetByIdAsync(command.Id);
-                if (result == null) throw new NotFoundException(nameof(Employee));
-                _mapper.Map(command, result);
-                await _unitOfWork.Employees.UpdateAsync(result);
-                await _unitOfWork.CompleteAsync();
-                return result;
+                try
+                {
+                    var result = await _unitOfWork.Employees.GetByIdAsync(command.Id);
+                    if (result == null) return new NotFoundResult() { Data = nameof(Employee) };
+                    _mapper.Map(command, result);
+                    await _unitOfWork.Employees.UpdateAsync(result);
+                    await _unitOfWork.CompleteAsync();
+                    return new CommandResult() { Data = result, Success = true };
+                }
+                catch (Exception ex)
+                {
+                    return new BadRequestResult() { Error = ex.Message };
+                }
             }
         }
     }

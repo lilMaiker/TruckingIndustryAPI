@@ -4,6 +4,6 @@
     {
         bool Success { get; }
         object Data { get; }
-        string Errors { get; }
+        string Error { get; }
     }
 }

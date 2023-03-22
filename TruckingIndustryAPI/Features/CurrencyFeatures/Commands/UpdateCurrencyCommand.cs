@@ -3,14 +3,16 @@
 using MediatR;
 
 using System.ComponentModel.DataAnnotations;
+using System.Windows.Input;
 
 using TruckingIndustryAPI.Configuration.UoW;
+using TruckingIndustryAPI.Entities.Command;
 using TruckingIndustryAPI.Entities.Models;
 using TruckingIndustryAPI.Exceptions;
 
 namespace TruckingIndustryAPI.Features.CurrencyFeatures.Commands
 {
-    public class UpdateCurrencyCommand : IRequest<Currency>
+    public class UpdateCurrencyCommand : IRequest<ICommandResult>
     {
         public long Id { get; set; }
         [Required]
@@ -18,7 +20,7 @@ namespace TruckingIndustryAPI.Features.CurrencyFeatures.Commands
         [MaxLength(3, ErrorMessage = "Длина кода должна быть не больше трех символов.")]
         [Required]
         public string? CurrencyCode { get; set; }
-        public class UpdateCurrencyCommandHandler : IRequestHandler<UpdateCurrencyCommand, Currency>
+        public class UpdateCurrencyCommandHandler : IRequestHandler<UpdateCurrencyCommand, ICommandResult>
         {
             private readonly IUnitOfWork _unitOfWork;
             private readonly IMapper _mapper;
@@ -27,14 +29,21 @@ namespace TruckingIndustryAPI.Features.CurrencyFeatures.Commands
                 _unitOfWork = unitOfWork;
                 _mapper = mapper;
             }
-            public async Task<Currency> Handle(UpdateCurrencyCommand command, CancellationToken cancellationToken)
+            public async Task<ICommandResult> Handle(UpdateCurrencyCommand command, CancellationToken cancellationToken)
             {
-                var result = await _unitOfWork.Currency.GetByIdAsync(command.Id);
-                if (result == null) throw new NotFoundException(nameof(Currency));
-                _mapper.Map(command, result);
-                await _unitOfWork.Currency.UpdateAsync(result);
-                await _unitOfWork.CompleteAsync();
-                return result;
+                try
+                {
+                    var result = await _unitOfWork.Currency.GetByIdAsync(command.Id);
+                    if (result == null) return new NotFoundResult() { Data = nameof(Currency) };
+                    _mapper.Map(command, result);
+                    await _unitOfWork.Currency.UpdateAsync(result);
+                    await _unitOfWork.CompleteAsync();
+                    return new CommandResult() { Data = result, Success = true };
+                }
+                catch (Exception ex)
+                {
+                    return new BadRequestResult() { Error = ex.Message };
+                }
             }
         }
     }

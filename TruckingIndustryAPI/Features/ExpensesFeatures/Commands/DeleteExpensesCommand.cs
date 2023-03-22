@@ -23,11 +23,18 @@ namespace TruckingIndustryAPI.Features.ExpensesFeatures.Commands
             }
             public async Task<ICommandResult> Handle(DeleteExpensesCommand command, CancellationToken cancellationToken)
             {
-                var result = await _unitOfWork.Expenses.GetByIdAsync(command.Id);
-                if (result == null) return new NotFoundResult() { };
-                await _unitOfWork.Expenses.DeleteAsync(result.Id);
-                await _unitOfWork.CompleteAsync();
-                return new CommandResult() {Data = result.Id, Errors = null, Success = true };
+                try
+                {
+                    var result = await _unitOfWork.Expenses.GetByIdAsync(command.Id);
+                    if (result == null) return new NotFoundResult() { Data = nameof(Expense) };
+                    await _unitOfWork.Expenses.DeleteAsync(result.Id);
+                    await _unitOfWork.CompleteAsync();
+                    return new CommandResult() { Data = result.Id, Success = true };
+                }
+                catch (Exception ex)
+                {
+                    return new BadRequestResult() { Error = ex.Message };
+                }
             }
         }
     }

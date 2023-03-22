@@ -3,6 +3,7 @@
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
+using TruckingIndustryAPI.Entities.Controller;
 using TruckingIndustryAPI.Features.CargoFeatures.Commands;
 using TruckingIndustryAPI.Features.CarsFeatures.Commands;
 
@@ -13,12 +14,13 @@ namespace TruckingIndustryAPI.Controllers
     [Route("api/[controller]")]
     [ApiController]
     [Authorize]
-    public class CarsController : ControllerBase
+    public class CarsController : BaseApiController
+
     {
         private readonly IMediator _mediator;
         private readonly ILogger _logger;
 
-        public CarsController(IMediator mediator, ILogger<CarsController> logger)
+        public CarsController(IMediator mediator, ILogger<CarsController> logger) : base(logger)
         {
             _mediator = mediator;
             _logger = logger;
@@ -49,13 +51,7 @@ namespace TruckingIndustryAPI.Controllers
 
             var result = await _mediator.Send(createCarCommand);
 
-            if (!result.Success)
-            {
-                _logger.LogError(result.Errors);
-                return BadRequest(new Entities.Command.BadRequestResult { Errors = result.Errors });
-            }
-
-            return Ok(result);
+            return HandleResult(result);
         }
 
         [HttpPut]
@@ -68,15 +64,7 @@ namespace TruckingIndustryAPI.Controllers
 
             var result = await _mediator.Send(updateCarCommand);
 
-            if (!result.Success && result.Errors.Contains("Not Found")) return NotFound();
-
-            if (!result.Success)
-            {
-                _logger.LogError(result.Errors);
-                return BadRequest(new Entities.Command.BadRequestResult { Errors = result.Errors });
-            }
-
-            return Ok(result);
+            return HandleResult(result);
         }
 
         [HttpDelete]
@@ -89,15 +77,7 @@ namespace TruckingIndustryAPI.Controllers
 
             var result = await _mediator.Send(deleteCarCommand);
 
-            if (!result.Success && result.Errors.Contains("Not Found")) return NotFound();
-
-            if (!result.Success)
-            {
-                _logger.LogError(result.Errors);
-                return BadRequest(new Entities.Command.BadRequestResult { Errors = result.Errors });
-            }
-
-            return Ok(result);
+            return HandleResult(result);
         }
     }
 }

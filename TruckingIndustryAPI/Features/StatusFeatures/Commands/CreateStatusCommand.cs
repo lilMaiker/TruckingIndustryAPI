@@ -3,14 +3,15 @@
 using MediatR;
 
 using TruckingIndustryAPI.Configuration.UoW;
+using TruckingIndustryAPI.Entities.Command;
 using TruckingIndustryAPI.Entities.Models;
 
 namespace TruckingIndustryAPI.Features.StatusFeatures.Commands
 {
-    public class CreateStatusCommand : IRequest<Status>
+    public class CreateStatusCommand : IRequest<ICommandResult>
     {
         public string NameStatus { get; set; }
-        public class CreateStatusCommandHandler : IRequestHandler<CreateStatusCommand, Status>
+        public class CreateStatusCommandHandler : IRequestHandler<CreateStatusCommand, ICommandResult>
         {
             private readonly IUnitOfWork _unitOfWork;
             private readonly IMapper _mapper;
@@ -19,12 +20,19 @@ namespace TruckingIndustryAPI.Features.StatusFeatures.Commands
                 _unitOfWork = unitOfWork;
                 _mapper = mapper;
             }
-            public async Task<Status> Handle(CreateStatusCommand command, CancellationToken cancellationToken)
+            public async Task<ICommandResult> Handle(CreateStatusCommand command, CancellationToken cancellationToken)
             {
-                var result = _mapper.Map<Status>(command);
-                await _unitOfWork.Status.AddAsync(result);
-                await _unitOfWork.CompleteAsync();
-                return result;
+                try
+                {
+                    var result = _mapper.Map<Status>(command);
+                    await _unitOfWork.Status.AddAsync(result);
+                    await _unitOfWork.CompleteAsync();
+                    return new CommandResult() { Data = result, Success = true };
+                }
+                catch (Exception ex)
+                {
+                    return new BadRequestResult() { Error = ex.Message };
+                }
             }
         }
     }

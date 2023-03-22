@@ -15,19 +15,26 @@ namespace TruckingIndustryAPI.Features.CurrencyFeatures.Commands
         public class DeleteCurrencyCommandHandler : IRequestHandler<DeleteCurrencyCommand, ICommandResult>
         {
             private readonly IUnitOfWork _unitOfWork;
-            private readonly IMapper _mapper;
-            public DeleteCurrencyCommandHandler(IUnitOfWork unitOfWork, IMapper mapper)
+
+            public DeleteCurrencyCommandHandler(IUnitOfWork unitOfWork)
             {
                 _unitOfWork = unitOfWork;
-                _mapper = mapper;
+
             }
             public async Task<ICommandResult> Handle(DeleteCurrencyCommand command, CancellationToken cancellationToken)
             {
-                var result = await _unitOfWork.Currency.GetByIdAsync(command.Id);
-                if (result == null) return new NotFoundResult() { };
-                await _unitOfWork.Currency.DeleteAsync(result.Id);
-                await _unitOfWork.CompleteAsync();
-                return new CommandResult() {Data = result.Id, Errors = null, Success = true };
+                try
+                {
+                    var result = await _unitOfWork.Currency.GetByIdAsync(command.Id);
+                    if (result == null) return new NotFoundResult() { Data = nameof(Currency)};
+                    await _unitOfWork.Currency.DeleteAsync(result.Id);
+                    await _unitOfWork.CompleteAsync();
+                    return new CommandResult() { Data = result.Id, Success = true };
+                }
+                catch (Exception ex)
+                {
+                    return new BadRequestResult() { Error = ex.Message };
+                }
             }
         }
     }

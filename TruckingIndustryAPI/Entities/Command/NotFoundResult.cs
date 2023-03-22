@@ -4,6 +4,6 @@
     {
         public bool Success => false;
         public object Data { get; set; }
-        public string Errors { get; set; } = "Not Found";
+        public string Error { get; set; } = "Not Found";
     }
 }
