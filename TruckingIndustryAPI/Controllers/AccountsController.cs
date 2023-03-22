@@ -2,6 +2,8 @@
 
 using Google.Apis.Drive.v3.Data;
 
+using MediatR;
+
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
@@ -10,9 +12,13 @@ using Microsoft.AspNetCore.WebUtilities;
 using System.Data;
 
 using TruckingIndustryAPI.Configuration.UoW;
+using TruckingIndustryAPI.Entities.Controller;
 using TruckingIndustryAPI.Entities.DTO.Request;
 using TruckingIndustryAPI.Entities.DTO.Response;
 using TruckingIndustryAPI.Entities.Models.Identity;
+using TruckingIndustryAPI.Extensions.Attributes;
+using TruckingIndustryAPI.Features.AccountFeatures.Commands;
+using TruckingIndustryAPI.Features.BidsFeatures.Commands;
 using TruckingIndustryAPI.Helpers;
 using TruckingIndustryAPI.Services.Email;
 
@@ -20,22 +26,24 @@ namespace TruckingIndustryAPI.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class AccountsController : ControllerBase
+    public class AccountsController : BaseApiController
     {
         private readonly IMapper _mapper;
         private readonly IUnitOfWork _unitOfWork;
         private readonly JwtHandlerService _jwtHandler;
         private readonly IEmailSenderService _emailSender;
         private readonly ILogger _logger;
+        private readonly IMediator _mediator;
 
         public AccountsController(IMapper mapper, JwtHandlerService jwtHandler,
-            IUnitOfWork unitOfWork, IEmailSenderService emailSender, ILogger<AccountsController> logger)
+            IUnitOfWork unitOfWork, IEmailSenderService emailSender, ILogger<AccountsController> logger, IMediator mediator) : base(logger)
         {
             _mapper = mapper;
             _jwtHandler = jwtHandler;
             _unitOfWork = unitOfWork;
             _emailSender = emailSender;
             _logger = logger;
+            _mediator = mediator;
         }
 
         /// <summary>
@@ -349,23 +357,13 @@ namespace TruckingIndustryAPI.Controllers
         }
 
         [HttpPost("UpdateApplicationRoles")]
-        public async Task<IActionResult> UpdateApplicationRoles([FromBody] RoleForUpdateDto roleForUpdateDto)
+        [ValidateModel]
+        [ProducesResponseType(StatusCodes.Status200OK)]
+        [ProducesResponseType(StatusCodes.Status404NotFound)]
+        [ProducesResponseType(StatusCodes.Status400BadRequest)]
+        public async Task<IActionResult> UpdateApplicationRoles([FromBody] UpdateApplicationRolesCommand updateApplicationRolesCommand)
         {
-            var appUser = await _unitOfWork.UserManager.FindByIdAsync(roleForUpdateDto.Id);
-
-            if (appUser == null) NotFound();
-
-            var userRoles = await _unitOfWork.UserManager.GetRolesAsync(appUser);
-
-            var allRoles = _unitOfWork.RoleManager.Roles.ToList();
-
-            await _unitOfWork.UserManager.RemoveFromRolesAsync(appUser, userRoles);
-
-            var addedRoles = roleForUpdateDto.SelectedRoles.Select(s => s.Label);
-
-            await _unitOfWork.UserManager.AddToRolesAsync(appUser, addedRoles);
-
-            return Ok();
+            return HandleResult(await _mediator.Send(updateApplicationRolesCommand));
         }
 
     }
