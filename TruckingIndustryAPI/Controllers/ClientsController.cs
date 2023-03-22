@@ -27,7 +27,7 @@ namespace TruckingIndustryAPI.Controllers
         [ProducesResponseType(StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status404NotFound)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
-        public async Task<IActionResult> GetById(long id)
+        public async Task<IActionResult> GetById([FromRoute] long id)
         {
             return Ok(await _mediator.Send(new GetClientByIdQuery { Id = id }));
         }

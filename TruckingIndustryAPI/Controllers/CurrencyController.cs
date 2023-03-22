@@ -27,7 +27,7 @@ namespace TruckingIndustryAPI.Controllers
         [ValidateModel]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
         [ProducesResponseType(StatusCodes.Status200OK)]
-        public async Task<IActionResult> GetById(long id)
+        public async Task<IActionResult> GetById([FromRoute] long id)
         {
             if (!ModelState.IsValid) return BadRequest(ModelState);
 
@@ -45,7 +45,7 @@ namespace TruckingIndustryAPI.Controllers
         [ValidateModel]
         [ProducesResponseType(StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
-        public async Task<IActionResult> Create(CreateCurrencyCommand createCurrencyCommand)
+        public async Task<IActionResult> Create([FromBody] CreateCurrencyCommand createCurrencyCommand)
         {
             return HandleResult(await _mediator.Send(createCurrencyCommand));
         }
@@ -55,7 +55,7 @@ namespace TruckingIndustryAPI.Controllers
         [ProducesResponseType(StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status404NotFound)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
-        public async Task<IActionResult> Update(UpdateCurrencyCommand updateCurrencyCommand)
+        public async Task<IActionResult> Update([FromBody] UpdateCurrencyCommand updateCurrencyCommand)
         {
             return HandleResult(await _mediator.Send(updateCurrencyCommand));
         }

@@ -26,17 +26,18 @@ namespace TruckingIndustryAPI.Controllers
         [HttpGet("{id}")]
         [ValidateModel]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
+        [ProducesResponseType(StatusCodes.Status404NotFound)]
         [ProducesResponseType(StatusCodes.Status200OK)]
-        public async Task<IActionResult> GetById(long id)
+        public async Task<IActionResult> GetById([FromRoute] long id)
         {
-            return Ok(await _mediator.Send(new GetBidsByIdQuery { Id = id }));
+            return HandleResult(await _mediator.Send(new GetBidsByIdQuery { Id = id }));
         }
 
         [HttpGet]
         [ProducesResponseType(StatusCodes.Status200OK)]
         public async Task<IActionResult> GetAll()
         {
-            return Ok(await _mediator.Send(new GetAllBidsQuery()));
+            return HandleResult(await _mediator.Send(new GetAllBidsQuery()));
         }
 
         [HttpPost]

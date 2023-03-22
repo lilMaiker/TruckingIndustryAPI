@@ -341,12 +341,14 @@ namespace TruckingIndustryAPI.Controllers
         }
 
         [HttpGet("ApplicationUsers")]
+        [ProducesResponseType(StatusCodes.Status200OK)]
         public async Task<IActionResult> ApplicationUsers()
         {
             return Ok(await _unitOfWork.User.GetAllAsync());
         }
 
         [HttpGet("ApplicationRoles")]
+        [ProducesResponseType(StatusCodes.Status200OK)]
         public async Task<IActionResult> ApplicationRoles()
         {
             return Ok(await _unitOfWork.Role.GetAllAsync());

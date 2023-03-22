@@ -15,10 +15,7 @@ namespace TruckingIndustryAPI.Entities.Controller
 
         protected IActionResult HandleResult(ICommandResult result)
         {
-            if (!result.Success && result.Error.Contains("Not Found"))
-            {
-                return NotFound(result.Data);
-            }
+            if (!result.Success && result.Error.Contains("Not Found")) return NotFound(result.Data);
 
             if (!result.Success)
             {

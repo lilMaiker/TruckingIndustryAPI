@@ -27,7 +27,7 @@ namespace TruckingIndustryAPI.Controllers
         [ValidateModel]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
         [ProducesResponseType(StatusCodes.Status200OK)]
-        public async Task<IActionResult> GetById(long id)
+        public async Task<IActionResult> GetById([FromRoute] long id)
         {
             return Ok(await _mediator.Send(new GetCarsByIdQuery { Id = id }));
         }
