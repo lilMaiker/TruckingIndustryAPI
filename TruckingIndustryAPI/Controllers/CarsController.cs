@@ -49,9 +49,7 @@ namespace TruckingIndustryAPI.Controllers
         {
             if (!ModelState.IsValid) return BadRequest(ModelState);
 
-            var result = await _mediator.Send(createCarCommand);
-
-            return HandleResult(result);
+            return HandleResult(await _mediator.Send(createCarCommand));
         }
 
         [HttpPut]
@@ -62,9 +60,7 @@ namespace TruckingIndustryAPI.Controllers
         {
             if (!ModelState.IsValid) return BadRequest(ModelState);
 
-            var result = await _mediator.Send(updateCarCommand);
-
-            return HandleResult(result);
+            return HandleResult(await _mediator.Send(updateCarCommand));
         }
 
         [HttpDelete]
@@ -75,9 +71,7 @@ namespace TruckingIndustryAPI.Controllers
         {
             if (!ModelState.IsValid) return BadRequest(ModelState);
 
-            var result = await _mediator.Send(deleteCarCommand);
-
-            return HandleResult(result);
+            return HandleResult(await _mediator.Send(deleteCarCommand));
         }
     }
 }
