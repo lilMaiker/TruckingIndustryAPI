@@ -33,10 +33,11 @@ namespace TruckingIndustryAPI.Controllers
         [HttpGet("GetById/{id}")]
         [ValidateModel]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
+        [ProducesResponseType(StatusCodes.Status404NotFound)]
         [ProducesResponseType(StatusCodes.Status200OK)]
-        public async Task<IActionResult> GetById(long id)
+        public async Task<IActionResult> GetById([FromRoute] long id)
         {
-            return Ok(await _mediator.Send(new GetCargoByIdQuery { Id = id }));
+            return HandleResult(await _mediator.Send(new GetCargoByIdQuery { Id = id }));
         }
 
         /// <summary>
@@ -47,10 +48,11 @@ namespace TruckingIndustryAPI.Controllers
         [HttpGet("GetByIdBid/{idBid}")]
         [ValidateModel]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
+        [ProducesResponseType(StatusCodes.Status404NotFound)]
         [ProducesResponseType(StatusCodes.Status200OK)]
-        public async Task<IActionResult> GetByIdBid(long idBid)
+        public async Task<IActionResult> GetByIdBid([FromRoute] long idBid)
         {
-            return Ok(await _mediator.Send(new GetCargoByIdBidQuery { Id = idBid }));
+            return HandleResult(await _mediator.Send(new GetCargoByIdBidQuery { Id = idBid }));
         }
 
         /// <summary>
@@ -59,9 +61,10 @@ namespace TruckingIndustryAPI.Controllers
         /// <returns></returns>
         [HttpGet]
         [ProducesResponseType(StatusCodes.Status200OK)]
+        [ProducesResponseType(StatusCodes.Status400BadRequest)]
         public async Task<IActionResult> GetAll()
         {
-            return Ok(await _mediator.Send(new GetAllCargoQuery()));
+            return HandleResult(await _mediator.Send(new GetAllCargoQuery()));
         }
 
         /// <summary>

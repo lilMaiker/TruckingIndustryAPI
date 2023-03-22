@@ -52,13 +52,13 @@ namespace TruckingIndustryAPI.Controllers
                 // If either of these conditions are met, return a bad request.
                 if (userForRegistration == null)
                 {
-                    //_logger.LogError("UserForRegistrationDto is null.");
+                    _logger.LogError("UserForRegistrationDto is null.");
                     return BadRequest(new { message = "UserForRegistrationDto is null." });
                 }
 
                 if (!ModelState.IsValid)
                 {
-                    //_logger.LogError("Invalid model state.");
+                    _logger.LogError("Invalid model state.");
                     return BadRequest(new { message = "Invalid model state." });
                 }
 
@@ -72,7 +72,7 @@ namespace TruckingIndustryAPI.Controllers
                 if (!result.Succeeded)
                 {
                     var errors = result.Errors.Select(e => e.Description);
-                    //_logger.LogError($"ApplicationUser creation failed with errors: {string.Join(", ", errors)}");
+                    _logger.LogError($"ApplicationUser creation failed with errors: {string.Join(", ", errors)}");
                     return BadRequest(new RegistrationResponseDto { Errors = errors });
                 }
 
@@ -103,7 +103,7 @@ namespace TruckingIndustryAPI.Controllers
 <p>Если вы не регистрировались на нашем сайте, проигнорируйте это письмо.</p>
 <p>С уважением,<br>TruckingIndystry</p>
 </body>
-</html>", null);
+</html>", attachments: null);
 
                 // Send the email
                 await _emailSender.SendEmailAsync(message);
@@ -113,12 +113,12 @@ namespace TruckingIndustryAPI.Controllers
                 await _unitOfWork.UserManager.AddToRoleAsync(user, "Viewer");
 
                 // Return a 201 status code to indicate a successful creation
-                //_logger.LogInformation($"ApplicationUser {user.UserName} successfully registered.");
+                _logger.LogInformation($"ApplicationUser {user.UserName} successfully registered.");
                 return StatusCode(201);
             }
             catch (Exception ex)
             {
-                //_logger.LogError($"An error occurred while registering user: {ex}");
+                _logger.LogError($"An error occurred while registering user: {ex}");
                 return StatusCode(500, "An error occurred while registering user.");
             }
         }

@@ -1,15 +1,16 @@
 ﻿using MediatR;
 
 using TruckingIndustryAPI.Configuration.UoW;
+using TruckingIndustryAPI.Entities.Command;
 using TruckingIndustryAPI.Entities.Models;
 using TruckingIndustryAPI.Exceptions;
 
 namespace TruckingIndustryAPI.Features.CargoFeatures.Queries
 {
-    public class GetCargoByIdQuery : IRequest<Cargo>
+    public class GetCargoByIdQuery : IRequest<ICommandResult>
     {
         public long Id { get; set; }
-        public class GetCargoByIdQueryHandler : IRequestHandler<GetCargoByIdQuery, Cargo>
+        public class GetCargoByIdQueryHandler : IRequestHandler<GetCargoByIdQuery, ICommandResult>
         {
             private readonly IUnitOfWork _unitOfWork;
 
@@ -18,11 +19,18 @@ namespace TruckingIndustryAPI.Features.CargoFeatures.Queries
                 _unitOfWork = unitOfWork;
             }
 
-            public async Task<Cargo> Handle(GetCargoByIdQuery request, CancellationToken cancellationToken)
+            public async Task<ICommandResult> Handle(GetCargoByIdQuery request, CancellationToken cancellationToken)
             {
-                var result = await _unitOfWork.Cargo.GetByIdAsync(request.Id);
-                if (result == null) throw new NotFoundException(nameof(Cargo));
-                return result;
+                try
+                {
+                    var result = await _unitOfWork.Cargo.GetByIdAsync(request.Id);
+                    if (result == null) return new NotFoundResult() { Data = nameof(Cargo) };
+                    return new CommandResult() { Data = result, Success = true };
+                }
+                catch (Exception ex)
+                {
+                    return new BadRequestResult() { Error = ex.Message };
+                }
             }
         }
     }

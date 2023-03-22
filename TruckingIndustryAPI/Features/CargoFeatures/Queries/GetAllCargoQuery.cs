@@ -1,13 +1,14 @@
 ﻿using MediatR;
 
 using TruckingIndustryAPI.Configuration.UoW;
+using TruckingIndustryAPI.Entities.Command;
 using TruckingIndustryAPI.Entities.Models;
 
 namespace TruckingIndustryAPI.Features.CargoFeatures.Queries
 {
-    public class GetAllCargoQuery : IRequest<IEnumerable<Cargo>>
+    public class GetAllCargoQuery : IRequest<ICommandResult>
     {
-        public class GetAllCargoQueryHandler : IRequestHandler<GetAllCargoQuery, IEnumerable<Cargo>>
+        public class GetAllCargoQueryHandler : IRequestHandler<GetAllCargoQuery, ICommandResult>
         {
             private readonly IUnitOfWork _unitOfWork;
 
@@ -16,9 +17,18 @@ namespace TruckingIndustryAPI.Features.CargoFeatures.Queries
                 _unitOfWork = unitOfWork;
             }
 
-            public async Task<IEnumerable<Cargo>> Handle(GetAllCargoQuery request, CancellationToken cancellationToken)
+            public async Task<ICommandResult> Handle(GetAllCargoQuery request, CancellationToken cancellationToken)
             {
-                return await _unitOfWork.Cargo.GetAllAsync();
+                try
+                {
+                    var result = await _unitOfWork.Cargo.GetAllAsync();
+
+                    return new CommandResult() { Data = result, Success = true };
+                }
+                catch (Exception ex)
+                {
+                    return new BadRequestResult() { Error = ex.Message };
+                }
             }
         }
     }
