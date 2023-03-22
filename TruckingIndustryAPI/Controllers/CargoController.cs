@@ -4,6 +4,7 @@ using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 using TruckingIndustryAPI.Entities.Controller;
+using TruckingIndustryAPI.Extensions.Attributes;
 using TruckingIndustryAPI.Features.CargoFeatures.Commands;
 
 using TruckingIndustryAPI.Features.CargoFeatures.Queries;
@@ -25,20 +26,20 @@ namespace TruckingIndustryAPI.Controllers
         }
 
         [HttpGet("GetById/{id}")]
+        [ValidateModel]
+        [ProducesResponseType(StatusCodes.Status400BadRequest)]
         [ProducesResponseType(StatusCodes.Status200OK)]
         public async Task<IActionResult> GetById(long id)
         {
-            if (!ModelState.IsValid) return BadRequest(ModelState);
-
             return Ok(await _mediator.Send(new GetCargoByIdQuery { Id = id }));
         }
 
         [HttpGet("GetByIdBid/{idBid}")]
+        [ValidateModel]
+        [ProducesResponseType(StatusCodes.Status400BadRequest)]
         [ProducesResponseType(StatusCodes.Status200OK)]
         public async Task<IActionResult> GetByIdBid(long idBid)
         {
-            if (!ModelState.IsValid) return BadRequest(ModelState);
-
             return Ok(await _mediator.Send(new GetCargoByIdBidQuery { Id = idBid }));
         }
 
@@ -50,34 +51,31 @@ namespace TruckingIndustryAPI.Controllers
         }
 
         [HttpPost]
+        [ValidateModel]
         [ProducesResponseType(StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
         public async Task<IActionResult> Create([FromBody] CreateCargoCommand createCargoCommand)
         {
-            if (!ModelState.IsValid) return BadRequest(ModelState);
-
             return HandleResult(await _mediator.Send(createCargoCommand));
         }
 
         [HttpPut]
+        [ValidateModel]
         [ProducesResponseType(StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status404NotFound)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
         public async Task<IActionResult> Update([FromBody] UpdateCargoCommand updateCargoCommand)
         {
-            if (!ModelState.IsValid) return BadRequest(ModelState);
-
             return HandleResult(await _mediator.Send(updateCargoCommand));
         }
 
         [HttpDelete]
+        [ValidateModel]
         [ProducesResponseType(StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status404NotFound)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
         public async Task<IActionResult> Delete([FromQuery] DeleteCargoCommand deleteCargoCommand)
         {
-            if (!ModelState.IsValid) return BadRequest(ModelState);
-
             return HandleResult(await _mediator.Send(deleteCargoCommand));
         }
     }

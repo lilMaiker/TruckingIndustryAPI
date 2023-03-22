@@ -4,6 +4,7 @@ using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 using TruckingIndustryAPI.Entities.Controller;
+using TruckingIndustryAPI.Extensions.Attributes;
 using TruckingIndustryAPI.Features.BidsFeatures.Commands;
 
 using TruckingIndustryAPI.Features.BidsFeatures.Queries;
@@ -27,6 +28,8 @@ namespace TruckingIndustryAPI.Controllers
         }
 
         [HttpGet("{id}")]
+        [ValidateModel]
+        [ProducesResponseType(StatusCodes.Status400BadRequest)]
         [ProducesResponseType(StatusCodes.Status200OK)]
         public async Task<IActionResult> GetById(long id)
         {
@@ -41,34 +44,31 @@ namespace TruckingIndustryAPI.Controllers
         }
 
         [HttpPost]
+        [ValidateModel]
         [ProducesResponseType(StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
         public async Task<IActionResult> Create(CreateBidCommand createBidsCommand)
         {
-            if (!ModelState.IsValid) return BadRequest(ModelState);
-
             return HandleResult(await _mediator.Send(createBidsCommand));
         }
 
         [HttpPut]
+        [ValidateModel]
         [ProducesResponseType(StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status404NotFound)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
         public async Task<IActionResult> Update(UpdateBidCommand updateBidsCommand)
         {
-            if (!ModelState.IsValid) return BadRequest(ModelState);
-
             return HandleResult(await _mediator.Send(updateBidsCommand));
         }
 
         [HttpDelete]
+        [ValidateModel]
         [ProducesResponseType(StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status404NotFound)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
         public async Task<IActionResult> Delete([FromQuery] DeleteBidCommand deleteBidsCommand)
         {
-            if (!ModelState.IsValid) return BadRequest(ModelState);
-
             return HandleResult(await _mediator.Send(deleteBidsCommand));
         }
     }

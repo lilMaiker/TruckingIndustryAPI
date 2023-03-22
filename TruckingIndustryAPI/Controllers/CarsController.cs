@@ -4,6 +4,7 @@ using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 using TruckingIndustryAPI.Entities.Controller;
+using TruckingIndustryAPI.Extensions.Attributes;
 using TruckingIndustryAPI.Features.CargoFeatures.Commands;
 using TruckingIndustryAPI.Features.CarsFeatures.Commands;
 
@@ -27,11 +28,11 @@ namespace TruckingIndustryAPI.Controllers
         }
 
         [HttpGet("{id}")]
+        [ValidateModel]
+        [ProducesResponseType(StatusCodes.Status400BadRequest)]
         [ProducesResponseType(StatusCodes.Status200OK)]
         public async Task<IActionResult> GetById(long id)
         {
-            if (!ModelState.IsValid) return BadRequest();
-
             return Ok(await _mediator.Send(new GetCarsByIdQuery { Id = id }));
         }
 
@@ -43,34 +44,31 @@ namespace TruckingIndustryAPI.Controllers
         }
 
         [HttpPost]
+        [ValidateModel]
         [ProducesResponseType(StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
         public async Task<IActionResult> Create([FromBody] CreateCarCommand createCarCommand)
         {
-            if (!ModelState.IsValid) return BadRequest(ModelState);
-
             return HandleResult(await _mediator.Send(createCarCommand));
         }
 
         [HttpPut]
+        [ValidateModel]
         [ProducesResponseType(StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status404NotFound)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
         public async Task<IActionResult> Update([FromBody] UpdateCarCommand updateCarCommand)
         {
-            if (!ModelState.IsValid) return BadRequest(ModelState);
-
             return HandleResult(await _mediator.Send(updateCarCommand));
         }
 
         [HttpDelete]
+        [ValidateModel]
         [ProducesResponseType(StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status404NotFound)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
         public async Task<IActionResult> Delete([FromQuery] DeleteCarCommand deleteCarCommand)
         {
-            if (!ModelState.IsValid) return BadRequest(ModelState);
-
             return HandleResult(await _mediator.Send(deleteCarCommand));
         }
     }

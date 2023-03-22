@@ -4,6 +4,7 @@ using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 using TruckingIndustryAPI.Entities.Controller;
+using TruckingIndustryAPI.Extensions.Attributes;
 using TruckingIndustryAPI.Features.FoundationFeatures.Commands;
 using TruckingIndustryAPI.Features.PositionFeatures.Commands;
 using TruckingIndustryAPI.Features.PositionFeatures.Queries;
@@ -32,7 +33,9 @@ namespace TruckingIndustryAPI.Controllers
         }
 
         [HttpGet("{id}")]
+        [ValidateModel]
         [ProducesResponseType(StatusCodes.Status200OK)]
+        [ProducesResponseType(StatusCodes.Status400BadRequest)]
         public async Task<IActionResult> GetById(long id)
         {
             if (!ModelState.IsValid) return BadRequest(ModelState);
@@ -41,34 +44,31 @@ namespace TruckingIndustryAPI.Controllers
         }
 
         [HttpPost]
+        [ValidateModel]
         [ProducesResponseType(StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
         public async Task<IActionResult> Create(CreatePositionCommand createPositionCommand)
         {
-            if (!ModelState.IsValid) return BadRequest(ModelState);
-
             return HandleResult(await _mediator.Send(createPositionCommand));
         }
 
         [HttpPut]
+        [ValidateModel]
         [ProducesResponseType(StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status404NotFound)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
         public async Task<IActionResult> Update(UpdatePositionCommand updatePositionCommand)
         {
-            if (!ModelState.IsValid) return BadRequest(ModelState);
-
             return HandleResult(await _mediator.Send(updatePositionCommand));
         }
 
         [HttpDelete]
+        [ValidateModel]
         [ProducesResponseType(StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status404NotFound)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
         public async Task<IActionResult> Delete([FromQuery] DeletePositionCommand deletePositionCommand)
         {
-            if (!ModelState.IsValid) return BadRequest(ModelState);
-
             return HandleResult(await _mediator.Send(deletePositionCommand));
         }
     }

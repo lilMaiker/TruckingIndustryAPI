@@ -4,6 +4,7 @@ using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 using TruckingIndustryAPI.Entities.Controller;
+using TruckingIndustryAPI.Extensions.Attributes;
 using TruckingIndustryAPI.Features.CurrencyFeatures.Commands;
 using TruckingIndustryAPI.Features.EmployeeFeatures.Commands;
 using TruckingIndustryAPI.Features.EmployeeFeatures.Queries;
@@ -31,43 +32,40 @@ namespace TruckingIndustryAPI.Controllers
         }
 
         [HttpGet("{id}")]
+        [ValidateModel]
         [ProducesResponseType(StatusCodes.Status200OK)]
+        [ProducesResponseType(StatusCodes.Status400BadRequest)]
         public async Task<IActionResult> GetById(long id)
         {
-            if (!ModelState.IsValid) return BadRequest(ModelState);
-
             return Ok(await _mediator.Send(new GetEmployeeByIdQuery { Id = id }));
         }
 
         [HttpPost]
+        [ValidateModel]
         [ProducesResponseType(StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
         public async Task<IActionResult> Create(CreateEmployeeCommand createEmployeeCommand)
         {
-            if (!ModelState.IsValid) return BadRequest(ModelState);
-
             return HandleResult(await _mediator.Send(createEmployeeCommand));
         }
 
         [HttpPut]
+        [ValidateModel]
         [ProducesResponseType(StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status404NotFound)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
         public async Task<IActionResult> Update(UpdateEmployeeCommand updateEmployeeCommand)
         {
-            if (!ModelState.IsValid) return BadRequest(ModelState);
-
             return HandleResult(await _mediator.Send(updateEmployeeCommand));
         }
 
         [HttpDelete]
+        [ValidateModel]
         [ProducesResponseType(StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status404NotFound)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
         public async Task<IActionResult> Delete([FromQuery] DeleteEmployeeCommand deleteEmployeeCommand)
         {
-            if (!ModelState.IsValid) return BadRequest(ModelState);
-
             return HandleResult(await _mediator.Send(deleteEmployeeCommand));
         }
 

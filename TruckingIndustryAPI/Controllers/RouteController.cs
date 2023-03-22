@@ -4,6 +4,7 @@ using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 using TruckingIndustryAPI.Entities.Controller;
+using TruckingIndustryAPI.Extensions.Attributes;
 using TruckingIndustryAPI.Features.PositionFeatures.Commands;
 using TruckingIndustryAPI.Features.Routes.Commands;
 
@@ -42,11 +43,11 @@ namespace TruckingIndustryAPI.Controllers
         /// <param name="id">Идентификатор маршрута</param>
         /// <returns>Маршрут</returns>
         [HttpGet("GetById/{id}")]
+        [ValidateModel]
         [ProducesResponseType(StatusCodes.Status200OK)]
+        [ProducesResponseType(StatusCodes.Status400BadRequest)]
         public async Task<IActionResult> GetById(long id)
         {
-            if (!ModelState.IsValid) return BadRequest(ModelState);
-
             return Ok(await _mediator.Send(new GetRouteByIdQuery { Id = id }));
         }
 
@@ -56,11 +57,11 @@ namespace TruckingIndustryAPI.Controllers
         /// <param name="id">Идентификатор заявки</param>
         /// <returns>Маршрут</returns>
         [HttpGet("GetByIdBid/{idBid}")]
+        [ValidateModel]
         [ProducesResponseType(StatusCodes.Status200OK)]
+        [ProducesResponseType(StatusCodes.Status400BadRequest)]
         public async Task<IActionResult> GetByIdBid(long idBid)
         {
-            if (!ModelState.IsValid) return BadRequest(ModelState);
-
             return Ok(await _mediator.Send(new GetRoutesByIdBidQuery { Id = idBid }));
         }
 
@@ -70,12 +71,11 @@ namespace TruckingIndustryAPI.Controllers
         /// <param name="createRouteCommand">Модель для создания маршрута</param>
         /// <returns>Маршрут</returns>
         [HttpPost]
+        [ValidateModel]
         [ProducesResponseType(StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
         public async Task<IActionResult> Create([FromBody] CreateRouteCommand createRouteCommand)
         {
-            if (!ModelState.IsValid) return BadRequest(ModelState);
-
             return HandleResult(await _mediator.Send(createRouteCommand));
         }
 
@@ -85,13 +85,12 @@ namespace TruckingIndustryAPI.Controllers
         /// <param name="updateRouteCommand">Модель для обновления маршрута</param>
         /// <returns>Маршрут</returns>
         [HttpPut]
+        [ValidateModel]
         [ProducesResponseType(StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status404NotFound)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
         public async Task<IActionResult> Update([FromBody] UpdateRouteCommand updateRouteCommand)
         {
-            if (!ModelState.IsValid) return BadRequest(ModelState);
-
             return HandleResult(await _mediator.Send(updateRouteCommand));
         }
 
@@ -101,13 +100,12 @@ namespace TruckingIndustryAPI.Controllers
         /// <param name="deleteRouteCommand">Модель для удаления маршрута</param>
         /// <returns>Маршрут</returns>
         [HttpDelete]
+        [ValidateModel]
         [ProducesResponseType(StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status404NotFound)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
         public async Task<IActionResult> Delete([FromQuery] DeleteRouteCommand deleteRouteCommand)
         {
-            if (!ModelState.IsValid) return BadRequest(ModelState);
-
             return HandleResult(await _mediator.Send(deleteRouteCommand));
         }
     }

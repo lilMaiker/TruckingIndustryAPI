@@ -34,7 +34,6 @@ namespace TruckingIndustryAPI.Controllers
             _mapper = mapper;
             _jwtHandler = jwtHandler;
             _unitOfWork = unitOfWork;
-            //_logger = logger;
             _emailSender = emailSender;
             _logger = logger;
         }
