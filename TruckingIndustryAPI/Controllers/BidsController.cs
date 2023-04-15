@@ -13,7 +13,7 @@ namespace TruckingIndustryAPI.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    [Authorize]
+    //[Authorize]
     public class BidsController : BaseApiController
     {
         private readonly IMediator _mediator;

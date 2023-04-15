@@ -16,16 +16,20 @@ namespace TruckingIndustryAPI.Repository.Cargos
             return true;
         }
 
+        /// <summary>
+        /// Асинхронный метод для получения общего веса грузов по идентификатору автомобиля.
+        /// </summary>
+        /// <param name="carId">Идентификатор автомобиля</param>
+        /// <returns>Общий вес грузов</returns>
         public async Task<double> GetTotalWeightByCarIdAsync(long carId)
         {
-            // Получить все грузы для машины
-            var cargoes = await dbSet.Include(i => i.Bids).Where(w => w.Bids.CarsId == carId).ToListAsync();
-
             // Суммировать веса грузов
-            double sumWeight = cargoes.Sum(s => s.WeightCargo);
+            double sumWeight = await dbSet.Where(w => w.Bids.CarsId == carId).SumAsync(s => s.WeightCargo);
 
             return sumWeight;
         }
+
+        //Bug: The method does not check if the list of cargoes is empty before attempting to sum the weights.
 
         public override async Task<IEnumerable<Cargo>> GetAllAsync()
         {
