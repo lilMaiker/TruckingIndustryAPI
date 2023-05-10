@@ -1,11 +1,17 @@
-﻿using MediatR;
+﻿using Elmah.Contrib.WebApi;
+
+using MediatR;
 
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.IdentityModel.Tokens;
 using Microsoft.OpenApi.Models;
 
+using Prometheus;
+
 using System.Text;
+using System.Web.Http;
+using System.Web.Http.ExceptionHandling;
 
 using TruckingIndustryAPI.Data;
 using TruckingIndustryAPI.Entities.Models.Identity;
@@ -13,6 +19,8 @@ using TruckingIndustryAPI.Extensions;
 using TruckingIndustryAPI.Helpers;
 using TruckingIndustryAPI.Services;
 using TruckingIndustryAPI.Services.Email;
+
+using static Org.BouncyCastle.Math.EC.ECCurve;
 
 namespace TruckingIndustryAPI
 {
@@ -157,6 +165,13 @@ namespace TruckingIndustryAPI
                 });
             });
 
+            services.AddElmahIo(options =>
+            {
+                options.ApiKey = "d23cc1db1ccb4983ba88a8779f800192";
+                options.LogId = new Guid("3d304a7f-a9c5-47f0-9261-b5e65577d967");
+            });
+
+
             // Регистрация службы JwtHandler с ограниченным временем жизни (scoped lifetime).
             services.AddScoped<JwtHandlerService>();
 
@@ -190,6 +205,9 @@ namespace TruckingIndustryAPI
                 });
             }
 
+            app.UseElmahIo();
+            app.UseMetricServer();
+            app.UseHttpMetrics();
             // Разрешаем редирект на HTTPS
             app.UseHttpsRedirection();
 

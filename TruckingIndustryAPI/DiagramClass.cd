@@ -1,0 +1,1292 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1">
+  <Class Name="TruckingIndustryAPI.Configuration.UoW.UnitOfWork" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="57.75" Y="12" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAARBACGASAABAAgEEAAAAQgKAAAAAgFAQAAAAAAAAQ=</HashCode>
+      <FileName>Configuration\UoW\UnitOfWork.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="TruckingIndustryAPI.Configuration.RoleConfiguration" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="63" Y="11" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAABAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Configuration\RoleConfiguration.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="TruckingIndustryAPI.Controllers.AccountsController" Collapsed="true">
+    <Position X="30.25" Y="11.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>EAABAAABAAAAECAEQkABAgAAIACAAAAAAAEwAAAAAAA=</HashCode>
+      <FileName>Controllers\AccountsController.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="TruckingIndustryAPI.Controllers.BidsController" Collapsed="true">
+    <Position X="32.5" Y="11.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAQBAAAAAAAAAAAAAAAAAAAAAAEAAEAAAgAAABAAAIA=</HashCode>
+      <FileName>Controllers\BidsController.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="TruckingIndustryAPI.Controllers.CargoController" Collapsed="true">
+    <Position X="34.75" Y="11.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>gAQBAAAAAAAAAAAAAAAAAAAAAAEAAEAAAgAAAAAAAIA=</HashCode>
+      <FileName>Controllers\CargoController.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="TruckingIndustryAPI.Controllers.CarsController" Collapsed="true">
+    <Position X="37" Y="11.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAQBAAAAAAAAAAAAAAAAAAAAAAEAAEAAAgAAAAAAAIA=</HashCode>
+      <FileName>Controllers\CarsController.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="TruckingIndustryAPI.Controllers.ClientsController" Collapsed="true">
+    <Position X="39.25" Y="11.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAQBAAAAAAAAAAAAAAAAAAAAAAEAAEAAAgAAAAAAAIA=</HashCode>
+      <FileName>Controllers\ClientsController.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="TruckingIndustryAPI.Controllers.CurrencyController" Collapsed="true">
+    <Position X="41.5" Y="11.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAQBAAAAAAAAAAAAAAAAAAAAAAEAAEAAAgAAAAAAAIA=</HashCode>
+      <FileName>Controllers\CurrencyController.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="TruckingIndustryAPI.Controllers.EmployeesController" Collapsed="true">
+    <Position X="43.75" Y="11.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAQBAAAAAAAAAAAAAAAAAAAAAAEAAEAAAgAAAAAAAIA=</HashCode>
+      <FileName>Controllers\EmployeesController.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="TruckingIndustryAPI.Controllers.ExpensesController" Collapsed="true">
+    <Position X="46" Y="11.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>gAQBAAAAAAAAAAAAAAAAAAAAAAEAAEAAAgAAAAAAAIA=</HashCode>
+      <FileName>Controllers\ExpensesController.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="TruckingIndustryAPI.Controllers.FoundationController" Collapsed="true">
+    <Position X="48.25" Y="11.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAQBAAAAAAAAAAAAAAAAAAAAAAEAAEAAAgAAAAAAAIA=</HashCode>
+      <FileName>Controllers\FoundationController.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="TruckingIndustryAPI.Controllers.PositionsController" Collapsed="true">
+    <Position X="50.5" Y="11.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAQBAAAAAAAAAAAAAAAAAAAAAAEAAEAAAgAAAAAAAIA=</HashCode>
+      <FileName>Controllers\PositionsController.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="TruckingIndustryAPI.Controllers.RouteController" Collapsed="true">
+    <Position X="52.75" Y="11.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>gAQBAAAAAAAAAAAAAAAAAAAAAAEAAEAAAgAAAAAAAIA=</HashCode>
+      <FileName>Controllers\RouteController.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="TruckingIndustryAPI.Controllers.SalesForecastController" Collapsed="true">
+    <Position X="23.5" Y="11.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAABAAAAAgAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Controllers\SalesForecastController.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="TruckingIndustryAPI.Controllers.StatusController" Collapsed="true">
+    <Position X="25.75" Y="11.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAQBAAAAAAAAAAAAAAAAAAAAAAEAAEAAAgAAAAAAAIA=</HashCode>
+      <FileName>Controllers\StatusController.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="TruckingIndustryAPI.Controllers.TypeCargoController" Collapsed="true">
+    <Position X="28" Y="11.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAQBAAAAAAAAAAAAAAAAAAAAAAEAAEAAAgAAAAAAAIA=</HashCode>
+      <FileName>Controllers\TypeCargoController.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="TruckingIndustryAPI.Data.ApplicationDbContext" Collapsed="true">
+    <Position X="57.75" Y="4" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAABAAAGAQAAAAAgAEAAAAAAGAAAAAAFAQAAAAAAAAQ=</HashCode>
+      <FileName>Data\ApplicationDbContext.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="TruckingIndustryAPI.Entities.Base.BaseModel" Collapsed="true">
+    <Position X="70" Y="4" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAACAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Entities\Base\BaseModel.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="TruckingIndustryAPI.Entities.Base.BaseModelLong" Collapsed="true">
+    <Position X="35.75" Y="13" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAACAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Entities\Base\BaseModelLong.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="TruckingIndustryAPI.Entities.Base.BasePersonInfo" Collapsed="true">
+    <Position X="31.25" Y="14.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAACAAACAAAAAAAAAAQAQABAEAAAAAAAAAAAAAAIA=</HashCode>
+      <FileName>Entities\Base\BasePersonInfo.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="TruckingIndustryAPI.Entities.Command.BadRequestResult" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="68.25" Y="4" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAQAAAAAAAAAAAgAAABAAAAAAAAAAAAA=</HashCode>
+      <FileName>Entities\Command\BadRequestResult.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="TruckingIndustryAPI.Entities.Command.CommandResult" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="73.5" Y="4" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAQAAAAAAAAAAAgAAABAAAAAAAAAAAAA=</HashCode>
+      <FileName>Entities\Command\CommandResult.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="TruckingIndustryAPI.Entities.Command.NotFoundResult" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="73.5" Y="10" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAQAAAAAAAAAAAgAAABAAAAAAAAAAAAA=</HashCode>
+      <FileName>Entities\Command\NotFoundResult.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="TruckingIndustryAPI.Entities.Controller.BaseApiController" Collapsed="true">
+    <Position X="38.25" Y="10" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAIAAAAAAAAAAAIAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Entities\Controller\BaseApiController.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="TruckingIndustryAPI.Entities.DTO.Request.ExternalAuthDto" Collapsed="true">
+    <Position X="63" Y="7" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAEAAAAAAAAAAIAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Entities\DTO\Request\ExternalAuthDto.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="TruckingIndustryAPI.Entities.DTO.Request.ForgotPasswordDto" Collapsed="true">
+    <Position X="66.5" Y="7" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAACAAAACAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Entities\DTO\Request\ForgotPasswordDto.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="TruckingIndustryAPI.Entities.DTO.Request.ResetPasswordDto" Collapsed="true">
+    <Position X="61.25" Y="11" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAACAAAAAAAAAAAAAAAAAAAAACAAAAAAABIAA=</HashCode>
+      <FileName>Entities\DTO\Request\ResetPasswordDto.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="TruckingIndustryAPI.Entities.DTO.Request.RoleSelect" Collapsed="true">
+    <Position X="64.75" Y="11" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAEAAAAAAAAAAAAAAAAAAAAAAAAAAgAAAAAAA=</HashCode>
+      <FileName>Entities\DTO\Request\RoleSelect.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="TruckingIndustryAPI.Entities.DTO.Request.TwoFactorDto" Collapsed="true">
+    <Position X="75.25" Y="11" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAACAEAAAAAAAAAAAAAAAAAAAAAAAAAAABAAA=</HashCode>
+      <FileName>Entities\DTO\Request\TwoFactorDto.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="TruckingIndustryAPI.Entities.DTO.Request.UserForAuthenticationDto" Collapsed="true">
+    <Position X="63" Y="13" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAACAAAAAAAAAAAAAAAAAAAAACAAAAAAAAAAA=</HashCode>
+      <FileName>Entities\DTO\Request\UserForAuthenticationDto.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="TruckingIndustryAPI.Entities.DTO.Request.UserForRegistrationDto" Collapsed="true">
+    <Position X="64.75" Y="13" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAACAAAAAAAAAAAAAAAAAAAAACAAAAAAAAAAA=</HashCode>
+      <FileName>Entities\DTO\Request\UserForRegistrationDto.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="TruckingIndustryAPI.Entities.DTO.Response.AuthResponseDto" Collapsed="true">
+    <Position X="66.5" Y="4" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>QAAAAAAAACAEAAAAEABAAAEAAAAAAAAAAAAAABAAECA=</HashCode>
+      <FileName>Entities\DTO\Response\AuthResponseDto.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="TruckingIndustryAPI.Entities.DTO.Response.RegistrationResponseDto" Collapsed="true">
+    <Position X="59.5" Y="11" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAQAAAAACAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Entities\DTO\Response\RegistrationResponseDto.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="TruckingIndustryAPI.Entities.Models.Identity.ApplicationRole" Collapsed="true">
+    <Position X="61.25" Y="4" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAE=</HashCode>
+      <FileName>Entities\Models\Identity\ApplicationRole.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="TruckingIndustryAPI.Entities.Models.Identity.ApplicationUser" Collapsed="true">
+    <Position X="63" Y="4" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Entities\Models\Identity\ApplicationUser.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="TruckingIndustryAPI.Entities.Models.Identity.ApplicationUserRoles" Collapsed="true">
+    <Position X="64.75" Y="4" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Entities\Models\Identity\ApplicationUserRoles.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="TruckingIndustryAPI.Entities.Models.Bid" Collapsed="true">
+    <Position X="39.25" Y="14.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>gAAAIAAuAgAAAAQAAAAAAAAACAAAAAAEgAAAAIACQAA=</HashCode>
+      <FileName>Entities\Models\Bid.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="TruckingIndustryAPI.Entities.Models.Car" Collapsed="true">
+    <Position X="43.75" Y="14.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AABAACAAAAAAAAAAgCABAAAAAAEAAAAAAAAAAAIAACA=</HashCode>
+      <FileName>Entities\Models\Car.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="TruckingIndustryAPI.Entities.Models.Cargo" Collapsed="true">
+    <Position X="48.25" Y="14.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAEAAAAQAAAAgAAAAACAQAAAAAAAAAAAAAAACAAAA=</HashCode>
+      <FileName>Entities\Models\Cargo.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="TruckingIndustryAPI.Entities.Models.CarWithFreeWeight" Collapsed="true">
+    <Position X="43.75" Y="15.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAEAAAAgAAAAAAAAAA=</HashCode>
+      <FileName>Entities\Models\CarWithFreeWeight.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="TruckingIndustryAPI.Entities.Models.Client" Collapsed="true">
+    <Position X="30.25" Y="15.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Entities\Models\Client.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="TruckingIndustryAPI.Entities.Models.Currency" Collapsed="true">
+    <Position X="23.5" Y="14.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAQAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Entities\Models\Currency.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="TruckingIndustryAPI.Entities.Models.Employee" Collapsed="true">
+    <Position X="32.5" Y="15.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAACwAAAAAAAAAACAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Entities\Models\Employee.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="TruckingIndustryAPI.Entities.Models.Expense" Collapsed="true">
+    <Position X="25.75" Y="14.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAEAwAAAAgAAAAAAACACAAAAAQAAAAIAAAAAAA=</HashCode>
+      <FileName>Entities\Models\Expense.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="TruckingIndustryAPI.Entities.Models.Forecast" Collapsed="true">
+    <Position X="64.75" Y="7" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAABAAAAAAAAAAAAAAAAEAAAAAEAAAAAAAAAAA=</HashCode>
+      <FileName>Entities\Models\Forecast.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="TruckingIndustryAPI.Entities.Models.Foundation" Collapsed="true">
+    <Position X="28" Y="14.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAgAAAAAgAAAAAAAIAAAAAAAAAACQ=</HashCode>
+      <FileName>Entities\Models\Foundation.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="TruckingIndustryAPI.Entities.Models.Position" Collapsed="true">
+    <Position X="34.75" Y="14.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAABAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Entities\Models\Position.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="TruckingIndustryAPI.Entities.Models.Route" Collapsed="true">
+    <Position X="37" Y="14.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAQAAgAgAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Entities\Models\Route.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="TruckingIndustryAPI.Entities.Models.SalesData" Collapsed="true">
+    <Position X="66.5" Y="11" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>gAAAIAAIEgAAAAAAAAAABAAAAAAAAAAAAAAAAAACQAA=</HashCode>
+      <FileName>Entities\Models\SalesData.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="TruckingIndustryAPI.Entities.Models.SalesPrediction" Collapsed="true">
+    <Position X="68.25" Y="11" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Entities\Models\SalesPrediction.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="TruckingIndustryAPI.Entities.Models.Status" Collapsed="true">
+    <Position X="41.5" Y="14.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Entities\Models\Status.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="TruckingIndustryAPI.Entities.Models.TypeCargo" Collapsed="true">
+    <Position X="46" Y="14.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAgAAA=</HashCode>
+      <FileName>Entities\Models\TypeCargo.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="TruckingIndustryAPI.Exceptions.NotFoundException" Collapsed="true">
+    <Position X="71.75" Y="10" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Exceptions\NotFoundException.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="TruckingIndustryAPI.Extensions.Attributes.ServiceLifetimeAttribute" Collapsed="true">
+    <Position X="71.75" Y="11" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAEAAAAAAAAA=</HashCode>
+      <FileName>Extensions\Attributes\ServiceLifetimeAttribute.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="TruckingIndustryAPI.Extensions.Attributes.ValidateModelAttribute" Collapsed="true">
+    <Position X="66.5" Y="13" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAQAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Extensions\Attributes\ValidateModelAttribute.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="TruckingIndustryAPI.Extensions.ServiceExtensions" Collapsed="true">
+    <Position X="70" Y="11" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAQAAAAAAAAMAAAAAAAIAAAAIAAAAAAAAAAAAA=</HashCode>
+      <FileName>Extensions\ServiceExtensions.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="TruckingIndustryAPI.Features.AccountFeatures.Commands.RegisterUserCommand" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="57.75" Y="11" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAACAAAAAAAAAAAAAAAAAAAAACAAAAAAAAAAA=</HashCode>
+      <FileName>Features\AccountFeatures\Commands\RegisterUserCommand.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="TruckingIndustryAPI.Features.AccountFeatures.Commands.UpdateApplicationRolesCommand" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="59.5" Y="12" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAACAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAIAAAA=</HashCode>
+      <FileName>Features\AccountFeatures\Commands\UpdateApplicationRolesCommand.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="TruckingIndustryAPI.Features.BidsFeatures.Commands.CreateBidCommand" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="75.25" Y="4" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>gAAAIAAoAgAAAAQAAAAAAAAAAAAAAAAAgAAAAIACQAA=</HashCode>
+      <FileName>Features\BidsFeatures\Commands\CreateBidCommand.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="TruckingIndustryAPI.Features.BidsFeatures.Commands.DeleteBidCommand" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="57.75" Y="6" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAACAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Features\BidsFeatures\Commands\DeleteBidCommand.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="TruckingIndustryAPI.Features.BidsFeatures.Commands.UpdateBidCommand" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="61.25" Y="12" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>gAACIAAoAgAAAAQAAAAAAAAAAAAAAAAAgAAAAIACQAA=</HashCode>
+      <FileName>Features\BidsFeatures\Commands\UpdateBidCommand.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="TruckingIndustryAPI.Features.BidsFeatures.Queries.GetAllBidsQuery" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="68.25" Y="7" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Features\BidsFeatures\Queries\GetAllBidsQuery.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="TruckingIndustryAPI.Features.BidsFeatures.Queries.GetBidsByIdQuery" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="70" Y="8" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAACAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Features\BidsFeatures\Queries\GetBidsByIdQuery.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="TruckingIndustryAPI.Features.BidsFeatures.Queries.GetReportAllBidsQuery" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="70" Y="9" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Features\BidsFeatures\Queries\GetReportAllBidsQuery.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="TruckingIndustryAPI.Features.CargoFeatures.Commands.CreateCargoCommand" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="59.5" Y="5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAEAAAAAAAAAgAAAAACAAAAAAAAAAAAAAAAACAAAA=</HashCode>
+      <FileName>Features\CargoFeatures\Commands\CreateCargoCommand.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="TruckingIndustryAPI.Features.CargoFeatures.Commands.DeleteCargoCommand" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="61.25" Y="6" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAACAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Features\CargoFeatures\Commands\DeleteCargoCommand.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="TruckingIndustryAPI.Features.CargoFeatures.Commands.UpdateCargoCommand" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="64.75" Y="12" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAACEAAAAAAAAAgAAAAACAAAAAAAAAAAAAAAAACAAAA=</HashCode>
+      <FileName>Features\CargoFeatures\Commands\UpdateCargoCommand.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="TruckingIndustryAPI.Features.CargoFeatures.Queries.GetAllCargoQuery" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="70" Y="7" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Features\CargoFeatures\Queries\GetAllCargoQuery.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="TruckingIndustryAPI.Features.CargoFeatures.Queries.GetCargoByIdBidQuery" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="71.75" Y="8" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAACAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Features\CargoFeatures\Queries\GetCargoByIdBidQuery.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="TruckingIndustryAPI.Features.CargoFeatures.Queries.GetCargoByIdQuery" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="73.5" Y="8" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAACAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Features\CargoFeatures\Queries\GetCargoByIdQuery.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="TruckingIndustryAPI.Features.CarsFeatures.Commands.CreateCarCommand" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="57.75" Y="5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AABAACAAAAAAAAAAgCABAAAAAAEAAAAAAAAAAAIAACA=</HashCode>
+      <FileName>Features\CarsFeatures\Commands\CreateCarCommand.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="TruckingIndustryAPI.Features.CarsFeatures.Commands.DeleteCarCommand" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="59.5" Y="6" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAACAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Features\CarsFeatures\Commands\DeleteCarCommand.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="TruckingIndustryAPI.Features.CarsFeatures.Commands.UpdateCarCommand" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="63" Y="12" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AABCACAAAAAAAAAAgCABAAAAAAEAAAAAAAAAAAIAACA=</HashCode>
+      <FileName>Features\CarsFeatures\Commands\UpdateCarCommand.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="TruckingIndustryAPI.Features.CarsFeatures.Queries.GetAllCarsQuery" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="71.75" Y="7" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Features\CarsFeatures\Queries\GetAllCarsQuery.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="TruckingIndustryAPI.Features.CarsFeatures.Queries.GetCarsByIdQuery" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="75.25" Y="8" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAACAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Features\CarsFeatures\Queries\GetCarsByIdQuery.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="TruckingIndustryAPI.Features.ClientFeatures.Commands.CreateClientCommand" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="61.25" Y="5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAACAAACAAAAAAAAAAQAQABAEAAAAAAAAAAAAAAIA=</HashCode>
+      <FileName>Features\ClientFeatures\Commands\CreateClientCommand.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="TruckingIndustryAPI.Features.ClientFeatures.Commands.DeleteClientCommand" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="63" Y="6" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAACAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Features\ClientFeatures\Commands\DeleteClientCommand.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="TruckingIndustryAPI.Features.ClientFeatures.Commands.UpdateClientCommand" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="66.5" Y="12" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAACACAAACAAAAAAAAAAQAQABAEAAAAAAAAAAAAAAIA=</HashCode>
+      <FileName>Features\ClientFeatures\Commands\UpdateClientCommand.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="TruckingIndustryAPI.Features.ClientFeatures.Queries.GetAllClientQuery" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="73.5" Y="7" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Features\ClientFeatures\Queries\GetAllClientQuery.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="TruckingIndustryAPI.Features.ClientFeatures.Queries.GetClientByIdQuery" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="57.75" Y="9" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAACAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Features\ClientFeatures\Queries\GetClientByIdQuery.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="TruckingIndustryAPI.Features.CurrencyFeatures.Commands.CreateCurrencyCommand" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="63" Y="5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAQAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Features\CurrencyFeatures\Commands\CreateCurrencyCommand.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="TruckingIndustryAPI.Features.CurrencyFeatures.Commands.DeleteCurrencyCommand" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="64.75" Y="6" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAACAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Features\CurrencyFeatures\Commands\DeleteCurrencyCommand.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="TruckingIndustryAPI.Features.CurrencyFeatures.Commands.UpdateCurrencyCommand" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="68.25" Y="12" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAACAAAAAAAAAAAAAQAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Features\CurrencyFeatures\Commands\UpdateCurrencyCommand.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="TruckingIndustryAPI.Features.CurrencyFeatures.Queries.GetAllCurrencyQuery" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="75.25" Y="7" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Features\CurrencyFeatures\Queries\GetAllCurrencyQuery.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="TruckingIndustryAPI.Features.CurrencyFeatures.Queries.GetCurrencyByIdQuery" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="59.5" Y="9" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAACAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Features\CurrencyFeatures\Queries\GetCurrencyByIdQuery.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="TruckingIndustryAPI.Features.EmployeeFeatures.Commands.CreateEmployeeCommand" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="64.75" Y="5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAACAAACAAAACAAAAAQAQABAGAAAAAAAAAAAAAAIA=</HashCode>
+      <FileName>Features\EmployeeFeatures\Commands\CreateEmployeeCommand.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="TruckingIndustryAPI.Features.EmployeeFeatures.Commands.DeleteEmployeeCommand" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="66.5" Y="6" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAACAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Features\EmployeeFeatures\Commands\DeleteEmployeeCommand.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="TruckingIndustryAPI.Features.EmployeeFeatures.Commands.UpdateEmployeeCommand" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="70" Y="12" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAACACAAACAAAACAAAAAQAQABAGAAAAAAAAAAAAAAIA=</HashCode>
+      <FileName>Features\EmployeeFeatures\Commands\UpdateEmployeeCommand.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="TruckingIndustryAPI.Features.EmployeeFeatures.Queries.GetAllEmployeeQuery" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="57.75" Y="8" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Features\EmployeeFeatures\Queries\GetAllEmployeeQuery.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="TruckingIndustryAPI.Features.EmployeeFeatures.Queries.GetEmployeeByIdQuery" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="61.25" Y="9" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAACAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Features\EmployeeFeatures\Queries\GetEmployeeByIdQuery.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="TruckingIndustryAPI.Features.ExpensesFeatures.Commands.CreateExpensesCommand" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="66.5" Y="5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAEAgAAAAgAAAAAAACAAAAAAAQAAAAIAAAAAAA=</HashCode>
+      <FileName>Features\ExpensesFeatures\Commands\CreateExpensesCommand.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="TruckingIndustryAPI.Features.ExpensesFeatures.Commands.DeleteExpensesCommand" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="68.25" Y="6" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAACAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Features\ExpensesFeatures\Commands\DeleteExpensesCommand.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="TruckingIndustryAPI.Features.ExpensesFeatures.Commands.UpdateExpensesCommand" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="71.75" Y="12" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAACAAAEAgAAAAgAAAAAAACAAAAAAAQAAAAIAAAAAAA=</HashCode>
+      <FileName>Features\ExpensesFeatures\Commands\UpdateExpensesCommand.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="TruckingIndustryAPI.Features.ExpensesFeatures.Queries.GetAllExpensesQuery" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="59.5" Y="8" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Features\ExpensesFeatures\Queries\GetAllExpensesQuery.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="TruckingIndustryAPI.Features.ExpensesFeatures.Queries.GetExpensesByIdBidQuery" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="63" Y="9" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAACAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Features\ExpensesFeatures\Queries\GetExpensesByIdBidQuery.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="TruckingIndustryAPI.Features.ExpensesFeatures.Queries.GetExpensesByIdQuery" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="64.75" Y="9" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAACAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Features\ExpensesFeatures\Queries\GetExpensesByIdQuery.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="TruckingIndustryAPI.Features.FoundationFeatures.Commands.CreateFoundationCommand" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="68.25" Y="5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAgAAAAAgAAAAAAAIAAAAAAAAAACA=</HashCode>
+      <FileName>Features\FoundationFeatures\Commands\CreateFoundationCommand.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="TruckingIndustryAPI.Features.FoundationFeatures.Commands.DeleteFoundationCommand" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="70" Y="6" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAACAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Features\FoundationFeatures\Commands\DeleteFoundationCommand.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="TruckingIndustryAPI.Features.FoundationFeatures.Commands.UpdateFoundationCommand" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="73.5" Y="12" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAACAAAAAAAAAAAAgAAAAAgAAAAAAAIAAAAAAAAAACA=</HashCode>
+      <FileName>Features\FoundationFeatures\Commands\UpdateFoundationCommand.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="TruckingIndustryAPI.Features.FoundationFeatures.Queries.GetAllFoundationQuery" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="61.25" Y="8" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Features\FoundationFeatures\Queries\GetAllFoundationQuery.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="TruckingIndustryAPI.Features.FoundationFeatures.Queries.GetFoundationByIdQuery" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="66.5" Y="9" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAACAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Features\FoundationFeatures\Queries\GetFoundationByIdQuery.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="TruckingIndustryAPI.Features.PositionFeatures.Commands.CreatePositionCommand" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="70" Y="5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAABAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Features\PositionFeatures\Commands\CreatePositionCommand.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="TruckingIndustryAPI.Features.PositionFeatures.Commands.DeletePositionCommand" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="71.75" Y="6" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAACAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Features\PositionFeatures\Commands\DeletePositionCommand.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="TruckingIndustryAPI.Features.PositionFeatures.Commands.UpdatePositionCommand" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="75.25" Y="12" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAACAAAABAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Features\PositionFeatures\Commands\UpdatePositionCommand.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="TruckingIndustryAPI.Features.PositionFeatures.Queries.GetAllPositionsQuery" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="63" Y="8" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Features\PositionFeatures\Queries\GetAllPositionsQuery.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="TruckingIndustryAPI.Features.PositionFeatures.Queries.GetPositionByIdQuery" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="68.25" Y="9" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAACAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Features\PositionFeatures\Queries\GetPositionByIdQuery.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="TruckingIndustryAPI.Features.Routes.Commands.CreateRouteCommand" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="71.75" Y="5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAgAgAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Features\Routes\Commands\CreateRouteCommand.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="TruckingIndustryAPI.Features.Routes.Commands.DeleteRouteCommand" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="73.5" Y="6" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAACAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Features\Routes\Commands\DeleteRouteCommand.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="TruckingIndustryAPI.Features.Routes.Commands.UpdateRouteCommand" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="57.75" Y="13" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAACAAAAAAAAgAgAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Features\Routes\Commands\UpdateRouteCommand.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="TruckingIndustryAPI.Features.Routes.Queries.GetAllRouteQuery" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="64.75" Y="8" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Features\Routes\Queries\GetAllRouteQuery.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="TruckingIndustryAPI.Features.Routes.Queries.GetRouteByIdQuery" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="71.75" Y="9" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAACAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Features\Routes\Queries\GetRouteByIdQuery.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="TruckingIndustryAPI.Features.Routes.Queries.GetRoutesByIdBidQuery" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="73.5" Y="9" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAACAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Features\Routes\Queries\GetRoutesByIdBidQuery.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="TruckingIndustryAPI.Features.SalesForecastFeatures.Queries.GetSalesForecastARIMAQuery" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="75.25" Y="9" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Features\SalesForecastFeatures\Queries\GetSalesForecastARIMAQuery.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="TruckingIndustryAPI.Features.SalesForecastFeatures.Queries.GetSalesForecastQuery" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="57.75" Y="10" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAgAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Features\SalesForecastFeatures\Queries\GetSalesForecastQuery.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="TruckingIndustryAPI.Features.StatusFeatures.Commands.CreateStatusCommand" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="73.5" Y="5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Features\StatusFeatures\Commands\CreateStatusCommand.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="TruckingIndustryAPI.Features.StatusFeatures.Commands.DeleteStatusCommand" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="75.25" Y="6" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAACAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Features\StatusFeatures\Commands\DeleteStatusCommand.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="TruckingIndustryAPI.Features.StatusFeatures.Commands.UpdateStatusCommand" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="59.5" Y="13" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAACAAAAIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Features\StatusFeatures\Commands\UpdateStatusCommand.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="TruckingIndustryAPI.Features.StatusFeatures.Queries.GetAllStatusQuery" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="66.5" Y="8" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Features\StatusFeatures\Queries\GetAllStatusQuery.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="TruckingIndustryAPI.Features.StatusFeatures.Queries.GetStatusByIdQuery" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="59.5" Y="10" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAACAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Features\StatusFeatures\Queries\GetStatusByIdQuery.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="TruckingIndustryAPI.Features.TypeCargoFeatures.Commands.CreateTypeCargoCommand" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="75.25" Y="5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAgAAA=</HashCode>
+      <FileName>Features\TypeCargoFeatures\Commands\CreateTypeCargoCommand.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="TruckingIndustryAPI.Features.TypeCargoFeatures.Commands.DeleteTypeCargoCommand" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="57.75" Y="7" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAACAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Features\TypeCargoFeatures\Commands\DeleteTypeCargoCommand.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="TruckingIndustryAPI.Features.TypeCargoFeatures.Commands.UpdateTypeCargoCommand" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="61.25" Y="13" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAACAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAgAAA=</HashCode>
+      <FileName>Features\TypeCargoFeatures\Commands\UpdateTypeCargoCommand.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="TruckingIndustryAPI.Features.TypeCargoFeatures.Queries.GetAllTypeCargoQuery" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="68.25" Y="8" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Features\TypeCargoFeatures\Queries\GetAllTypeCargoQuery.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="TruckingIndustryAPI.Features.TypeCargoFeatures.Queries.GetTypeCargoByIdQuery" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="61.25" Y="10" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAACAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Features\TypeCargoFeatures\Queries\GetTypeCargoByIdQuery.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="TruckingIndustryAPI.Helpers.Google.Calendar.GoogleCalendatrHandler" Collapsed="true">
+    <Position X="63" Y="10" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>ABAAAAAAAAAEACBAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Helpers\Google\Calendar\GoogleCalendatrHandler.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="TruckingIndustryAPI.Helpers.JwtHandlerService" Collapsed="true">
+    <Position X="66.5" Y="10" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAABBAAAAEACAAAAAAgIAAAACIAAAAAAAAEAAAAAAAA=</HashCode>
+      <FileName>Helpers\JwtHandlerService.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="TruckingIndustryAPI.Helpers.MappingProfile" Collapsed="true">
+    <Position X="68.25" Y="10" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Helpers\MappingProfile.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="TruckingIndustryAPI.Migrations.init" Collapsed="true">
+    <Position X="64.75" Y="10" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAEAAAAI=</HashCode>
+      <FileName>Migrations\20230319113907_init.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="TruckingIndustryAPI.Migrations.ApplicationDbContextModelSnapshot" Collapsed="true">
+    <Position X="59.5" Y="4" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAABAAA=</HashCode>
+      <FileName>Migrations\ApplicationDbContextModelSnapshot.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="TruckingIndustryAPI.Repository.ApplicationRole.ApplicationRoleRepository" Collapsed="true">
+    <Position X="35" Y="8.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAEAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAIAA=</HashCode>
+      <FileName>Repository\ApplicationRole\ApplicationRoleRepository.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="TruckingIndustryAPI.Repository.ApplicationUserRoles.ApplicationUserRolesRepository" Collapsed="true">
+    <Position X="41.75" Y="8.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAEAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Repository\ApplicationUserRoles\ApplicationUserRolesRepository.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="TruckingIndustryAPI.Repository.ApplicationUsers.ApplicationUserRepository" Collapsed="true">
+    <Position X="46.25" Y="8.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAEAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Repository\ApplicationUsers\ApplicationUserRepository.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="TruckingIndustryAPI.Repository.Bids.BidsRepositoryWithLinks" Collapsed="true">
+    <Position X="50.75" Y="8.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAEAAAAAAAAAAAAAAAAAAAAAAAAAAAgAAAAAAAAAIIA=</HashCode>
+      <FileName>Repository\Bids\BidsRepositoryWithLinks.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="TruckingIndustryAPI.Repository.Cargos.CargoRepositoryWithLinks" Collapsed="true">
+    <Position X="55.25" Y="8.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>CAEAAAAAAAAAAAAAAAAAAAFAAAAAAAgAAAAAAAAAIIA=</HashCode>
+      <FileName>Repository\Cargos\CargoRepositoryWithLinks.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="TruckingIndustryAPI.Repository.Cars.CarsRepository" Collapsed="true">
+    <Position X="26" Y="8.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAEAAAAAAAAAAAAAAAAAAAAAAAAAAAgAAAAAAAAAAIA=</HashCode>
+      <FileName>Repository\Cars\CarsRepository.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="TruckingIndustryAPI.Repository.Clients.ClientRepository" Collapsed="true">
+    <Position X="30.5" Y="8.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAEAAAAAAAAAAAAAAAAAAAAAAAAAAAgAAAAAAAAAAIA=</HashCode>
+      <FileName>Repository\Clients\ClientRepository.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="TruckingIndustryAPI.Repository.Currencies.CurrencyRepository" Collapsed="true">
+    <Position X="37.25" Y="8.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAEAAAAAAAAAAAAAAAAAAAAAAAAAAAgAAAAAAAAAAIA=</HashCode>
+      <FileName>Repository\Currencies\CurrencyRepository.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="TruckingIndustryAPI.Repository.Employees.EmployeeRepositoryWithLinks" Collapsed="true">
+    <Position X="44" Y="8.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAEAAAAAAAAAAAAAAAAAAAAAAAAAAAgAAAAAAAAAIIA=</HashCode>
+      <FileName>Repository\Employees\EmployeeRepositoryWithLinks.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="TruckingIndustryAPI.Repository.Expenses.ExpensesRepositoryWithLinks" Collapsed="true">
+    <Position X="48.5" Y="8.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>CAEAAAAAAAAAAAAAAAAAAAAAAAAAAAgAAAAAAAAAIIA=</HashCode>
+      <FileName>Repository\Expenses\ExpensesRepositoryWithLinks.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="TruckingIndustryAPI.Repository.Foundations.FoundationRepositoryWithLinks" Collapsed="true">
+    <Position X="53" Y="8.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAEAAAAAAAAAAAAAAAAAAAAAAAAAAAgAAAAAAAAAIIA=</HashCode>
+      <FileName>Repository\Foundations\FoundationRepositoryWithLinks.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="TruckingIndustryAPI.Repository.Positions.PositionRepository" Collapsed="true">
+    <Position X="23.75" Y="8.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAEAAAAAAAAAAAAAAAAAAAAAAAAAAAgAAAAAAAAAAIA=</HashCode>
+      <FileName>Repository\Positions\PositionRepository.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="TruckingIndustryAPI.Repository.Routes.RouteRepository" Collapsed="true">
+    <Position X="28.25" Y="8.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>CAEAAAAAAAAAAAAAAAAAAAAAAAAAAAgAAAAAAAAAAIA=</HashCode>
+      <FileName>Repository\Routes\RouteRepository.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="TruckingIndustryAPI.Repository.Status.StatusRepository" Collapsed="true">
+    <Position X="32.75" Y="8.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAEAAAAAAAAAAAAAAAAAAAAAAAAAAAgAAAAAAAAAAIA=</HashCode>
+      <FileName>Repository\Status\StatusRepository.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="TruckingIndustryAPI.Repository.TypeCargos.TypeCargoRepository" Collapsed="true">
+    <Position X="39.5" Y="8.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAEAAAAAAAAAAAAAAAAAAAAAAAAAAAgAAAAAAAAAAIA=</HashCode>
+      <FileName>Repository\TypeCargos\TypeCargoRepository.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="TruckingIndustryAPI.Repository.GenericRepository&lt;T&gt;" Collapsed="true">
+    <Position X="39.5" Y="7" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAECAAAAAAAAAAAAAAAAAAEAKAAAAAgACAAAAAAAIIA=</HashCode>
+      <FileName>Repository\GenericRepository.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="TruckingIndustryAPI.Services.Email.EmailConfiguration" Collapsed="true">
+    <Position X="59.5" Y="7" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AgAAAAAAAAAAAAAAAAAAAAAACACAAAACAQAAAAAAAAA=</HashCode>
+      <FileName>Services\Email\EmailConfiguration.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="TruckingIndustryAPI.Services.Email.EmailSenderService" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="61.25" Y="7" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AABAAAAAAAAAAAAAAEAAAAACAgAAAAAAAAAAAQgAAAA=</HashCode>
+      <FileName>Services\Email\EmailSenderService.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="TruckingIndustryAPI.Services.Email.Message" Collapsed="true">
+    <Position X="70" Y="10" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAgAAAAEAAIAAAAAAAAAIAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Services\Email\Message.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="TruckingIndustryAPI.Services.CargoService" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="71.75" Y="4" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAgAAAAAABAAgAAAAAAAAAAAAAAAAAAAAAAAQA=</HashCode>
+      <FileName>Services\CargoService.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="TruckingIndustryAPI.Program" Collapsed="true">
+    <Position X="75.25" Y="10" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAABAAAAAA=</HashCode>
+      <FileName>Program.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="TruckingIndustryAPI.Startup" Collapsed="true">
+    <Position X="73.5" Y="11" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAgAAAAAAAAAAAAABAAAAAAAAAAAAAgAAACAAAAAA=</HashCode>
+      <FileName>Startup.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Interface Name="TruckingIndustryAPI.Configuration.UoW.IUnitOfWork" Collapsed="true">
+    <Position X="63" Y="14.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAARAACGASAAAAAgEEAAAAQACAAAAAgFAQAAAAAAAAQ=</HashCode>
+      <FileName>Configuration\UoW\IUnitOfWork.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="TruckingIndustryAPI.Entities.Command.ICommandResult" Collapsed="true">
+    <Position X="59.5" Y="14.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAQAAAAAAAAAAAgAAABAAAAAAAAAAAAA=</HashCode>
+      <FileName>Entities\Command\ICommandResult.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="TruckingIndustryAPI.Repository.ApplicationRole.IApplicationRoleRepository" Collapsed="true">
+    <Position X="37.25" Y="5.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAIAA=</HashCode>
+      <FileName>Repository\ApplicationRole\IApplicationRoleRepository.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="TruckingIndustryAPI.Repository.ApplicationUserRoles.IApplicationUserRolesRepository" Collapsed="true">
+    <Position X="41.75" Y="5.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Repository\ApplicationUserRoles\IApplicationUserRolesRepository.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="TruckingIndustryAPI.Repository.ApplicationUsers.IApplicationUserRepository" Collapsed="true">
+    <Position X="46.25" Y="5.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Repository\ApplicationUsers\IApplicationUserRepository.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="TruckingIndustryAPI.Repository.Bids.IBidsRepositoryWithLinks" Collapsed="true">
+    <Position X="50.75" Y="5.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Repository\Bids\IBidsRepositoryWithLinks.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="TruckingIndustryAPI.Repository.Cargos.ICargoRepositoryWithLinks" Collapsed="true">
+    <Position X="23.75" Y="5.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>CAAAAAAAAAAAAAAAAAAAAABAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Repository\Cargos\ICargoRepositoryWithLinks.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="TruckingIndustryAPI.Repository.Cars.ICarsRepository" Collapsed="true">
+    <Position X="28.25" Y="5.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Repository\Cars\ICarsRepository.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="TruckingIndustryAPI.Repository.Clients.IClientRepository" Collapsed="true">
+    <Position X="32.75" Y="5.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Repository\Clients\IClientRepository.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="TruckingIndustryAPI.Repository.Currency.ICurrencyRepository" Collapsed="true">
+    <Position X="39.5" Y="5.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Repository\Currencies\ICurrencyRepository.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="TruckingIndustryAPI.Repository.Employees.IEmployeeRepositoryWithLinks" Collapsed="true">
+    <Position X="44" Y="5.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Repository\Employees\IEmployeeRepositoryWithLinks.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="TruckingIndustryAPI.Repository.Expenses.IExpensesRepositoryWithLinks" Collapsed="true">
+    <Position X="48.5" Y="5.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>CAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Repository\Expenses\IExpensesRepositoryWithLinks.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="TruckingIndustryAPI.Repository.Foundations.IFoundationRepositoryWithLinks" Collapsed="true">
+    <Position X="53" Y="5.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Repository\Foundations\IFoundationRepositoryWithLinks.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="TruckingIndustryAPI.Repository.Positions.IPositionRepository" Collapsed="true">
+    <Position X="55.25" Y="5.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Repository\Positions\IPositionRepository.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="TruckingIndustryAPI.Repository.Routes.IRouteRepository" Collapsed="true">
+    <Position X="26" Y="5.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>CAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Repository\Routes\IRouteRepository.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="TruckingIndustryAPI.Repository.Status.IStatusRepository" Collapsed="true">
+    <Position X="30.5" Y="5.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Repository\Status\IStatusRepository.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="TruckingIndustryAPI.Repository.TypeCargos.ITypeCargoRepository" Collapsed="true">
+    <Position X="35" Y="5.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Repository\TypeCargos\ITypeCargoRepository.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="TruckingIndustryAPI.Repository.IGenericRepository&lt;T&gt;" Collapsed="true">
+    <Position X="39.5" Y="4" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAEAAAAAAAAAAAAAAAAAAAEACAAAAAgAAAAAAAAAIIA=</HashCode>
+      <FileName>Repository\IGenericRepository.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="TruckingIndustryAPI.Services.Email.IEmailSenderService" Collapsed="true">
+    <Position X="61.25" Y="14.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAgAAAAAAAAAAAQAAAAA=</HashCode>
+      <FileName>Services\Email\IEmailSenderService.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="TruckingIndustryAPI.Services.ICargoService" Collapsed="true">
+    <Position X="57.75" Y="14.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAgAAAAAABAAAAAAAAAAAAAAAAAAAAAAAAAAQA=</HashCode>
+      <FileName>Services\ICargoService.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Font Name="Segoe UI" Size="9" />
+</ClassDiagram>

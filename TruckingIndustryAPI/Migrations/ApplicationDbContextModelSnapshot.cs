@@ -455,9 +455,14 @@ namespace TruckingIndustryAPI.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<long>("SectorId")
+                        .HasColumnType("bigint");
+
                     b.HasKey("Id");
 
                     b.HasIndex("ClientId");
+
+                    b.HasIndex("SectorId");
 
                     b.ToTable("Foundation");
                 });
@@ -573,6 +578,55 @@ namespace TruckingIndustryAPI.Migrations
                     b.ToTable("Routes");
                 });
 
+            modelBuilder.Entity("TruckingIndustryAPI.Entities.Models.Sector", b =>
+                {
+                    b.Property<long>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("bigint");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<long>("Id"), 1L, 1);
+
+                    b.Property<string>("NameSector")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Sector");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = 1L,
+                            NameSector = "Нефтегазовый"
+                        },
+                        new
+                        {
+                            Id = 2L,
+                            NameSector = "Нефтехимический"
+                        },
+                        new
+                        {
+                            Id = 3L,
+                            NameSector = "Телекоммуникационный"
+                        },
+                        new
+                        {
+                            Id = 4L,
+                            NameSector = "IT"
+                        },
+                        new
+                        {
+                            Id = 5L,
+                            NameSector = "Добывающий"
+                        },
+                        new
+                        {
+                            Id = 6L,
+                            NameSector = "Финансовый"
+                        });
+                });
+
             modelBuilder.Entity("TruckingIndustryAPI.Entities.Models.Status", b =>
                 {
                     b.Property<long>("Id")
@@ -620,24 +674,24 @@ namespace TruckingIndustryAPI.Migrations
                     b.HasData(
                         new
                         {
-                            Id = "8721fb60-35e5-4d1b-a769-1ddb57c36168",
-                            ConcurrencyStamp = "3993f682-e109-4930-aaba-e2f4d34b2943",
+                            Id = "22c86764-3597-46f0-99a2-dd3054e83586",
+                            ConcurrencyStamp = "018d0aae-d13d-4473-8685-9b739d815829",
                             Name = "Viewer",
                             NormalizedName = "VIEWER",
                             RoleInRussian = "Просмотр"
                         },
                         new
                         {
-                            Id = "5254408e-9ae3-4ddf-b7ee-ff725ba38f9a",
-                            ConcurrencyStamp = "361c64b2-0fc3-4dfc-a1e3-6912599844d8",
+                            Id = "7df2c4e8-c620-47fc-a938-23159058cddd",
+                            ConcurrencyStamp = "0cf5383b-a340-4291-91a0-d6aa46ccbc6f",
                             Name = "Administrator",
                             NormalizedName = "ADMINISTRATOR",
                             RoleInRussian = "Администратор"
                         },
                         new
                         {
-                            Id = "828d8b0c-f7d5-46a4-b6c3-f0a60c9a4404",
-                            ConcurrencyStamp = "3edc8096-a616-40e8-bcdf-f1f0cca7413f",
+                            Id = "ad2ba095-d35d-4db6-bbf1-9db048c9db8a",
+                            ConcurrencyStamp = "73cf7863-9693-40b9-94e4-9f5f31d12313",
                             Name = "Moderator",
                             NormalizedName = "MODERATOR",
                             RoleInRussian = "Модератор"
@@ -803,7 +857,15 @@ namespace TruckingIndustryAPI.Migrations
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
+                    b.HasOne("TruckingIndustryAPI.Entities.Models.Sector", "Sector")
+                        .WithMany()
+                        .HasForeignKey("SectorId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
                     b.Navigation("Client");
+
+                    b.Navigation("Sector");
                 });
 
             modelBuilder.Entity("TruckingIndustryAPI.Entities.Models.Route", b =>

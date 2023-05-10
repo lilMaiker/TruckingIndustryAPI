@@ -1,10 +1,11 @@
-﻿using Microsoft.EntityFrameworkCore.Migrations;
+﻿using System;
+using Microsoft.EntityFrameworkCore.Migrations;
 
 #nullable disable
 
 namespace TruckingIndustryAPI.Migrations
 {
-    public partial class init : Migration
+    public partial class addsectors : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -113,6 +114,19 @@ namespace TruckingIndustryAPI.Migrations
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_Positions", x => x.Id);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "Sector",
+                columns: table => new
+                {
+                    Id = table.Column<long>(type: "bigint", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    NameSector = table.Column<string>(type: "nvarchar(max)", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Sector", x => x.Id);
                 });
 
             migrationBuilder.CreateTable(
@@ -248,28 +262,6 @@ namespace TruckingIndustryAPI.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "Foundation",
-                columns: table => new
-                {
-                    Id = table.Column<long>(type: "bigint", nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
-                    NameFoundation = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    CertificateNumber = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    BIC = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    ClientId = table.Column<long>(type: "bigint", nullable: false)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_Foundation", x => x.Id);
-                    table.ForeignKey(
-                        name: "FK_Foundation_Client_ClientId",
-                        column: x => x.ClientId,
-                        principalTable: "Client",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
-                });
-
-            migrationBuilder.CreateTable(
                 name: "Employees",
                 columns: table => new
                 {
@@ -298,6 +290,35 @@ namespace TruckingIndustryAPI.Migrations
                         name: "FK_Employees_Positions_PositionId",
                         column: x => x.PositionId,
                         principalTable: "Positions",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "Foundation",
+                columns: table => new
+                {
+                    Id = table.Column<long>(type: "bigint", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    NameFoundation = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    CertificateNumber = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    BIC = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    ClientId = table.Column<long>(type: "bigint", nullable: false),
+                    SectorId = table.Column<long>(type: "bigint", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Foundation", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_Foundation_Client_ClientId",
+                        column: x => x.ClientId,
+                        principalTable: "Client",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                    table.ForeignKey(
+                        name: "FK_Foundation_Sector_SectorId",
+                        column: x => x.SectorId,
+                        principalTable: "Sector",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                 });
@@ -436,17 +457,25 @@ namespace TruckingIndustryAPI.Migrations
             migrationBuilder.InsertData(
                 table: "AspNetRoles",
                 columns: new[] { "Id", "ConcurrencyStamp", "Discriminator", "Name", "NormalizedName", "RoleInRussian" },
-                values: new object[] { "196112b5-322c-4538-85af-bc05ef621ee7", "cd4b749e-126b-4f53-9d0b-06036ad6fa1a", "ApplicationRole", "Moderator", "MODERATOR", "Модератор" });
+                values: new object[,]
+                {
+                    { "22c86764-3597-46f0-99a2-dd3054e83586", "018d0aae-d13d-4473-8685-9b739d815829", "ApplicationRole", "Viewer", "VIEWER", "Просмотр" },
+                    { "7df2c4e8-c620-47fc-a938-23159058cddd", "0cf5383b-a340-4291-91a0-d6aa46ccbc6f", "ApplicationRole", "Administrator", "ADMINISTRATOR", "Администратор" },
+                    { "ad2ba095-d35d-4db6-bbf1-9db048c9db8a", "73cf7863-9693-40b9-94e4-9f5f31d12313", "ApplicationRole", "Moderator", "MODERATOR", "Модератор" }
+                });
 
             migrationBuilder.InsertData(
-                table: "AspNetRoles",
-                columns: new[] { "Id", "ConcurrencyStamp", "Discriminator", "Name", "NormalizedName", "RoleInRussian" },
-                values: new object[] { "edb9c7ce-1892-427f-8d37-752be773034e", "d05b7b08-9314-40d6-bc38-3df0a73832f1", "ApplicationRole", "Viewer", "VIEWER", "Просмотр" });
-
-            migrationBuilder.InsertData(
-                table: "AspNetRoles",
-                columns: new[] { "Id", "ConcurrencyStamp", "Discriminator", "Name", "NormalizedName", "RoleInRussian" },
-                values: new object[] { "f8cdaff3-7cd2-454a-a899-bc063a884d3b", "67e44959-f0a1-40e5-ae58-efad267d3bb2", "ApplicationRole", "Administrator", "ADMINISTRATOR", "Администратор" });
+                table: "Sector",
+                columns: new[] { "Id", "NameSector" },
+                values: new object[,]
+                {
+                    { 1L, "Нефтегазовый" },
+                    { 2L, "Нефтехимический" },
+                    { 3L, "Телекоммуникационный" },
+                    { 4L, "IT" },
+                    { 5L, "Добывающий" },
+                    { 6L, "Финансовый" }
+                });
 
             migrationBuilder.CreateIndex(
                 name: "IX_AspNetRoleClaims_RoleId",
@@ -548,6 +577,11 @@ namespace TruckingIndustryAPI.Migrations
                 column: "ClientId");
 
             migrationBuilder.CreateIndex(
+                name: "IX_Foundation_SectorId",
+                table: "Foundation",
+                column: "SectorId");
+
+            migrationBuilder.CreateIndex(
                 name: "IX_Routes_BidsId",
                 table: "Routes",
                 column: "BidsId");
@@ -611,6 +645,9 @@ namespace TruckingIndustryAPI.Migrations
 
             migrationBuilder.DropTable(
                 name: "Client");
+
+            migrationBuilder.DropTable(
+                name: "Sector");
         }
     }
 }

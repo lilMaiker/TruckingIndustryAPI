@@ -40,6 +40,14 @@ namespace TruckingIndustryAPI.Controllers
             return HandleResult(await _mediator.Send(new GetAllBidsQuery()));
         }
 
+        [HttpGet("ReportBids")]
+        [ProducesResponseType(StatusCodes.Status200OK)]
+        public async Task<IActionResult> GetReportBids()
+        {
+            return await _mediator.Send(new GetReportAllBidsQuery());
+        }
+
+
         [HttpPost]
         [ValidateModel]
         [ProducesResponseType(StatusCodes.Status200OK)]

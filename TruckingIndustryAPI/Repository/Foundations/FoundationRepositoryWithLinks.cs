@@ -14,7 +14,7 @@ namespace TruckingIndustryAPI.Repository.Foundations
         {
             try
             {
-                return await dbSet.Include(e => e.Client).Where(n => n.Id == id).FirstOrDefaultAsync();
+                return await dbSet.Include(e => e.Client).Include(e => e.Sector).Where(n => n.Id == id).FirstOrDefaultAsync();
             }
             catch (Exception ex)
             {
@@ -27,7 +27,7 @@ namespace TruckingIndustryAPI.Repository.Foundations
         {
             try
             {
-                return await dbSet.Include(p => p.Client).ToListAsync();
+                return await dbSet.Include(p => p.Client).Include(e => e.Sector).ToListAsync();
             }
             catch (Exception ex)
             {
@@ -52,6 +52,7 @@ namespace TruckingIndustryAPI.Repository.Foundations
                 existingentity.BIC = entity.BIC;
 
                 existingentity.ClientId = entity.ClientId;
+                existingentity.SectorId = entity.SectorId;
 
                 return true;
             }

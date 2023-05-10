@@ -14,6 +14,7 @@ namespace TruckingIndustryAPI.Features.FoundationFeatures.Commands
         public string CertificateNumber { get; set; }
         public string BIC { get; set; }
         public long ClientId { get; set; }
+        public long SectorId { get; set; }
         public class CreateFoundationCommandHandler : IRequestHandler<CreateFoundationCommand, ICommandResult>
         {
             private readonly IUnitOfWork _unitOfWork;

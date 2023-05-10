@@ -12,5 +12,8 @@ namespace TruckingIndustryAPI.Entities.Models
         public long ClientId { get; set; }
         public Client Client { get; set; }
 
+        [ForeignKey("Sector")]
+        public long SectorId { get; set; }
+        public Sector Sector { get; set; }
     }
 }

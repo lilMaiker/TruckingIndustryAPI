@@ -32,6 +32,7 @@ namespace TruckingIndustryAPI.Data
             base.OnModelCreating(modelBuilder);
 
             modelBuilder.ApplyConfiguration(new RoleConfiguration());
+            modelBuilder.ApplyConfiguration(new SectorConfiguration());
 
             //Статусы
             //Валюты

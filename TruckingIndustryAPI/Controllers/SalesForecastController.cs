@@ -20,10 +20,10 @@ namespace TruckingIndustryAPI.Controllers
 
         [HttpGet]
         [ProducesResponseType(StatusCodes.Status200OK)]
-        public async Task<IActionResult> GetSalesForecast()
+        public async Task<IActionResult> GetSalesForecast(int numMonths = 3)
         {
-            return HandleResult(await _mediator.Send(new GetSalesForecastARIMAQuery()));
-            //return HandleResult(await _mediator.Send(new GetSalesForecastQuery { numMonths = numMonths }));
+            //return HandleResult(await _mediator.Send(new GetSalesForecastARIMAQuery()));
+            return HandleResult(await _mediator.Send(new GetSalesForecastQuery { numMonths = numMonths }));
         }
     }
 }

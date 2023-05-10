@@ -14,6 +14,7 @@ using TruckingIndustryAPI.Repository.Expenses;
 using TruckingIndustryAPI.Repository.Foundations;
 using TruckingIndustryAPI.Repository.Positions;
 using TruckingIndustryAPI.Repository.Routes;
+using TruckingIndustryAPI.Repository.SectorsRepository;
 using TruckingIndustryAPI.Repository.Status;
 using TruckingIndustryAPI.Repository.TypeCargos;
 
@@ -37,6 +38,7 @@ namespace TruckingIndustryAPI.Configuration.UoW
         IRouteRepository Route { get; }
         IApplicationUserRepository User { get; }
         IApplicationRoleRepository Role { get; }
+        ISectorRepository Sector { get; }
         IApplicationUserRolesRepository UserRoles { get; }
         Task CompleteAsync();
     }

@@ -16,6 +16,7 @@ using TruckingIndustryAPI.Repository.Expenses;
 using TruckingIndustryAPI.Repository.Foundations;
 using TruckingIndustryAPI.Repository.Positions;
 using TruckingIndustryAPI.Repository.Routes;
+using TruckingIndustryAPI.Repository.SectorsRepository;
 using TruckingIndustryAPI.Repository.Status;
 using TruckingIndustryAPI.Repository.TypeCargos;
 
@@ -43,6 +44,7 @@ namespace TruckingIndustryAPI.Configuration.UoW
         public IApplicationUserRepository User { get; private set; }
         public IApplicationRoleRepository Role { get; private set; }
         public IApplicationUserRolesRepository UserRoles { get; private set; }
+        public ISectorRepository Sector { get; private set; }
 
         public UnitOfWork(ApplicationDbContext context,
             ILoggerFactory loggerFactory, UserManager<ApplicationUser> userManager,
@@ -69,6 +71,7 @@ namespace TruckingIndustryAPI.Configuration.UoW
             User = new ApplicationUserRepository(context, _logger);
             Role = new ApplicationRoleRepository(context, _logger);
             UserRoles = new ApplicationUserRolesRepository(context, _logger);
+            Sector = new SectorRepository(context, _logger);
         }
 
         public UserManager<ApplicationUser> UserManager
