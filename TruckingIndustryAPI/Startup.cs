@@ -7,6 +7,8 @@ using Microsoft.AspNetCore.Identity;
 using Microsoft.IdentityModel.Tokens;
 using Microsoft.OpenApi.Models;
 
+using OfficeOpenXml;
+
 using Prometheus;
 
 using System.Text;
@@ -171,6 +173,8 @@ namespace TruckingIndustryAPI
                 options.LogId = new Guid("3d304a7f-a9c5-47f0-9261-b5e65577d967");
             });
 
+            //Лицензия пакета
+            ExcelPackage.LicenseContext = LicenseContext.NonCommercial;
 
             // Регистрация службы JwtHandler с ограниченным временем жизни (scoped lifetime).
             services.AddScoped<JwtHandlerService>();

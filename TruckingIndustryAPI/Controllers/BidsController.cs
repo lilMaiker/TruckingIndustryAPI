@@ -40,11 +40,39 @@ namespace TruckingIndustryAPI.Controllers
             return HandleResult(await _mediator.Send(new GetAllBidsQuery()));
         }
 
-        [HttpGet("ReportBids")]
+        [HttpGet("ReportAllBids")]
         [ProducesResponseType(StatusCodes.Status200OK)]
-        public async Task<IActionResult> GetReportBids()
+        public async Task<IActionResult> GetReportAllBids()
         {
             return await _mediator.Send(new GetReportAllBidsQuery());
+        }
+
+        [HttpGet("ReportCountBidsWithSectors")]
+        [ProducesResponseType(StatusCodes.Status200OK)]
+        public async Task<IActionResult> GetReportCountBidsWithSectors()
+        {
+            return await _mediator.Send(new GetReportCountBidsWithSectorsQuery());
+        }
+
+        [HttpGet("ReportExpensesInBid")]
+        [ProducesResponseType(StatusCodes.Status200OK)]
+        public async Task<IActionResult> GetReportExpensesInBid(long bidId)
+        {
+            return await _mediator.Send(new GetReportExpensesInBidQuery { bidId = bidId });
+        }
+
+        [HttpPost("DocumentAct")]
+        [ProducesResponseType(StatusCodes.Status200OK)]
+        public async Task<IActionResult> GetDocumentAct([FromBody] GetDocumentActQuery getDocumentActQuery)
+        {
+            return await _mediator.Send(getDocumentActQuery);
+        }
+
+        [HttpPost("DocumentDog")]
+        [ProducesResponseType(StatusCodes.Status200OK)]
+        public async Task<IActionResult> GetDocumentDog([FromBody] GetDocumentDogQuery getDocumentDogQuery)
+        {
+            return await _mediator.Send(getDocumentDogQuery);
         }
 
 

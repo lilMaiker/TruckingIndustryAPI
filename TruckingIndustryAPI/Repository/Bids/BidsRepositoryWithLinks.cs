@@ -13,11 +13,11 @@ namespace TruckingIndustryAPI.Repository.Bids
         {
             try
             {
-                return await dbSet.Include(e => e.Cars).Include(e => e.Currency).Include(e => e.Employee).Include(e => e.Foundation).Include(e => e.Status).Where(n => n.Id == id).FirstOrDefaultAsync();
+                return await dbSet.Include(e => e.Cars).Include(e => e.Currency).Include(e => e.Employee).Include(e => e.Foundation).ThenInclude(f => f.Sector).Include(e => e.Status).Where(n => n.Id == id).FirstOrDefaultAsync();
             }
             catch (Exception ex)
             {
-                _logger.LogError(ex, "{Repo} GetById function error", typeof(EmployeeRepositoryWithLinks));
+                _logger.LogError(ex, "{Repo} GetById function error", typeof(BidsRepositoryWithLinks));
                 return new Entities.Models.Bid();
             }
         }
@@ -26,7 +26,7 @@ namespace TruckingIndustryAPI.Repository.Bids
         {
             try
             {
-                return await dbSet.Include(e => e.Cars).Include(e => e.Currency).Include(e => e.Employee).Include(e => e.Foundation).Include(e => e.Status).ToListAsync();
+                return await dbSet.Include(e => e.Cars).Include(e => e.Currency).Include(e => e.Employee).Include(e => e.Foundation).ThenInclude(f => f.Sector).Include(e => e.Status).ToListAsync();
             }
             catch (Exception ex)
             {
